@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+// src/pages/Home.jsx - MOBILE RESPONSIVE
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
@@ -40,28 +40,28 @@ const Home = () => {
           <h2 style={styles.sectionTitle}>Why Choose GROWTOPIA</h2>
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
-              <Sprout size={48} color="#6b9e3e" />
+              <Sprout size={48} color="#6b9e3e" style={styles.featureIcon} />
               <h3 style={styles.featureTitle}>Sustainable Solutions</h3>
               <p style={styles.featureText}>
                 Eco-friendly products that protect the environment while boosting productivity
               </p>
             </div>
             <div style={styles.featureCard}>
-              <Target size={48} color="#6b9e3e" />
+              <Target size={48} color="#6b9e3e" style={styles.featureIcon} />
               <h3 style={styles.featureTitle}>Precision Technology</h3>
               <p style={styles.featureText}>
                 IoT-powered tools for data-driven farming decisions
               </p>
             </div>
             <div style={styles.featureCard}>
-              <Users size={48} color="#6b9e3e" />
+              <Users size={48} color="#6b9e3e" style={styles.featureIcon} />
               <h3 style={styles.featureTitle}>Expert Support</h3>
               <p style={styles.featureText}>
                 Dedicated team to help you succeed at every step
               </p>
             </div>
             <div style={styles.featureCard}>
-              <TrendingUp size={48} color="#6b9e3e" />
+              <TrendingUp size={48} color="#6b9e3e" style={styles.featureIcon} />
               <h3 style={styles.featureTitle}>Proven Results</h3>
               <p style={styles.featureText}>
                 Increased yields and reduced costs for farmers nationwide
@@ -116,85 +116,96 @@ const styles = {
   hero: {
     background: 'linear-gradient(135deg, #2d5016 0%, #6b9e3e 100%)',
     color: 'white',
-    padding: '6rem 2rem',
+    padding: 'clamp(3rem, 8vw, 6rem) 1.5rem',
     textAlign: 'center'
   },
   heroTitle: {
-    fontSize: '3rem',
+    fontSize: 'clamp(2rem, 6vw, 3rem)',
     marginBottom: '1rem',
-    color: 'white'
+    color: 'white',
+    lineHeight: '1.2'
   },
   heroText: {
-    fontSize: '1.3rem',
+    fontSize: 'clamp(1rem, 3vw, 1.3rem)',
     maxWidth: '800px',
     margin: '0 auto 2rem',
-    lineHeight: '1.6'
+    lineHeight: '1.6',
+    padding: '0 1rem'
   },
   ctaButton: {
     background: '#f4a220',
     color: 'white',
-    padding: '1rem 2.5rem',
+    padding: 'clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)',
     border: 'none',
     borderRadius: '30px',
-    fontSize: '1.1rem',
+    fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
     fontWeight: '600',
     cursor: 'pointer',
-    transition: 'transform 0.3s'
+    transition: 'transform 0.3s',
+    width: 'auto',
+    minWidth: '200px'
   },
   section: {
-    padding: '4rem 2rem'
+    padding: 'clamp(2rem, 5vw, 4rem) 1.5rem'
   },
   sectionTitle: {
     textAlign: 'center',
     marginBottom: '2rem',
-    color: '#2d5016'
+    color: '#2d5016',
+    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)'
   },
   missionText: {
     textAlign: 'center',
     maxWidth: '900px',
     margin: '0 auto',
-    fontSize: '1.1rem',
+    fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
     lineHeight: '1.8',
     color: '#333'
   },
   featuresSection: {
     background: '#f8f9fa',
-    padding: '4rem 2rem'
+    padding: 'clamp(2rem, 5vw, 4rem) 1.5rem'
   },
   featuresGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '2rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+    gap: 'clamp(1.5rem, 3vw, 2rem)',
     maxWidth: '1200px',
     margin: '0 auto'
   },
   featureCard: {
     background: 'white',
-    padding: '2rem',
+    padding: 'clamp(1.5rem, 3vw, 2rem)',
     borderRadius: '15px',
     textAlign: 'center',
     boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
     transition: 'transform 0.3s'
   },
+  featureIcon: {
+    width: 'clamp(40px, 8vw, 48px)',
+    height: 'clamp(40px, 8vw, 48px)'
+  },
   featureTitle: {
     margin: '1rem 0',
-    color: '#2d5016'
+    color: '#2d5016',
+    fontSize: 'clamp(1.1rem, 3vw, 1.3rem)'
   },
   featureText: {
     color: '#666',
-    lineHeight: '1.6'
+    lineHeight: '1.6',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)'
   },
   productsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '2rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+    gap: 'clamp(1.5rem, 3vw, 2rem)',
     maxWidth: '1200px',
     margin: '0 auto'
   },
   productCard: {
     background: 'white',
     borderRadius: '15px',
-    padding: '2rem',
+    padding: 'clamp(1.5rem, 3vw, 2rem)',
     textDecoration: 'none',
     color: 'inherit',
     boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
@@ -202,22 +213,23 @@ const styles = {
     display: 'block'
   },
   productImage: {
-    fontSize: '4rem',
+    fontSize: 'clamp(3rem, 8vw, 4rem)',
     textAlign: 'center',
     marginBottom: '1rem'
   },
   productName: {
-    fontSize: '1.3rem',
+    fontSize: 'clamp(1.1rem, 3vw, 1.3rem)',
     marginBottom: '0.5rem',
     color: '#2d5016'
   },
   productDescription: {
     color: '#666',
     marginBottom: '1rem',
-    fontSize: '0.95rem'
+    fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+    lineHeight: '1.5'
   },
   productPrice: {
-    fontSize: '1.5rem',
+    fontSize: 'clamp(1.3rem, 3vw, 1.5rem)',
     fontWeight: 'bold',
     color: '#f4a220',
     marginBottom: '1rem'
@@ -226,10 +238,10 @@ const styles = {
     width: '100%',
     background: '#6b9e3e',
     color: 'white',
-    padding: '0.75rem',
+    padding: 'clamp(0.65rem, 2vw, 0.75rem)',
     border: 'none',
     borderRadius: '8px',
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     fontWeight: '600',
     cursor: 'pointer'
   },
@@ -240,26 +252,27 @@ const styles = {
   viewAllButton: {
     background: '#2d5016',
     color: 'white',
-    padding: '1rem 3rem',
+    padding: 'clamp(0.8rem, 2vw, 1rem) clamp(2rem, 5vw, 3rem)',
     border: 'none',
     borderRadius: '25px',
-    fontSize: '1.1rem',
+    fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
     fontWeight: '600',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    minWidth: '200px'
   },
   ctaSection: {
     background: 'linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%)',
     color: 'white',
-    padding: '5rem 2rem',
+    padding: 'clamp(3rem, 8vw, 5rem) 1.5rem',
     textAlign: 'center'
   },
   ctaTitle: {
-    fontSize: '2.5rem',
+    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
     marginBottom: '1rem',
     color: 'white'
   },
   ctaText: {
-    fontSize: '1.2rem',
+    fontSize: 'clamp(1rem, 3vw, 1.2rem)',
     marginBottom: '2rem'
   }
 };
