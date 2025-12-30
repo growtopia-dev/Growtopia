@@ -1,0 +1,267 @@
+// src/pages/Home.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { products } from '../data/products';
+import { Sprout, Target, Users, TrendingUp } from 'lucide-react';
+
+const Home = () => {
+  const featuredProducts = products.slice(0, 3);
+
+  return (
+    <div>
+      {/* Hero Section */}
+      <section style={styles.hero}>
+        <h1 style={styles.heroTitle}>🌱 Revolutionizing Agriculture</h1>
+        <p style={styles.heroText}>
+          GROWTOPIA is pioneering sustainable farming solutions with cutting-edge 
+          technology to feed the future
+        </p>
+        <Link to="/products">
+          <button style={styles.ctaButton}>Explore Products</button>
+        </Link>
+      </section>
+
+      {/* Mission Section */}
+      <section style={styles.section}>
+        <div className="container">
+          <h2 style={styles.sectionTitle}>Our Mission</h2>
+          <p style={styles.missionText}>
+            At GROWTOPIA, we're committed to transforming agriculture through innovative 
+            technology and sustainable practices. Our team combines expertise in agritech, 
+            IoT, and environmental science to create solutions that empower farmers and 
+            promote food security worldwide.
+          </p>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section style={styles.featuresSection}>
+        <div className="container">
+          <h2 style={styles.sectionTitle}>Why Choose GROWTOPIA</h2>
+          <div style={styles.featuresGrid}>
+            <div style={styles.featureCard}>
+              <Sprout size={48} color="#6b9e3e" />
+              <h3 style={styles.featureTitle}>Sustainable Solutions</h3>
+              <p style={styles.featureText}>
+                Eco-friendly products that protect the environment while boosting productivity
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <Target size={48} color="#6b9e3e" />
+              <h3 style={styles.featureTitle}>Precision Technology</h3>
+              <p style={styles.featureText}>
+                IoT-powered tools for data-driven farming decisions
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <Users size={48} color="#6b9e3e" />
+              <h3 style={styles.featureTitle}>Expert Support</h3>
+              <p style={styles.featureText}>
+                Dedicated team to help you succeed at every step
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <TrendingUp size={48} color="#6b9e3e" />
+              <h3 style={styles.featureTitle}>Proven Results</h3>
+              <p style={styles.featureText}>
+                Increased yields and reduced costs for farmers nationwide
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section style={styles.section}>
+        <div className="container">
+          <h2 style={styles.sectionTitle}>Featured Products</h2>
+          <div style={styles.productsGrid}>
+            {featuredProducts.map(product => (
+              <Link 
+                key={product.id} 
+                to={`/product/${product.id}`} 
+                style={styles.productCard}
+              >
+                <div style={styles.productImage}>{product.image}</div>
+                <h3 style={styles.productName}>{product.name}</h3>
+                <p style={styles.productDescription}>{product.description}</p>
+                <p style={styles.productPrice}>₹{product.price.toLocaleString()}</p>
+                <button style={styles.viewButton}>View Details</button>
+              </Link>
+            ))}
+          </div>
+          <div style={styles.viewAllContainer}>
+            <Link to="/products">
+              <button style={styles.viewAllButton}>View All Products</button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section style={styles.ctaSection}>
+        <h2 style={styles.ctaTitle}>Ready to Transform Your Farm?</h2>
+        <p style={styles.ctaText}>
+          Join thousands of farmers who are already using GROWTOPIA solutions
+        </p>
+        <Link to="/contact">
+          <button style={styles.ctaButton}>Get Started Today</button>
+        </Link>
+      </section>
+    </div>
+  );
+};
+
+const styles = {
+  hero: {
+    background: 'linear-gradient(135deg, #2d5016 0%, #6b9e3e 100%)',
+    color: 'white',
+    padding: '6rem 2rem',
+    textAlign: 'center'
+  },
+  heroTitle: {
+    fontSize: '3rem',
+    marginBottom: '1rem',
+    color: 'white'
+  },
+  heroText: {
+    fontSize: '1.3rem',
+    maxWidth: '800px',
+    margin: '0 auto 2rem',
+    lineHeight: '1.6'
+  },
+  ctaButton: {
+    background: '#f4a220',
+    color: 'white',
+    padding: '1rem 2.5rem',
+    border: 'none',
+    borderRadius: '30px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'transform 0.3s'
+  },
+  section: {
+    padding: '4rem 2rem'
+  },
+  sectionTitle: {
+    textAlign: 'center',
+    marginBottom: '2rem',
+    color: '#2d5016'
+  },
+  missionText: {
+    textAlign: 'center',
+    maxWidth: '900px',
+    margin: '0 auto',
+    fontSize: '1.1rem',
+    lineHeight: '1.8',
+    color: '#333'
+  },
+  featuresSection: {
+    background: '#f8f9fa',
+    padding: '4rem 2rem'
+  },
+  featuresGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  },
+  featureCard: {
+    background: 'white',
+    padding: '2rem',
+    borderRadius: '15px',
+    textAlign: 'center',
+    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+    transition: 'transform 0.3s'
+  },
+  featureTitle: {
+    margin: '1rem 0',
+    color: '#2d5016'
+  },
+  featureText: {
+    color: '#666',
+    lineHeight: '1.6'
+  },
+  productsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  },
+  productCard: {
+    background: 'white',
+    borderRadius: '15px',
+    padding: '2rem',
+    textDecoration: 'none',
+    color: 'inherit',
+    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+    transition: 'transform 0.3s',
+    display: 'block'
+  },
+  productImage: {
+    fontSize: '4rem',
+    textAlign: 'center',
+    marginBottom: '1rem'
+  },
+  productName: {
+    fontSize: '1.3rem',
+    marginBottom: '0.5rem',
+    color: '#2d5016'
+  },
+  productDescription: {
+    color: '#666',
+    marginBottom: '1rem',
+    fontSize: '0.95rem'
+  },
+  productPrice: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#f4a220',
+    marginBottom: '1rem'
+  },
+  viewButton: {
+    width: '100%',
+    background: '#6b9e3e',
+    color: 'white',
+    padding: '0.75rem',
+    border: 'none',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    cursor: 'pointer'
+  },
+  viewAllContainer: {
+    textAlign: 'center',
+    marginTop: '3rem'
+  },
+  viewAllButton: {
+    background: '#2d5016',
+    color: 'white',
+    padding: '1rem 3rem',
+    border: 'none',
+    borderRadius: '25px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer'
+  },
+  ctaSection: {
+    background: 'linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%)',
+    color: 'white',
+    padding: '5rem 2rem',
+    textAlign: 'center'
+  },
+  ctaTitle: {
+    fontSize: '2.5rem',
+    marginBottom: '1rem',
+    color: 'white'
+  },
+  ctaText: {
+    fontSize: '1.2rem',
+    marginBottom: '2rem'
+  }
+};
+
+export default Home;
