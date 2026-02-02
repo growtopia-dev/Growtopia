@@ -1,7 +1,45 @@
 // src/pages/About.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { cofounders, teamMembers } from '../data/team';
 import { Mail } from 'lucide-react';
+
+const TeamCard = ({ member }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div 
+      style={styles.cardContainer}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div style={{
+        ...styles.cardInner,
+        transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+      }}>
+        {/* Front of card */}
+        <div style={styles.cardFront}>
+          <div style={styles.memberAvatar}>
+            <span style={styles.avatarIcon}>👤</span>
+          </div>
+          <h3 style={styles.memberName}>{member.name}</h3>
+          <p style={styles.memberRole}>{member.role}</p>
+          <p style={styles.flipHint}>Hover or tap to see more</p>
+        </div>
+
+        {/* Back of card */}
+        <div style={styles.cardBack}>
+          <h3 style={styles.memberNameBack}>{member.name}</h3>
+          <p style={styles.memberRoleBack}>{member.role}</p>
+          <p style={styles.memberBio}>{member.bio}</p>
+          <a href={`mailto:${member.email}`} style={styles.emailLink}>
+            <Mail size={16} /> {member.email}
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const About = () => {
   return (
@@ -69,17 +107,7 @@ const About = () => {
         <h2 style={styles.sectionTitle}>Meet Our Co-Founders</h2>
         <div style={styles.teamGrid}>
           {cofounders.map((member, index) => (
-            <div key={index} style={styles.memberCard}>
-              <div style={styles.memberAvatar}>
-                <span style={styles.avatarIcon}>👤</span>
-              </div>
-              <h3 style={styles.memberName}>{member.name}</h3>
-              <p style={styles.memberRole}>{member.role}</p>
-              <p style={styles.memberBio}>{member.bio}</p>
-              <a href={`mailto:${member.email}`} style={styles.emailLink}>
-                <Mail size={16} /> {member.email}
-              </a>
-            </div>
+            <TeamCard key={index} member={member} />
           ))}
         </div>
       </section>
@@ -89,17 +117,7 @@ const About = () => {
         <h2 style={styles.sectionTitle}>Our Core Team</h2>
         <div style={styles.teamGrid}>
           {teamMembers.map((member, index) => (
-            <div key={index} style={styles.memberCard}>
-              <div style={styles.memberAvatar}>
-                <span style={styles.avatarIcon}>👤</span>
-              </div>
-              <h3 style={styles.memberName}>{member.name}</h3>
-              <p style={styles.memberRole}>{member.role}</p>
-              <p style={styles.memberBio}>{member.bio}</p>
-              <a href={`mailto:${member.email}`} style={styles.emailLink}>
-                <Mail size={16} /> {member.email}
-              </a>
-            </div>
+            <TeamCard key={index} member={member} />
           ))}
         </div>
       </section>
@@ -186,13 +204,48 @@ const styles = {
     maxWidth: '1200px',
     margin: '2rem auto 0'
   },
-  memberCard: {
+  // Flip card styles
+  cardContainer: {
+    perspective: '1000px',
+    height: '400px',
+    cursor: 'pointer'
+  },
+  cardInner: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    transition: 'transform 0.6s',
+    transformStyle: 'preserve-3d'
+  },
+  cardFront: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backfaceVisibility: 'hidden',
     background: 'white',
     padding: '2rem',
     borderRadius: '15px',
     boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
-    textAlign: 'center',
-    transition: 'transform 0.3s, box-shadow 0.3s'
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  cardBack: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backfaceVisibility: 'hidden',
+    background: 'linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%)',
+    padding: '2rem',
+    borderRadius: '15px',
+    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+    transform: 'rotateY(180deg)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'white'
   },
   memberAvatar: {
     width: '120px',
@@ -210,7 +263,8 @@ const styles = {
   memberName: {
     fontSize: '1.5rem',
     color: '#2d5016',
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
+    fontWeight: '600'
   },
   memberRole: {
     fontSize: '1.1rem',
@@ -218,11 +272,30 @@ const styles = {
     fontWeight: '600',
     marginBottom: '1rem'
   },
+  flipHint: {
+    fontSize: '0.85rem',
+    color: '#999',
+    fontStyle: 'italic',
+    marginTop: '1rem'
+  },
+  memberNameBack: {
+    fontSize: '1.5rem',
+    color: 'white',
+    marginBottom: '0.5rem',
+    fontWeight: '600'
+  },
+  memberRoleBack: {
+    fontSize: '1.1rem',
+    color: '#f4a220',
+    fontWeight: '600',
+    marginBottom: '1.5rem'
+  },
   memberBio: {
     fontSize: '0.95rem',
     lineHeight: '1.6',
-    color: '#666',
-    marginBottom: '1rem'
+    color: 'white',
+    marginBottom: '1.5rem',
+    textAlign: 'center'
   },
   emailLink: {
     display: 'inline-flex',
@@ -231,7 +304,11 @@ const styles = {
     color: '#f4a220',
     textDecoration: 'none',
     fontSize: '0.9rem',
-    fontWeight: '600'
+    fontWeight: '600',
+    background: 'rgba(255,255,255,0.1)',
+    padding: '0.5rem 1rem',
+    borderRadius: '25px',
+    transition: 'background 0.3s'
   }
 };
 
