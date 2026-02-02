@@ -95,11 +95,8 @@ const Navbar = ({ cartCount }) => {
 
 const styles = {
   nav: {
-  //   background: "linear-gradient(180deg, rgba(115, 173, 184, 0.96), rgba(30, 144, 215, 0.9))",
-  // //  background: "rgba(120, 158, 95, 0.92)",
-    background: "linear-gradient(to right, #c5c380,  #8dc3d4, rgba(93, 148, 183, 0.9), rgba(115, 173, 184, 0.96))",
-  backdropFilter: "blur(6px)",
-
+     background: '#2d5016',
+    backdropFilter: "blur(4px)",
     padding: '1rem 1.5rem',
     position: 'sticky',
     top: 0,
@@ -116,7 +113,7 @@ const styles = {
   },
   logo: {
     fontSize: '1.5rem',
-    fontWeight: 'bold',
+    fontWeight: '700',
     color: 'white',
     textDecoration: 'none',
     display: 'flex',
