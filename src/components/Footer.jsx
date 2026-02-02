@@ -36,8 +36,8 @@ const Footer = () => {
             <div style={styles.social}>
               <a href="#!" style={styles.socialLink}>Facebook</a>
               <a href="#!" style={styles.socialLink}>Twitter</a>
-              <a href="#!" style={styles.socialLink}>LinkedIn</a>
-              <a href="#!" style={styles.socialLink}>Instagram</a>
+              <a href="linkedin.com/company/growtopia-agricare/" style={styles.socialLink}>LinkedIn</a>
+              <a href="instagram.com/growtopia_agricare" style={styles.socialLink}>Instagram</a>
             </div>
           </div>
         </div>
@@ -54,6 +54,7 @@ const Footer = () => {
 const styles = {
   footer: {
     background: '#2d5016',
+    // background: '#2E7D6F',
     color: 'white',
     padding: '3rem 2rem 1rem',
     marginTop: 'auto'
