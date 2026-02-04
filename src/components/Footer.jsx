@@ -36,8 +36,8 @@ const Footer = () => {
             <div style={styles.social}>
               <a href="#!" style={styles.socialLink}>Facebook</a>
               <a href="#!" style={styles.socialLink}>Twitter</a>
-              <a href="linkedin.com/company/growtopia-agricare/" style={styles.socialLink}>LinkedIn</a>
-              <a href="instagram.com/growtopia_agricare" style={styles.socialLink}>Instagram</a>
+              <a href="https://www.linkedin.com/company/growtopia-agricare/" style={styles.socialLink}>LinkedIn</a>
+              <a href="https://www.instagram.com/growtopia_agricare" style={styles.socialLink}>Instagram</a>
             </div>
           </div>
         </div>
