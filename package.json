@@ -10,10 +10,7 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-<<<<<<< HEAD
-=======
     "react-hot-toast": "^2.6.0",
->>>>>>> 1927ea3f8fb2a09a3568af23bf59c2256721524c
     "react-router-dom": "^7.11.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
