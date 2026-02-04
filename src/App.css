@@ -20,6 +20,13 @@ body {
   overflow-x: hidden;
 }
 
+<<<<<<< HEAD
+=======
+body::-webkit-scrollbar{
+  display: none;
+}
+
+>>>>>>> 1927ea3f8fb2a09a3568af23bf59c2256721524c
 .App {
   min-height: 100vh;
   display: flex;
@@ -230,7 +237,11 @@ a {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 a:hover {
+=======
+button:hover {
+>>>>>>> 1927ea3f8fb2a09a3568af23bf59c2256721524c
   opacity: 0.8;
 }
 
