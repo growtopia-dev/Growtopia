@@ -231,8 +231,6 @@ const styles = {
     transition: "transform 0.3s",
     display: "flex",
     flexDirection: "column",
-    // alignItems:"center",
-    justfyContent: "space-evenly"
   },
   productImage: {
     width: "100%",
@@ -251,6 +249,7 @@ const styles = {
     marginBottom: "1rem",
     fontSize: "clamp(0.85rem, 2vw, 0.95rem)",
     lineHeight: "1.5",
+    flexGrow:1,
   },
   productPrice: {
     fontSize: "clamp(1.3rem, 3vw, 1.5rem)",
@@ -269,6 +268,7 @@ const styles = {
     fontSize: "clamp(0.9rem, 2vw, 1rem)",
     fontWeight: "600",
     cursor: "pointer",
+    marginTop:"auto",
   },
   viewAllContainer: {
     textAlign: "center",
