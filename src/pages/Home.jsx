@@ -128,7 +128,7 @@ const Home = () => {
 const styles = {
   hero: {
     backgroundImage:
-      "linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/img2.png')",
+      "linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('/img2.webp')",
     // background: 'linear-gradient(135deg, #2d5016 0%, #6b9e3e 100%)',
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -229,7 +229,10 @@ const styles = {
     color: "inherit",
     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
     transition: "transform 0.3s",
-    display: "block",
+    display: "flex",
+    flexDirection: "column",
+    // alignItems:"center",
+    justfyContent: "space-evenly"
   },
   productImage: {
     width: "100%",
@@ -260,6 +263,7 @@ const styles = {
     background: "#6b9e3e",
     color: "white",
     padding: "clamp(0.65rem, 2vw, 0.75rem)",
+    // padding: "0.65rem 0.75rem",
     border: "none",
     borderRadius: "8px",
     fontSize: "clamp(0.9rem, 2vw, 1rem)",

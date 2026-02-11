@@ -32,7 +32,7 @@ const Navbar = ({ cartCount }) => {
       <nav style={styles.nav}>
         <div style={styles.container}>
           <Link to="/" style={styles.logo}>
-            <img src={process.env.PUBLIC_URL + '/growtopia_logo.png'} alt="logo" style={styles.logoImg} /> GROWTOPIA
+            <img src={process.env.PUBLIC_URL + '/growtopia_logo.webp'} alt="logo" style={styles.logoImg} /> GROWTOPIA
           </Link>
 
           {/* Desktop Navigation */}

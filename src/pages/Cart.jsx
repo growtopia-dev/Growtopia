@@ -39,6 +39,10 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
       <h1 style={styles.title}>Shopping Cart</h1>
       <p style={styles.subtitle}>Review your items and proceed to checkout</p>
 
+      <button onClick={clearCart} style={styles.clearCartBtn}>
+        Clear Cart
+      </button>
+
       <div style={styles.cartLayout}>
         {/* Cart Items */}
         <div style={styles.cartItems}>
@@ -90,10 +94,6 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
               </button>
             </div>
           ))}
-
-          <button onClick={clearCart} style={styles.clearCartBtn}>
-            Clear Cart
-          </button>
         </div>
 
         {/* Cart Summary */}
@@ -162,6 +162,17 @@ const styles = {
     color: "#666",
     marginBottom: "3rem",
     fontSize: "1.1rem",
+  },
+  clearCartBtn: {
+    background: "#e63946",
+    color: "white",
+    border: "none",
+    padding: "0.75rem 1.5rem",
+    marginBottom: "2rem",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "600",
+    alignSelf: "flex-start",
   },
   cartLayout: {
     display: "grid",
@@ -257,16 +268,6 @@ const styles = {
     padding: "0.5rem",
     borderRadius: "5px",
     transition: "background 0.3s",
-  },
-  clearCartBtn: {
-    background: "#e63946",
-    color: "white",
-    border: "none",
-    padding: "0.75rem 1.5rem",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "600",
-    alignSelf: "flex-start",
   },
   cartSummary: {
     background: "white",

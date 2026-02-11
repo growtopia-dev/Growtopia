@@ -1,12 +1,12 @@
 // src/data/products.js
-import SmartIrrigationSystem from '../assets/SmartIrrigationSystem.png';
-import CropAnalyticsDashboard from '../assets/CropAnalyticsDashboard.png';
-import DripIrrigationSystem from '../assets/DripIrrigationSystem.png';
-import OrganicFertilizerPack from '../assets/OrganicFertilizerPack.png';
-import PestControlSolution from '../assets/PestControlSolution.png';
-import SmartGreenhouseController from '../assets/SmartGreenhouseController.png';
-import SoilHealthMonitor from '../assets/SoilHealthMonitor.png';
-import WeatherStationPro from '../assets/WeatherStationPro.png';
+import SmartIrrigationSystem from '../assets/SmartIrrigationSystem.webp';
+import CropAnalyticsDashboard from '../assets/CropAnalyticsDashboard.webp';
+import DripIrrigationSystem from '../assets/DripIrrigationSystem.webp';
+import OrganicFertilizerPack from '../assets/OrganicFertilizerPack.webp';
+import PestControlSolution from '../assets/PestControlSolution.webp';
+import SmartGreenhouseController from '../assets/SmartGreenhouseController.webp';
+import SoilHealthMonitor from '../assets/SoilHealthMonitor.webp';
+import WeatherStationPro from '../assets/WeatherStationPro.webp';
 export const products = [
   {
     id: 1,
