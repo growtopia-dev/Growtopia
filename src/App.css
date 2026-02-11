@@ -274,3 +274,43 @@ select {
     padding-right: min(0px, env(safe-area-inset-right));
   }
 }
+
+/* Cart Responsiveness */
+@media (max-width:992px){
+  /* stack the layout */
+  .cart-layout-container{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px){
+  .cart-item-responsive {
+    grid-template-columns: 80px 1fr !important;
+    grid-template-rows: auto auto;
+    gap: 1rem !important;
+  }
+
+  .cart-item-responsive img{
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .cart-item-image-container{
+    grid-row: 1/2;
+    width: 100px;
+    height: 100px ;
+  }
+
+  .cart-item-controls {
+    display: flex !important;
+    grid-column: 1/3; 
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 1rem ;
+  }
+ 
+  .card-title-responsive{
+    font-size: 1.8rem;
+  }
+}

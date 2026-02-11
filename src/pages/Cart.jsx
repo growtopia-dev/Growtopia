@@ -43,11 +43,15 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
         Clear Cart
       </button>
 
-      <div style={styles.cartLayout}>
+      <div style={styles.cartLayout} className='cart-layout-container'>
         {/* Cart Items */}
         <div style={styles.cartItems}>
           {cart.map((item) => (
-            <div key={item.id} style={styles.cartItem}>
+            <div
+              key={item.id}
+              style={styles.cartItem}
+              className='cart-item-responsive'
+            >
               <div style={styles.itemImage}>
                 <img
                   src={item.image}
@@ -62,36 +66,41 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
                 <p style={styles.itemPrice}>₹{item.price.toLocaleString()}</p>
               </div>
 
-              <div style={styles.quantityControl}>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  style={styles.qtyBtn}
-                >
-                  <Minus size={16} />
-                </button>
-                <span style={styles.quantity}>{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  style={styles.qtyBtn}
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-
-              <div style={styles.itemTotal}>
-                <p style={styles.totalLabel}>Total</p>
-                <p style={styles.totalPrice}>
-                  ₹{(item.price * item.quantity).toLocaleString()}
-                </p>
-              </div>
-
-              <button
-                onClick={() => removeFromCart(item.id)}
-                style={styles.removeBtn}
-                title='Remove item'
+              <div
+                style={styles.cartItemControls}
+                className='cart-item-controls'
               >
-                <Trash2 size={20} />
-              </button>
+                <div style={styles.quantityControl}>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    style={styles.qtyBtn}
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span style={styles.quantity}>{item.quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    style={styles.qtyBtn}
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+
+                <div style={styles.itemTotal}>
+                  <p style={styles.totalLabel}>Total</p>
+                  <p style={styles.totalPrice}>
+                    ₹{(item.price * item.quantity).toLocaleString()}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  style={styles.removeBtn}
+                  title='Remove item'
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -176,8 +185,9 @@ const styles = {
   },
   cartLayout: {
     display: "grid",
-    gridTemplateColumns: "2fr 1fr",
-    gap: "2rem",
+    // gridTemplateColumns: "2fr 1fr",
+    gridTemplateColumns: "1fr 320px",
+    gap: "2.5rem",
   },
   cartItems: {
     display: "flex",
@@ -189,16 +199,18 @@ const styles = {
     borderRadius: "10px",
     padding: "1.5rem",
     display: "grid",
-    gridTemplateColumns: "200px 2fr 150px 120px auto",
+    // display: "flex",
+    // flexWrap: "wrap",
+    gridTemplateColumns: "120px 1.5fr 150px 120px 50px",
     gap: "1.5rem",
     alignItems: "center",
     boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
   },
   itemImage: {
-    width: "100%",
-    height: "200px",
+    // width: "100%",
+    width: "120px",
+    height: "120px",
     objectFit: "cover",
-    marginBottom: "1rem",
     borderRadius: "10px",
   },
   itemInfo: {
@@ -221,6 +233,9 @@ const styles = {
     color: "#666",
     fontWeight: "600",
     margin: 0,
+  },
+  cartItemControls: {
+    display: "contents",
   },
   quantityControl: {
     display: "flex",
@@ -276,7 +291,7 @@ const styles = {
     boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
     height: "fit-content",
     position: "sticky",
-    top: "100px",
+    top: "20px",
   },
   summaryTitle: {
     fontSize: "1.5rem",
