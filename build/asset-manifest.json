@@ -1,13 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.09683ae2.css",
-    "main.js": "/static/js/main.84aa3a2a.js",
+    "main.css": "/static/css/main.c11616dd.css",
+    "main.js": "/static/js/main.a2ca6ef0.js",
+    "static/media/OrganicFertilizerPack.png": "/static/media/OrganicFertilizerPack.ced7857bc035d35ea58d.png",
+    "static/media/CropAnalyticsDashboard.png": "/static/media/CropAnalyticsDashboard.8b56b3d9ea743f0a753f.png",
+    "static/media/SmartGreenhouseController.png": "/static/media/SmartGreenhouseController.3b9f6f034f54e57b9d02.png",
+    "static/media/WeatherStationPro.png": "/static/media/WeatherStationPro.83c4dfdcca5fa9c0a878.png",
+    "static/media/DripIrrigationSystem.png": "/static/media/DripIrrigationSystem.6ce35f669a2fd2b61e21.png",
+    "static/media/PestControlSolution.png": "/static/media/PestControlSolution.b47cb9245d99a5eb316e.png",
+    "static/media/SoilHealthMonitor.png": "/static/media/SoilHealthMonitor.3ab35418af9d35e2219e.png",
+    "static/media/SmartIrrigationSystem.png": "/static/media/SmartIrrigationSystem.7187d7fc61e6ceabaa45.png",
     "index.html": "/index.html",
-    "main.09683ae2.css.map": "/static/css/main.09683ae2.css.map",
-    "main.84aa3a2a.js.map": "/static/js/main.84aa3a2a.js.map"
+    "main.c11616dd.css.map": "/static/css/main.c11616dd.css.map",
+    "main.a2ca6ef0.js.map": "/static/js/main.a2ca6ef0.js.map"
   },
   "entrypoints": [
-    "static/css/main.09683ae2.css",
-    "static/js/main.84aa3a2a.js"
+    "static/css/main.c11616dd.css",
+    "static/js/main.a2ca6ef0.js"
   ]
 }

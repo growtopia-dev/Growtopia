@@ -10,7 +10,7 @@ const Footer = () => {
           <div>
             <Link to='/' onClick={() => window.scrollTo(0, 0)}>
               <h3 style={styles.heading}>
-                <img src={process.env.PUBLIC_URL + '/growtopia_logo.png'} alt='logo' style={styles.logoImg} />{" "}
+                <img src={process.env.PUBLIC_URL + '/growtopia_logo.webp'} alt='logo' style={styles.logoImg} />{" "}
                 GROWTOPIA
               </h3>
             </Link>

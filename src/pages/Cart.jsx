@@ -39,67 +39,99 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
       <h1 style={styles.title}>Shopping Cart</h1>
       <p style={styles.subtitle}>Review your items and proceed to checkout</p>
 
-      <div style={styles.cartLayout}>
-        {/* Cart Items */}
+      {/* Mobile-only Checkout Bar stays at the top as requested */}
+      <div className='mobile-checkout-header' style={styles.mobileHeader}>
+        <div style={styles.mobileTotalRow}>
+          <span>Total: </span>
+          <span style={styles.totalPrice}>₹{total.toLocaleString()}</span>
+        </div>
+        <button onClick={handleCheckout} style={styles.checkoutBtn}>
+          Proceed to Buy ({cart.reduce((sum, item) => sum + item.quantity, 0)}{" "}
+          items)
+        </button>
+      </div>
+
+      <button
+        onClick={clearCart}
+        style={styles.clearCartBtn}
+        className='clear-cart-main'
+      >
+        Clear Cart
+      </button>
+
+      <div style={styles.cartLayout} className='cart-layout-container'>
         <div style={styles.cartItems}>
           {cart.map((item) => (
-            <div key={item.id} style={styles.cartItem}>
-              <div style={styles.itemImage}>
-                <img
-                  src={item.image}
-                  alt={item.name}
+            <div
+              key={item.id}
+              style={styles.cartItem}
+              className='cart-item-responsive'
+            >
+              {/* CHANGE: Added cart-item-main to group image and text for better side-by-side control */}
+              <div className='cart-item-main' style={styles.itemMain}>
+                <div
                   style={styles.itemImage}
-                />
-              </div>
-
-              <div style={styles.itemInfo}>
-                <h3 style={styles.itemName}>{item.name}</h3>
-                <p style={styles.itemCategory}>{item.category}</p>
-                <p style={styles.itemPrice}>₹{item.price.toLocaleString()}</p>
-              </div>
-
-              <div style={styles.quantityControl}>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  style={styles.qtyBtn}
                 >
-                  <Minus size={16} />
-                </button>
-                <span style={styles.quantity}>{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  style={styles.qtyBtn}
-                >
-                  <Plus size={16} />
-                </button>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={styles.itemImage}
+                  />
+                </div>
+
+                <div style={styles.itemInfo} className='cart-item-details'>
+                  <h3 style={styles.itemName}>{item.name}</h3>
+                  <p style={styles.itemCategory}>{item.category}</p>
+                  <p style={styles.itemPrice}>₹{item.price.toLocaleString()}</p>
+                </div>
               </div>
 
-              <div style={styles.itemTotal}>
-                <p style={styles.totalLabel}>Total</p>
-                <p style={styles.totalPrice}>
-                  ₹{(item.price * item.quantity).toLocaleString()}
-                </p>
-              </div>
-
-              <button
-                onClick={() => removeFromCart(item.id)}
-                style={styles.removeBtn}
-                title='Remove item'
+              {/* CHANGE: Restructured controls into a footer-style row to match the Amazon/Modern design */}
+              <div
+                style={styles.cartItemControls}
+                className='cart-item-controls'
               >
-                <Trash2 size={20} />
-              </button>
+                <div style={styles.quantityControl} className='qty-wrapper'>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    style={styles.qtyBtn}
+                    className='qty-minus'
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span style={styles.quantity}>{item.quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    style={styles.qtyBtn}
+                    className='qty-plus'
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+
+                <div style={styles.itemTotal} className='item-subtotal'>
+                  {/* Label removed in mobile CSS usually, kept here for desktop clarity */}
+                  <p style={styles.totalLabel}>Subtotal</p>
+                  <p style={styles.totalPrice}>
+                    ₹{(item.price * item.quantity).toLocaleString()}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  style={styles.removeBtn}
+                  className='remove-action-btn'
+                >
+                  <Trash2 size={24} style={{ marginRight: "4px" }} />
+                </button>
+              </div>
             </div>
           ))}
-
-          <button onClick={clearCart} style={styles.clearCartBtn}>
-            Clear Cart
-          </button>
         </div>
 
-        {/* Cart Summary */}
-        <div style={styles.cartSummary}>
+        {/* Cart Summary Card */}
+        <div style={styles.cartSummary} className='cart-summary-card'>
           <h2 style={styles.summaryTitle}>Order Summary</h2>
-
           <div style={styles.summaryRow}>
             <span>
               Subtotal ({cart.reduce((sum, item) => sum + item.quantity, 0)}{" "}
@@ -107,32 +139,25 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
             </span>
             <span>₹{subtotal.toLocaleString()}</span>
           </div>
-
           <div style={styles.summaryRow}>
             <span>GST (18%)</span>
             <span>₹{tax.toLocaleString()}</span>
           </div>
-
           <div style={styles.summaryRow}>
             <span>Shipping</span>
             <span style={styles.freeShipping}>FREE</span>
           </div>
-
           <div style={styles.divider}></div>
-
           <div style={{ ...styles.summaryRow, ...styles.totalRow }}>
             <span>Total</span>
             <span>₹{total.toLocaleString()}</span>
           </div>
-
           <button onClick={handleCheckout} style={styles.checkoutBtn}>
             Proceed to Checkout
           </button>
-
           <Link to='/products'>
             <button style={styles.continueBtn}>Continue Shopping</button>
           </Link>
-
           <div style={styles.benefits}>
             <p>✓ Free delivery on all orders</p>
             <p>✓ Secure payment options</p>
@@ -163,90 +188,130 @@ const styles = {
     marginBottom: "3rem",
     fontSize: "1.1rem",
   },
+  mobileHeader: {
+    padding: "1rem",
+    background: "#f9f9f9",
+    borderRadius: "8px",
+    marginBottom: "1rem",
+  },
+  mobileTotalRow: {
+    fontSize: "1.2rem",
+    marginBottom: "0.5rem",
+    fontWeight: "bold",
+  },
+  clearCartBtn: {
+    background: "transparent",
+    color: "#e63946",
+    border: "1px solid #e63946",
+    padding: "0.5rem 1rem",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "600",
+    margin: "1rem 0",
+    width: "fit-content",
+  },
   cartLayout: {
     display: "grid",
-    gridTemplateColumns: "2fr 1fr",
+    gridTemplateColumns: "1fr 350px",
     gap: "2rem",
   },
   cartItems: {
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
+    gap: "1.2rem",
   },
   cartItem: {
     background: "white",
-    borderRadius: "10px",
+    borderRadius: "12px",
     padding: "1.5rem",
-    display: "grid",
-    gridTemplateColumns: "200px 2fr 150px 120px auto",
+    display: "flex",
+    flexDirection: "column", // Base stack for inner logic
+    gap: "1rem",
+    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    border: "1px solid #eee",
+  },
+  itemMain: {
+    display: "flex",
     gap: "1.5rem",
-    alignItems: "center",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+    alignItems: "flex-start",
   },
   itemImage: {
-    width: "100%",
-    height: "200px",
+    width: "120px",
+    height: "120px",
     objectFit: "cover",
-    marginBottom: "1rem",
-    borderRadius: "10px",
+    borderRadius: "8px",
+    backgroundColor: "#f5f5f5",
   },
   itemInfo: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.3rem",
+    flex: "1",
+    minWidth: "0",
   },
   itemName: {
-    fontSize: "1.2rem",
+    fontSize: "1.25rem",
     color: "#2d5016",
-    margin: 0,
+    margin: "0 0 0.25rem 0",
+    fontWeight: "600",
   },
   itemCategory: {
-    fontSize: "0.9rem",
-    color: "#999",
-    margin: 0,
+    fontSize: "0.95rem",
+    color: "#888",
+    margin: "0 0 0.5rem 0",
   },
   itemPrice: {
     fontSize: "1.1rem",
-    color: "#666",
-    fontWeight: "600",
-    margin: 0,
+    color: "#333",
+    fontWeight: "500",
+  },
+  cartItemControls: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "1rem 0",
+    borderTop: "1px solid #f0f0f0",
+    borderBottom: "1px solid #f0f0f0",
   },
   quantityControl: {
     display: "flex",
     alignItems: "center",
-    gap: "0.5rem",
-    justifyContent: "center",
+    background: "#f8f9fa",
+    borderRadius: "6px",
+    padding: "2px",
+    border: "1px solid #e0e0e0",
   },
   qtyBtn: {
-    background: "#6b9e3e",
-    color: "white",
+    background: "transparent",
+    color: "#333",
     border: "none",
-    width: "32px",
-    height: "32px",
-    borderRadius: "50%",
+    width: "36px",
+    height: "36px",
+    borderRadius: "4px",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    transition: "background 0.2s",
   },
   quantity: {
-    fontSize: "1.1rem",
+    fontSize: "1rem",
     fontWeight: "600",
-    minWidth: "30px",
+    minWidth: "40px",
     textAlign: "center",
+    color: "#2d5016",
   },
   itemTotal: {
     textAlign: "right",
   },
   totalLabel: {
-    fontSize: "0.85rem",
+    fontSize: "0.8rem",
     color: "#999",
     margin: 0,
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
   },
   totalPrice: {
-    fontSize: "1.3rem",
-    fontWeight: "bold",
-    color: "#f4a220",
+    fontSize: "1.4rem",
+    fontWeight: "700",
+    color: "#2d5016",
     margin: 0,
   },
   removeBtn: {
@@ -254,40 +319,35 @@ const styles = {
     border: "none",
     color: "#e63946",
     cursor: "pointer",
-    padding: "0.5rem",
-    borderRadius: "5px",
-    transition: "background 0.3s",
-  },
-  clearCartBtn: {
-    background: "#e63946",
-    color: "white",
-    border: "none",
-    padding: "0.75rem 1.5rem",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "600",
-    alignSelf: "flex-start",
+    display: "flex",
+    alignItems: "center",
+    fontSize: "0.9rem",
+    fontWeight: "500",
+    padding: "4px 8px",
+    borderRadius: "4px",
+    transition: "background 0.2s",
   },
   cartSummary: {
     background: "white",
-    borderRadius: "10px",
+    borderRadius: "12px",
     padding: "2rem",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
     height: "fit-content",
     position: "sticky",
-    top: "100px",
+    top: "20px",
   },
   summaryTitle: {
     fontSize: "1.5rem",
     color: "#2d5016",
     marginBottom: "1.5rem",
+    fontWeight: "700",
   },
   summaryRow: {
     display: "flex",
     justifyContent: "space-between",
     marginBottom: "1rem",
     fontSize: "1rem",
-    color: "#333",
+    color: "#444",
   },
   freeShipping: {
     color: "#6b9e3e",
@@ -295,12 +355,12 @@ const styles = {
   },
   divider: {
     height: "1px",
-    background: "#e0e0e0",
+    background: "#eee",
     margin: "1.5rem 0",
   },
   totalRow: {
-    fontSize: "1.3rem",
-    fontWeight: "bold",
+    fontSize: "1.4rem",
+    fontWeight: "700",
     color: "#2d5016",
   },
   checkoutBtn: {
@@ -308,19 +368,20 @@ const styles = {
     background: "#f4a220",
     color: "white",
     border: "none",
-    padding: "1rem",
+    padding: "1.1rem",
     borderRadius: "8px",
     fontSize: "1.1rem",
-    fontWeight: "bold",
+    fontWeight: "700",
     cursor: "pointer",
     marginTop: "1.5rem",
+    boxShadow: "0 4px 12px rgba(244, 162, 32, 0.3)",
   },
   continueBtn: {
     width: "100%",
     background: "transparent",
     color: "#6b9e3e",
     border: "2px solid #6b9e3e",
-    padding: "0.75rem",
+    padding: "0.85rem",
     borderRadius: "8px",
     fontSize: "1rem",
     fontWeight: "600",
@@ -333,10 +394,10 @@ const styles = {
   benefits: {
     marginTop: "2rem",
     paddingTop: "1.5rem",
-    borderTop: "1px solid #e0e0e0",
+    borderTop: "1px solid #eee",
     lineHeight: "2",
-    color: "#666",
-    fontSize: "0.9rem",
+    color: "#777",
+    fontSize: "0.85rem",
   },
   emptyCart: {
     textAlign: "center",
@@ -348,7 +409,7 @@ const styles = {
     justifyContent: "center",
   },
   emptyTitle: {
-    fontSize: "2rem",
+    fontSize: "2.2rem",
     color: "#2d5016",
     margin: "1.5rem 0 1rem",
   },
@@ -361,11 +422,12 @@ const styles = {
     background: "#6b9e3e",
     color: "white",
     border: "none",
-    padding: "1rem 2.5rem",
-    borderRadius: "25px",
+    padding: "1rem 3rem",
+    borderRadius: "30px",
     fontSize: "1.1rem",
     fontWeight: "600",
     cursor: "pointer",
+    boxShadow: "0 4px 12px rgba(107, 158, 62, 0.3)",
   },
 };
 
