@@ -71,7 +71,7 @@ const About = () => {
       <section style={styles.storySection}>
         <div style={styles.storyContainer}>
           <div style={styles.storyImagePlaceholder}>
-            <div style={styles.imageOverlay}>EST. 2020</div>
+            <div style={styles.imageOverlay}>EST. 2019</div>
           </div>
           
           <div style={styles.storyContent}>
