@@ -8,42 +8,42 @@ const Home = () => {
   const featuredProducts = products.slice(0, 3);
 
   return (
-    <div style={styles.container}>
-      {/* Editorial Hero Section - Compact & Bright */}
-      <section style={styles.editorialHero}>
-        <div style={styles.heroOverlay}></div>
-        <div style={styles.heroContent}>
-          <h1 style={styles.heroHeadline}>
-            REVOLUTIONIZING<br/>
-            <span style={styles.heroItalic}>AGRICULTURE</span>
+    <div className="gh-container">
+      {/* Editorial Hero Section */}
+      <section className="gh-editorial-hero">
+        <div className="gh-hero-overlay" />
+        <div className="gh-hero-content">
+          <h1 className="gh-hero-headline">
+            REVOLUTIONIZING<br />
+            <span className="gh-hero-italic">AGRICULTURE</span>
           </h1>
-          <p style={styles.heroDescription}>
+          <p className="gh-hero-description">
             Pioneering sustainable farming solutions with cutting-edge technology
           </p>
-          <Link to='/products'>
-            <button style={styles.heroButton}>EXPLORE PRODUCTS</button>
+          <Link to="/products">
+            <button className="gh-hero-button">EXPLORE PRODUCTS</button>
           </Link>
         </div>
       </section>
 
-      {/* Mission Section with Editorial Layout */}
-      <section style={styles.missionSection}>
-        <div style={styles.missionContainer}>
-          <div style={styles.missionLeft}>
-            <div style={styles.missionImageBox}>
-              <div style={styles.missionImageOverlay}>OUR MISSION</div>
+      {/* Mission Section */}
+      <section className="gh-mission-section">
+        <div className="gh-mission-container">
+          <div className="gh-mission-left">
+            <div className="gh-mission-image-box">
+              <div className="gh-mission-image-overlay">OUR MISSION</div>
             </div>
           </div>
-          <div style={styles.missionRight}>
-            <div style={styles.sectionLabel}>— WHAT DRIVES US</div>
-            <h2 style={styles.missionTitle}>
-              Transforming Agriculture<br/>
-              <span style={styles.missionTitleAccent}>Through Innovation</span>
+          <div className="gh-mission-right">
+            <div className="gh-section-label">— WHAT DRIVES US</div>
+            <h2 className="gh-mission-title">
+              Transforming Agriculture<br />
+              <span className="gh-mission-title-accent">Through Innovation</span>
             </h2>
-            <p style={styles.missionText}>
-              At GROWTOPIA, we're committed to transforming agriculture through innovative 
-              technology and sustainable practices. Our team combines expertise in agritech, 
-              IoT, and environmental science to create solutions that empower farmers and 
+            <p className="gh-mission-text">
+              At GROWTOPIA, we're committed to transforming agriculture through innovative
+              technology and sustainable practices. Our team combines expertise in agritech,
+              IoT, and environmental science to create solutions that empower farmers and
               promote food security worldwide.
             </p>
           </div>
@@ -51,578 +51,544 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section style={styles.statsSection}>
-        <div style={styles.statsGrid}>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>5K+</div>
-            <div style={styles.statLabel}>Farmers Empowered</div>
+      <section className="gh-stats-section">
+        <div className="gh-stats-grid">
+          <div className="gh-stat-card">
+            <div className="gh-stat-number">5K+</div>
+            <div className="gh-stat-label">Farmers Empowered</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>85%</div>
-            <div style={styles.statLabel}>Yield Increase</div>
+          <div className="gh-stat-card">
+            <div className="gh-stat-number">85%</div>
+            <div className="gh-stat-label">Yield Increase</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>40%</div>
-            <div style={styles.statLabel}>Water Saved</div>
+          <div className="gh-stat-card">
+            <div className="gh-stat-number">40%</div>
+            <div className="gh-stat-label">Water Saved</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>95%</div>
-            <div style={styles.statLabel}>Satisfaction Rate</div>
+          <div className="gh-stat-card">
+            <div className="gh-stat-number">95%</div>
+            <div className="gh-stat-label">Satisfaction Rate</div>
           </div>
         </div>
       </section>
 
-      {/* Features Section - Editorial Cards */}
-      <section style={styles.featuresSection}>
-        <div style={styles.featuresHeader}>
-          <div style={styles.sectionLabel}>— WHY CHOOSE US</div>
-          <h2 style={styles.featuresTitle}>What Makes Us Different</h2>
+      {/* Features Section */}
+      <section className="gh-features-section">
+        <div className="gh-features-header">
+          <div className="gh-section-label">— WHY CHOOSE US</div>
+          <h2 className="gh-features-title">What Makes Us Different</h2>
         </div>
-        <div style={styles.featuresGrid}>
-          <div style={styles.featureCard1}>
-            <div style={styles.featureIconContainer}>
+        <div className="gh-features-grid">
+          <div className="gh-feature-card gh-feature-card--dark">
+            <div className="gh-feature-icon-container">
               <Sprout size={36} color="white" />
             </div>
-            <h3 style={styles.featureCardTitle}>Sustainable Solutions</h3>
-            <p style={styles.featureCardText}>
+            <h3 className="gh-feature-card-title">Sustainable Solutions</h3>
+            <p className="gh-feature-card-text">
               Eco-friendly products that protect the environment while boosting productivity
             </p>
-            <div style={styles.featureCorner}></div>
+            <div className="gh-feature-corner" />
           </div>
-
-          <div style={styles.featureCard2}>
-            <div style={styles.featureIconContainer}>
+          <div className="gh-feature-card gh-feature-card--green">
+            <div className="gh-feature-icon-container">
               <Target size={36} color="white" />
             </div>
-            <h3 style={styles.featureCardTitle}>Precision Technology</h3>
-            <p style={styles.featureCardText}>
+            <h3 className="gh-feature-card-title">Precision Technology</h3>
+            <p className="gh-feature-card-text">
               IoT-powered tools for data-driven farming decisions
             </p>
-            <div style={styles.featureCorner}></div>
+            <div className="gh-feature-corner" />
           </div>
-
-          <div style={styles.featureCard3}>
-            <div style={styles.featureIconContainer}>
+          <div className="gh-feature-card gh-feature-card--amber">
+            <div className="gh-feature-icon-container">
               <Users size={36} color="white" />
             </div>
-            <h3 style={styles.featureCardTitle}>Expert Support</h3>
-            <p style={styles.featureCardText}>
+            <h3 className="gh-feature-card-title">Expert Support</h3>
+            <p className="gh-feature-card-text">
               Dedicated team to help you succeed at every step
             </p>
-            <div style={styles.featureCorner}></div>
+            <div className="gh-feature-corner" />
           </div>
-
-          <div style={styles.featureCard4}>
-            <div style={styles.featureIconContainer}>
+          <div className="gh-feature-card gh-feature-card--forest">
+            <div className="gh-feature-icon-container">
               <TrendingUp size={36} color="white" />
             </div>
-            <h3 style={styles.featureCardTitle}>Proven Results</h3>
-            <p style={styles.featureCardText}>
+            <h3 className="gh-feature-card-title">Proven Results</h3>
+            <p className="gh-feature-card-text">
               Increased yields and reduced costs for farmers nationwide
             </p>
-            <div style={styles.featureCorner}></div>
+            <div className="gh-feature-corner" />
           </div>
         </div>
       </section>
 
       {/* Featured Products */}
-      <section style={styles.productsSection}>
-        <div style={styles.productsHeader}>
-          <div style={styles.productsLabelContainer}>
-            <div style={styles.productsLabel}>FEATURED PRODUCTS</div>
-            <div style={styles.productsLabelLine}></div>
+      <section className="gh-products-section">
+        <div className="gh-products-header">
+          <div className="gh-products-label-container">
+            <div className="gh-products-label">FEATURED PRODUCTS</div>
+            <div className="gh-products-label-line" />
           </div>
-          <h2 style={styles.productsTitle}>Our Solutions</h2>
+          <h2 className="gh-products-title">Our Solutions</h2>
         </div>
-        
-        <div style={styles.productsGrid}>
+
+        <div className="gh-products-grid">
           {featuredProducts.map((product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.id}`}
-              style={styles.productCard}
-            >
-              <div style={styles.productImageWrapper}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  style={styles.productImage}
-                />
+            <Link key={product.id} to={`/product/${product.id}`} className="gh-product-card">
+              <div className="gh-product-image-wrapper">
+                <img src={product.image} alt={product.name} className="gh-product-image" />
               </div>
-              <div style={styles.productContent}>
-                <h3 style={styles.productName}>{product.name}</h3>
-                <p style={styles.productDescription}>{product.description}</p>
-                <div style={styles.productFooter}>
-                  <p style={styles.productPrice}>₹{product.price.toLocaleString()}</p>
-                  <button style={styles.viewButton}>VIEW DETAILS</button>
+              <div className="gh-product-content">
+                <h3 className="gh-product-name">{product.name}</h3>
+                <p className="gh-product-description">{product.description}</p>
+                <div className="gh-product-footer">
+                  <p className="gh-product-price">₹{product.price.toLocaleString()}</p>
+                  <button className="gh-view-button">VIEW DETAILS</button>
                 </div>
               </div>
             </Link>
           ))}
         </div>
-        
-        <div style={styles.viewAllContainer}>
-          <Link to='/products'>
-            <button style={styles.viewAllButton}>VIEW ALL PRODUCTS</button>
+
+        <div className="gh-view-all-container">
+          <Link to="/products">
+            <button className="gh-view-all-button">VIEW ALL PRODUCTS</button>
           </Link>
         </div>
       </section>
 
-      {/* CTA Section - Compact */}
-      <section style={styles.ctaSection}>
-        <div style={styles.ctaContent}>
-          <h2 style={styles.ctaTitle}>
-            Ready to Transform <span style={styles.ctaTitleAccent}>Your Farm?</span>
+      {/* CTA Section */}
+      <section className="gh-cta-section">
+        <div className="gh-cta-content">
+          <h2 className="gh-cta-title">
+            Ready to Transform <span className="gh-cta-title-accent">Your Farm?</span>
           </h2>
-          <p style={styles.ctaText}>
+          <p className="gh-cta-text">
             Join thousands of farmers who are already using GROWTOPIA solutions
           </p>
-          <Link to='/contact'>
-            <button style={styles.ctaButton}>GET STARTED TODAY</button>
+          <Link to="/contact">
+            <button className="gh-cta-button">GET STARTED TODAY</button>
           </Link>
         </div>
       </section>
 
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
 
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        a { text-decoration: none; }
 
-          a {
-            text-decoration: none;
-          }
+        /* ── Base / Desktop ─────────────────────────────── */
 
-          button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .gh-container {
+          max-width: 100%;
+          width: 100%;
+          font-family: 'Work Sans', sans-serif;
+          background: #fafaf8;
+          overflow-x: hidden;
+        }
+
+        /* Hero */
+        .gh-editorial-hero {
+          background-image: linear-gradient(to bottom, rgba(26,47,13,0.3), rgba(26,47,13,0.5)), url('/img2.webp');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 60vh;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3rem;
+        }
+        .gh-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: transparent;
+        }
+        .gh-hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          max-width: 800px;
+          width: 100%;
+          padding: 0 1rem;
+        }
+        .gh-hero-headline {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.1rem, 5.5vw, 3.5rem);
+          font-weight: 900;
+          line-height: 1.1;
+          letter-spacing: clamp(-0.5px, -0.04em, -2px);
+          color: white;
+          text-transform: uppercase;
+          margin-bottom: 1.2rem;
+          word-break: break-word;
+        }
+        .gh-hero-italic { font-style: italic; font-weight: 400; color: #8fbc5e; }
+        .gh-hero-description {
+          font-size: clamp(0.875rem, 3vw, 1.1rem);
+          line-height: 1.65;
+          color: rgba(255,255,255,0.95);
+          margin-bottom: 2rem;
+          font-weight: 300;
+          max-width: 520px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .gh-hero-button {
+          background: #f4a220;
+          color: white;
+          border: none;
+          padding: 1rem 2.5rem;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .gh-hero-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* Mission */
+        .gh-mission-section { padding: 6rem 3rem; background: white; }
+        .gh-mission-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 380px 1fr;
+          gap: 4rem;
+          align-items: center;
+        }
+        .gh-mission-left { position: relative; }
+        .gh-mission-image-box {
+          height: 450px;
+          background: linear-gradient(135deg, #2d5016, #6b9e3e);
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 20px 20px 0 #f4a220;
+        }
+        .gh-mission-image-overlay {
+          font-size: 2.2rem;
+          font-family: 'Playfair Display', serif;
+          color: white;
+          font-weight: 700;
+          transform: rotate(-90deg);
+          white-space: nowrap;
+        }
+        .gh-section-label {
+          font-size: 0.7rem;
+          letter-spacing: 3px;
+          font-weight: 700;
+          color: #f4a220;
+          margin-bottom: 1.2rem;
+        }
+        .gh-mission-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          font-weight: 700;
+          line-height: 1.2;
+          color: #1a2f0d;
+          margin-bottom: 1.5rem;
+        }
+        .gh-mission-title-accent { font-style: italic; font-weight: 400; color: #6b9e3e; }
+        .gh-mission-text { font-size: 1rem; line-height: 1.7; color: #333; }
+
+        /* Stats */
+        .gh-stats-section { padding: 5rem 3rem; background: #1a2f0d; }
+        .gh-stats-grid {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2.5rem;
+        }
+        .gh-stat-card { text-align: center; padding: 1.5rem; border-left: 3px solid #f4a220; }
+        .gh-stat-number {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(2.5rem, 5vw, 3.5rem);
+          font-weight: 900;
+          color: white;
+          line-height: 1;
+          margin-bottom: 0.5rem;
+        }
+        .gh-stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Features */
+        .gh-features-section { padding: 6rem 3rem; background: #fafaf8; }
+        .gh-features-header { max-width: 1400px; margin: 0 auto 3.5rem; text-align: center; }
+        .gh-features-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(2rem, 4vw, 2.8rem);
+          font-weight: 700;
+          color: #1a2f0d;
+        }
+        .gh-features-grid {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+        .gh-feature-card {
+          color: white;
+          padding: 2.5rem;
+          position: relative;
+          min-height: 240px;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .gh-feature-card--dark   { background: #1a2f0d; }
+        .gh-feature-card--green  { background: #6b9e3e; }
+        .gh-feature-card--amber  { background: #f4a220; }
+        .gh-feature-card--forest { background: #2d5016; }
+        .gh-feature-icon-container {
+          width: 64px;
+          height: 64px;
+          background: rgba(255,255,255,0.15);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1.5rem;
+        }
+        .gh-feature-card-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.4rem;
+          font-weight: 700;
+          margin-bottom: 0.8rem;
+          color: white;
+        }
+        .gh-feature-card-text { font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); }
+        .gh-feature-corner {
+          position: absolute;
+          bottom: 0; right: 0;
+          width: 50px; height: 50px;
+          background: rgba(255,255,255,0.2);
+          clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Products */
+        .gh-products-section { padding: 6rem 3rem; background: white; }
+        .gh-products-header { max-width: 1400px; margin: 0 auto 4rem; text-align: center; }
+        .gh-products-label-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-bottom: 1.2rem;
+        }
+        .gh-products-label { font-size: 0.7rem; letter-spacing: 3px; font-weight: 700; color: #f4a220; }
+        .gh-products-label-line { width: 60px; height: 2px; background: #f4a220; }
+        .gh-products-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 700;
+          color: #1a2f0d;
+        }
+        .gh-products-grid {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+        .gh-product-card {
+          background: white;
+          border: 3px solid #1a2f0d;
+          overflow: hidden;
+          transition: transform 0.3s;
+          display: flex;
+          flex-direction: column;
+          color: inherit;
+        }
+        .gh-product-card:hover { transform: translateY(-4px); }
+        .gh-product-image-wrapper { width: 100%; height: 220px; overflow: hidden; background: #f0f0f0; }
+        .gh-product-image { width: 100%; height: 100%; object-fit: cover; }
+        .gh-product-content { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; }
+        .gh-product-name {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #1a2f0d;
+          margin-bottom: 0.8rem;
+        }
+        .gh-product-description { font-size: 0.9rem; color: #666; line-height: 1.5; margin-bottom: 1.2rem; flex: 1; }
+        .gh-product-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+        }
+        .gh-product-price {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: #f4a220;
+        }
+        .gh-view-button {
+          background: #6b9e3e;
+          color: white;
+          border: none;
+          padding: 0.75rem 1.4rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-family: 'Work Sans', sans-serif;
+          white-space: nowrap;
+        }
+        .gh-view-button:hover { background: #4e7a2c; transform: translateY(-2px); }
+        .gh-view-all-container { text-align: center; margin-top: 3.5rem; }
+        .gh-view-all-button {
+          background: #1a2f0d;
+          color: white;
+          border: none;
+          padding: 1rem 2.5rem;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .gh-view-all-button:hover { background: #2e5a1a; transform: translateY(-2px); }
+
+        /* CTA */
+        .gh-cta-section {
+          background: linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%);
+          padding: 4rem 3rem;
+          text-align: center;
+        }
+        .gh-cta-content { max-width: 700px; margin: 0 auto; }
+        .gh-cta-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          font-weight: 700;
+          color: white;
+          line-height: 1.3;
+          margin-bottom: 1rem;
+        }
+        .gh-cta-title-accent { font-style: italic; font-weight: 400; color: #f4a220; }
+        .gh-cta-text { font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 1.8rem; font-weight: 300; }
+        .gh-cta-button {
+          background: #f4a220;
+          color: white;
+          border: none;
+          padding: 1rem 2.5rem;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .gh-cta-button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* ── Tablet (≤ 1024px) ──────────────────────────── */
+        @media (max-width: 1024px) {
+          .gh-mission-container {
+            grid-template-columns: 320px 1fr;
+            gap: 3rem;
           }
-        `}
-      </style>
+          .gh-mission-image-box { height: 400px; }
+          .gh-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+          .gh-features-grid { grid-template-columns: 1fr 1fr; }
+          .gh-products-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        }
+
+        /* ── Mobile (≤ 768px) ───────────────────────────── */
+        @media (max-width: 768px) {
+          /* Hero */
+          .gh-editorial-hero { padding: 3rem 1.5rem; min-height: 48vh; }
+          .gh-hero-headline { font-size: clamp(1.1rem, 5.5vw, 2.2rem); letter-spacing: -0.5px; }
+          .gh-hero-description { font-size: clamp(0.8rem, 3vw, 1rem); }
+
+          /* Mission */
+          .gh-mission-section { padding: 4rem 1.5rem; }
+          .gh-mission-container {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
+          .gh-mission-image-box {
+            height: 300px;
+            box-shadow: 15px 15px 0 #f4a220;
+          }
+          .gh-mission-title { text-align: center; }
+          .gh-mission-right { text-align: center; }
+          .gh-section-label { text-align: center; }
+
+          /* Stats */
+          .gh-stats-section { padding: 3rem 1.5rem; }
+          .gh-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+          .gh-stat-card { border-left: none; border-top: 3px solid #f4a220; padding-top: 1.25rem; }
+
+          /* Features */
+          .gh-features-section { padding: 4rem 1.5rem; }
+          .gh-features-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+          .gh-feature-card { min-height: 180px; }
+
+          /* Products */
+          .gh-products-section { padding: 4rem 1.5rem; }
+          .gh-products-grid { grid-template-columns: 1fr; }
+          .gh-product-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+          }
+          .gh-view-button { width: 100%; text-align: center; }
+
+          /* CTA */
+          .gh-cta-section { padding: 3rem 1.5rem; }
+        }
+
+        /* ── Small Mobile (≤ 480px) ─────────────────────── */
+        @media (max-width: 480px) {
+          .gh-editorial-hero { padding: 2rem 1.25rem; min-height: 42vh; }
+          .gh-hero-headline { font-size: clamp(1rem, 5.5vw, 1.7rem); letter-spacing: 0; line-height: 1.2; }
+          .gh-hero-description { font-size: 0.82rem; margin-bottom: 1.5rem; }
+          .gh-hero-button { padding: 0.8rem 2rem; font-size: 0.72rem; }
+
+          .gh-mission-section { padding: 3rem 1.25rem; }
+          .gh-mission-image-box { height: 220px; box-shadow: 10px 10px 0 #f4a220; }
+          .gh-mission-image-overlay { font-size: 1.6rem; }
+
+          .gh-stats-section { padding: 2.5rem 1.25rem; }
+          .gh-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+          .gh-stat-card { padding: 1rem 0.5rem; }
+
+          .gh-features-section { padding: 3rem 1.25rem; }
+          .gh-feature-card { padding: 1.75rem; }
+          .gh-feature-icon-container { width: 52px; height: 52px; margin-bottom: 1rem; }
+          .gh-feature-card-title { font-size: 1.2rem; }
+
+          .gh-products-section { padding: 3rem 1.25rem; }
+          .gh-products-header { margin-bottom: 2.5rem; }
+          .gh-product-image-wrapper { height: 180px; }
+
+          .gh-cta-section { padding: 2.5rem 1.25rem; }
+        }
+
+        /* ── Extra-small (≤ 380px) ──────────────────────── */
+        @media (max-width: 380px) {
+          .gh-stats-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+          .gh-stat-number { font-size: 2rem; }
+          .gh-stat-label { font-size: 0.7rem; }
+          .gh-hero-headline { font-size: 5vw; letter-spacing: 0; }
+          .gh-hero-description { font-size: 0.78rem; }
+          .gh-hero-button,
+          .gh-view-all-button,
+          .gh-cta-button { padding: 0.85rem 1.75rem; font-size: 0.75rem; }
+        }
+      `}</style>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: '100%',
-    margin: '0 auto',
-    width: '100%',
-    fontFamily: "'Work Sans', sans-serif",
-    background: '#fafaf8',
-    overflow: 'hidden'
-  },
-  // Editorial Hero - Compact & Bright - No Label
-  editorialHero: {
-    backgroundImage: "linear-gradient(to bottom, rgba(26, 47, 13, 0.3), rgba(26, 47, 13, 0.5)), url('/img2.webp')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '60vh',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '3rem'
-  },
-  heroOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'transparent'
-  },
-  heroContent: {
-    position: 'relative',
-    zIndex: 2,
-    textAlign: 'center',
-    maxWidth: '800px'
-  },
-  heroHeadline: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-    fontWeight: '900',
-    lineHeight: '1.1',
-    letterSpacing: '-2px',
-    color: 'white',
-    textTransform: 'uppercase',
-    marginBottom: '1.2rem'
-  },
-  heroItalic: {
-    fontStyle: 'italic',
-    fontWeight: '400',
-    color: '#8fbc5e'
-  },
-  heroDescription: {
-    fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-    lineHeight: '1.6',
-    color: 'rgba(255,255,255,0.95)',
-    marginBottom: '2rem',
-    fontWeight: '300'
-  },
-  heroButton: {
-    background: '#f4a220',
-    color: 'white',
-    border: 'none',
-    padding: '1rem 2.5rem',
-    borderRadius: '4px',
-    fontSize: '0.8rem',
-    fontWeight: '700',
-    letterSpacing: '2px',
-    cursor: 'pointer',
-    transition: 'all 0.3s'
-  },
-  // Mission Section
-  missionSection: {
-    padding: '6rem 3rem',
-    background: 'white'
-  },
-  missionContainer: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: '380px 1fr',
-    gap: '4rem',
-    alignItems: 'center'
-  },
-  missionLeft: {
-    position: 'relative'
-  },
-  missionImageBox: {
-    height: '450px',
-    background: 'linear-gradient(135deg, #2d5016, #6b9e3e)',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '20px 20px 0 #f4a220'
-  },
-  missionImageOverlay: {
-    fontSize: '2.2rem',
-    fontFamily: "'Playfair Display', serif",
-    color: 'white',
-    fontWeight: '700',
-    transform: 'rotate(-90deg)',
-    whiteSpace: 'nowrap'
-  },
-  missionRight: {
-    position: 'relative'
-  },
-  sectionLabel: {
-    fontSize: '0.7rem',
-    letterSpacing: '3px',
-    fontWeight: '700',
-    color: '#f4a220',
-    marginBottom: '1.2rem'
-  },
-  missionTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-    fontWeight: '700',
-    lineHeight: '1.2',
-    color: '#1a2f0d',
-    marginBottom: '1.5rem'
-  },
-  missionTitleAccent: {
-    fontStyle: 'italic',
-    fontWeight: '400',
-    color: '#6b9e3e'
-  },
-  missionText: {
-    fontSize: '1rem',
-    lineHeight: '1.7',
-    color: '#333'
-  },
-  // Stats Section
-  statsSection: {
-    padding: '5rem 3rem',
-    background: '#1a2f0d'
-  },
-  statsGrid: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '2.5rem'
-  },
-  statCard: {
-    textAlign: 'center',
-    padding: '1.5rem',
-    borderLeft: '3px solid #f4a220'
-  },
-  statNumber: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-    fontWeight: '900',
-    color: 'white',
-    lineHeight: '1',
-    marginBottom: '0.5rem'
-  },
-  statLabel: {
-    fontSize: '0.85rem',
-    color: 'rgba(255,255,255,0.7)',
-    textTransform: 'uppercase',
-    letterSpacing: '1px'
-  },
-  // Features Section
-  featuresSection: {
-    padding: '6rem 3rem',
-    background: '#fafaf8'
-  },
-  featuresHeader: {
-    maxWidth: '1400px',
-    margin: '0 auto 3.5rem',
-    textAlign: 'center'
-  },
-  featuresTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-    fontWeight: '700',
-    color: '#1a2f0d'
-  },
-  featuresGrid: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '2rem'
-  },
-  featureCard1: {
-    background: '#1a2f0d',
-    color: 'white',
-    padding: '2.5rem',
-    position: 'relative',
-    minHeight: '240px',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden'
-  },
-  featureCard2: {
-    background: '#6b9e3e',
-    color: 'white',
-    padding: '2.5rem',
-    position: 'relative',
-    minHeight: '240px',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden'
-  },
-  featureCard3: {
-    background: '#f4a220',
-    color: 'white',
-    padding: '2.5rem',
-    position: 'relative',
-    minHeight: '240px',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden'
-  },
-  featureCard4: {
-    background: '#2d5016',
-    color: 'white',
-    padding: '2.5rem',
-    position: 'relative',
-    minHeight: '240px',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden'
-  },
-  featureIconContainer: {
-    width: '64px',
-    height: '64px',
-    background: 'rgba(255,255,255,0.15)',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: '1.5rem'
-  },
-  featureCardTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.4rem',
-    fontWeight: '700',
-    marginBottom: '0.8rem',
-    color: 'white'
-  },
-  featureCardText: {
-    fontSize: '0.9rem',
-    lineHeight: '1.6',
-    color: 'rgba(255,255,255,0.9)'
-  },
-  featureCorner: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    width: '50px',
-    height: '50px',
-    background: 'rgba(255,255,255,0.2)',
-    clipPath: 'polygon(100% 0, 100% 100%, 0 100%)'
-  },
-  // Products Section
-  productsSection: {
-    padding: '6rem 3rem',
-    background: 'white'
-  },
-  productsHeader: {
-    maxWidth: '1400px',
-    margin: '0 auto 4rem',
-    textAlign: 'center'
-  },
-  productsLabelContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '1.5rem',
-    marginBottom: '1.2rem'
-  },
-  productsLabel: {
-    fontSize: '0.7rem',
-    letterSpacing: '3px',
-    fontWeight: '700',
-    color: '#f4a220'
-  },
-  productsLabelLine: {
-    width: '60px',
-    height: '2px',
-    background: '#f4a220'
-  },
-  productsTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2rem, 4vw, 3rem)',
-    fontWeight: '700',
-    color: '#1a2f0d'
-  },
-  productsGrid: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-    gap: '2rem'
-  },
-  productCard: {
-    background: 'white',
-    border: '3px solid #1a2f0d',
-    overflow: 'hidden',
-    transition: 'transform 0.3s',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  productImageWrapper: {
-    width: '100%',
-    height: '220px',
-    overflow: 'hidden',
-    background: '#f0f0f0'
-  },
-  productImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  productContent: {
-    padding: '1.8rem',
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1
-  },
-  productName: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.3rem',
-    fontWeight: '700',
-    color: '#1a2f0d',
-    marginBottom: '0.8rem'
-  },
-  productDescription: {
-    fontSize: '0.9rem',
-    color: '#666',
-    lineHeight: '1.5',
-    marginBottom: '1.2rem',
-    flex: 1
-  },
-  productFooter: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '1rem'
-  },
-  productPrice: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.6rem',
-    fontWeight: '700',
-    color: '#f4a220'
-  },
-  viewButton: {
-    background: '#6b9e3e',
-    color: 'white',
-    border: 'none',
-    padding: '0.75rem 1.4rem',
-    fontSize: '0.75rem',
-    fontWeight: '700',
-    letterSpacing: '1px',
-    cursor: 'pointer',
-    transition: 'all 0.3s'
-  },
-  viewAllContainer: {
-    textAlign: 'center',
-    marginTop: '3.5rem'
-  },
-  viewAllButton: {
-    background: '#1a2f0d',
-    color: 'white',
-    border: 'none',
-    padding: '1rem 2.5rem',
-    borderRadius: '0',
-    fontSize: '0.8rem',
-    fontWeight: '700',
-    letterSpacing: '2px',
-    cursor: 'pointer',
-    transition: 'all 0.3s'
-  },
-  // CTA Section - Compact
-  ctaSection: {
-    background: 'linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%)',
-    padding: '4rem 3rem',
-    textAlign: 'center'
-  },
-  ctaContent: {
-    maxWidth: '700px',
-    margin: '0 auto'
-  },
-  ctaTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-    fontWeight: '700',
-    color: 'white',
-    lineHeight: '1.3',
-    marginBottom: '1rem'
-  },
-  ctaTitleAccent: {
-    fontStyle: 'italic',
-    fontWeight: '400',
-    color: '#f4a220'
-  },
-  ctaText: {
-    fontSize: '1rem',
-    color: 'rgba(255,255,255,0.9)',
-    marginBottom: '1.8rem',
-    fontWeight: '300'
-  },
-  ctaButton: {
-    background: '#f4a220',
-    color: 'white',
-    border: 'none',
-    padding: '1rem 2.5rem',
-    borderRadius: '4px',
-    fontSize: '0.8rem',
-    fontWeight: '700',
-    letterSpacing: '2px',
-    cursor: 'pointer',
-    transition: 'all 0.3s'
-  }
 };
 
 export default Home;

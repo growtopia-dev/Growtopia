@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx - FULLY MOBILE RESPONSIVE
+// src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Menu, X } from "lucide-react";
@@ -12,54 +12,51 @@ const Navbar = ({ cartCount }) => {
   }, [location]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    return () => { document.body.style.overflow = "unset"; };
   }, [isOpen]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
     <>
-      <nav style={styles.nav}>
-        <div style={styles.container}>
-          {/* Logo - Child 1 (Left Side) */}
-          <Link to='/' style={styles.logo}>
+      <nav className="gn-nav">
+        <div className="gn-container">
+          {/* Logo */}
+          <Link to="/" className="gn-logo">
             <img
               src={process.env.PUBLIC_URL + "/growtopia_logo.webp"}
-              alt='logo'
-              style={styles.logoImg}
+              alt="logo"
+              className="gn-logo-img"
             />
             GROWTOPIA
           </Link>
 
-          {/* Right Section Group - Child 2 (Right Side) */}
-          <div style={styles.rightSection}>
-            {/* Desktop Navigation Links - Now inside the right section */}
-            <ul style={styles.navLinksDesktop}>
-              <li><Link to='/' style={styles.link}>Home</Link></li>
-              <li><Link to='/products' style={styles.link}>Products</Link></li>
-              <li><Link to='/about' style={styles.link}>About</Link></li>
-              <li><Link to='/blog' style={styles.link}>Blog</Link></li>
-              <li><Link to='/contact' style={styles.link}>Contact</Link></li>
+          {/* Right section */}
+          <div className="gn-right-section">
+            {/* Desktop links */}
+            <ul className="gn-nav-links-desktop">
+              <li><Link to="/" className="gn-link">Home</Link></li>
+              <li><Link to="/products" className="gn-link">Products</Link></li>
+              <li><Link to="/about" className="gn-link">About</Link></li>
+              <li><Link to="/blog" className="gn-link">Blog</Link></li>
+              <li><Link to="/contact" className="gn-link">Contact</Link></li>
             </ul>
 
-            <div style={styles.navActions}>
-              <Link to='/cart' style={styles.cartBtn}>
+            {/* Actions: cart + hamburger */}
+            <div className="gn-nav-actions">
+              <Link to="/cart" className="gn-cart-btn" aria-label="Cart">
                 <ShoppingCart size={20} />
-                {cartCount > 0 && <span style={styles.cartCount}>{cartCount}</span>}
+                {cartCount > 0 && (
+                  <span className="gn-cart-count">{cartCount}</span>
+                )}
               </Link>
 
               <button
-                style={styles.menuBtn}
+                className="gn-menu-btn"
                 onClick={toggleMenu}
-                aria-label='Toggle menu'
-                className="menu-toggle-btn"
+                aria-label="Toggle menu"
+                aria-expanded={isOpen}
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -68,185 +65,245 @@ const Navbar = ({ cartCount }) => {
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile overlay */}
       {isOpen && (
-        <div style={styles.overlay} onClick={toggleMenu}>
-          <div style={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
-            <Link to='/' style={styles.mobileLink} onClick={toggleMenu}>Home</Link>
-            <Link to='/products' style={styles.mobileLink} onClick={toggleMenu}>Products</Link>
-            <Link to='/about' style={styles.mobileLink} onClick={toggleMenu}>About</Link>
-            <Link to='/blog' style={styles.mobileLink} onClick={toggleMenu}>Blog</Link>
-            <Link to='/contact' style={styles.mobileLink} onClick={toggleMenu}>Contact</Link>
+        <div className="gn-overlay" onClick={toggleMenu}>
+          <div className="gn-mobile-menu" onClick={(e) => e.stopPropagation()}>
+            <button className="gn-close-btn" onClick={toggleMenu} aria-label="Close menu">
+              <X size={24} />
+            </button>
+            <Link to="/" className="gn-mobile-link" onClick={toggleMenu}>Home</Link>
+            <Link to="/products" className="gn-mobile-link" onClick={toggleMenu}>Products</Link>
+            <Link to="/about" className="gn-mobile-link" onClick={toggleMenu}>About</Link>
+            <Link to="/blog" className="gn-mobile-link" onClick={toggleMenu}>Blog</Link>
+            <Link to="/contact" className="gn-mobile-link" onClick={toggleMenu}>Contact</Link>
           </div>
         </div>
       )}
+
+      <style>{`
+        /* ── Base ─────────────────────────────────────────── */
+
+        .gn-nav {
+          background: rgba(45, 80, 22, 0.92);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          padding: 0.85rem 1.5rem;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+        }
+
+        .gn-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        /* Logo */
+        .gn-logo {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: white;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          letter-spacing: 0.5px;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+        .gn-logo-img {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2.5px solid #f4a220;
+          flex-shrink: 0;
+        }
+
+        /* Right section */
+        .gn-right-section {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+        }
+
+        /* Desktop nav links */
+        .gn-nav-links-desktop {
+          display: flex;
+          gap: 2rem;
+          list-style: none;
+          align-items: center;
+          margin: 0;
+          padding: 0;
+        }
+        .gn-link {
+          color: rgba(255,255,255,0.92);
+          text-decoration: none;
+          font-weight: 500;
+          font-size: 0.95rem;
+          transition: color 0.2s, opacity 0.2s;
+          position: relative;
+          padding-bottom: 2px;
+        }
+        .gn-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #f4a220;
+          transition: width 0.25s ease;
+        }
+        .gn-link:hover { color: white; }
+        .gn-link:hover::after { width: 100%; }
+
+        /* Actions */
+        .gn-nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+
+        /* Cart button */
+        .gn-cart-btn {
+          color: white;
+          padding: 0.5rem 0.65rem;
+          border-radius: 50%;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          transition: background 0.2s;
+        }
+        .gn-cart-btn:hover { background: rgba(255,255,255,0.1); }
+        .gn-cart-count {
+          position: absolute;
+          top: 1px;
+          right: 0px;
+          background: #e63946;
+          color: white;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.65rem;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        /* Hamburger button — hidden on desktop */
+        .gn-menu-btn {
+          display: none;
+          background: transparent;
+          border: none;
+          color: white;
+          cursor: pointer;
+          padding: 0.4rem;
+          border-radius: 6px;
+          transition: background 0.2s;
+          line-height: 0;
+        }
+        .gn-menu-btn:hover { background: rgba(255,255,255,0.1); }
+
+        /* ── Mobile overlay & drawer ───────────────────────── */
+
+        .gn-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.65);
+          z-index: 1100;
+          animation: gn-fadeIn 0.2s ease;
+        }
+
+        .gn-mobile-menu {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: min(80vw, 300px);
+          height: 100vh;
+          background: #2d5016;
+          padding: 1.5rem 1.75rem 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          overflow-y: auto;
+          z-index: 1101;
+          animation: gn-slideIn 0.25s ease;
+          box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        }
+
+        .gn-close-btn {
+          background: transparent;
+          border: none;
+          color: rgba(255,255,255,0.7);
+          cursor: pointer;
+          padding: 0.4rem;
+          align-self: flex-end;
+          margin-bottom: 1.25rem;
+          line-height: 0;
+          transition: color 0.2s;
+        }
+        .gn-close-btn:hover { color: white; }
+
+        .gn-mobile-link {
+          color: white;
+          text-decoration: none;
+          font-size: 1.1rem;
+          font-weight: 500;
+          padding: 0.9rem 0.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          transition: color 0.2s, padding-left 0.2s;
+          display: block;
+        }
+        .gn-mobile-link:last-child { border-bottom: none; }
+        .gn-mobile-link:hover { color: #f4a220; padding-left: 0.75rem; }
+
+        /* ── Animations ───────────────────────────────────── */
+
+        @keyframes gn-fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes gn-slideIn {
+          from { transform: translateX(100%); }
+          to   { transform: translateX(0); }
+        }
+
+        /* ── Tablet (≤ 900px) ─────────────────────────────── */
+        @media (max-width: 900px) {
+          .gn-nav-links-desktop { gap: 1.25rem; }
+          .gn-link { font-size: 0.88rem; }
+          .gn-right-section { gap: 1rem; }
+        }
+
+        /* ── Mobile (≤ 768px) ─────────────────────────────── */
+        @media (max-width: 768px) {
+          /* Hide desktop links, show hamburger */
+          .gn-nav-links-desktop { display: none; }
+          .gn-menu-btn { display: flex; }
+          .gn-right-section { gap: 0.25rem; }
+          .gn-logo { font-size: 1.15rem; }
+          .gn-logo-img { width: 30px; height: 30px; }
+        }
+
+        /* ── Small mobile (≤ 400px) ───────────────────────── */
+        @media (max-width: 400px) {
+          .gn-nav { padding: 0.75rem 1rem; }
+          .gn-logo { font-size: 1rem; }
+          .gn-logo-img { width: 26px; height: 26px; }
+        }
+      `}</style>
     </>
   );
 };
-
-const styles = {
-  nav: {
-    background: "rgba(45, 80, 22, 0.76)",
-    backdropFilter: "blur(6px)",
-    padding: "1rem 1.5rem",
-    position: "sticky",
-    top: 0,
-    zIndex: 1000,
-    boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
-  },
-  container: {
-    maxWidth: "1400px",
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  rightSection: {
-    display: "flex",
-    alignItems: "center",
-    gap: "2rem", // Spacing between the link list and the cart/menu
-  },
-  logo: {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-    color: "white",
-    textDecoration: "none",
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-  },
-  logoImg: {
-    width: "36px",
-    height: "36px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    border: "2.5px solid #2d5016",
-  },
-  navLinksDesktop: {
-    display: "flex",
-    gap: "2rem",
-    listStyle: "none",
-    alignItems: "center",
-    margin: 0,
-  },
-  navActions: {
-    display: "flex",
-    alignItems: "center",
-    // gap: "1rem",
-  },
-  link: {
-    color: "white",
-    textDecoration: "none",
-    fontWeight: "500",
-    fontSize: "1rem",
-  },
-  cartBtn: {
-    // background: "#f4a220",
-    color: "white",
-    padding: "0.6rem 0.75rem",
-    borderRadius: "25px",
-    textDecoration: "none",
-    fontWeight: "600",
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    position: "relative",
-    transition: "all 0.3s",
-    whiteSpace: "nowrap",
-  },
-  cartCount: {
-    position: "absolute",
-    top: "2px",
-    right: "-2px",
-    background: "#e63946",
-    color: "white",
-    borderRadius: "50%",
-    width: "16px",
-    height: "16px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "0.7rem",
-    fontWeight: "bold",
-  },
-  menuBtn: {
-    background: "transparent",
-    border: "none",
-    color: "white",
-    cursor: "pointer",
-    padding: "0.5rem",
-  },
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "rgba(0,0,0,0.7)",
-    zIndex: 999,
-  },
-  mobileMenu: {
-    position: "fixed",
-    top: 0,
-    right: 0,
-    width: "80%",
-    maxWidth: "300px",
-    height: "100vh",
-    background: "#2d5016",
-    padding: "5rem 2rem 2rem",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem",
-    overflowY: "auto",
-  },
-  mobileLink: {
-    color: "white",
-    textDecoration: "none",
-    fontSize: "1.2rem",
-    fontWeight: "500",
-    padding: "0.75rem",
-    borderBottom: "1px solid rgba(255,255,255,0.1)",
-    transition: "all 0.3s",
-  },
-};
-
-const styleSheet = document.createElement("style");
-styleSheet.textContent = `
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-
-  @media (max-width: 768px) {
-
-    nav a[href="/cart"] {
-      padding: 0.6rem !important;
-      border-radius: 50% !important;
-      gap: 0 !important;
-    }
-
-    /* Hide desktop list on mobile */
-    nav ul {
-      display: none !important;
-    }
-
-    .menu-toggle-btn {
-      display: block !important;
-    }
-  }
-
-  @media (min-width: 769px) {
-    .menu-toggle-btn {
-      display: none !important;
-    }
-  }
-
-  nav a:hover {
-    opacity: 0.8;
-  }
-`;
-
-if (typeof document !== "undefined" && !document.getElementById("navbar-styles")) {
-  styleSheet.id = "navbar-styles";
-  document.head.appendChild(styleSheet);
-}
 
 export default Navbar;

@@ -1,4 +1,4 @@
-// src/pages/BlogPost.jsx
+// src/pages/BlogPost.jsx — fully responsive, class-based CSS (mirrors About.jsx pattern)
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
@@ -11,37 +11,39 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div style={styles.notFound}>
-        <div style={styles.notFoundContent}>
-          <h2 style={styles.notFoundTitle}>Blog Post Not Found</h2>
-          <p style={styles.notFoundText}>The article you're looking for doesn't exist.</p>
-          <Link to='/blog'>
-            <button style={styles.backButton}>BACK TO BLOG</button>
+      <div className="bp-not-found">
+        <div className="bp-not-found-content">
+          <h2 className="bp-not-found-title">Blog Post Not Found</h2>
+          <p className="bp-not-found-text">The article you're looking for doesn't exist.</p>
+          <Link to="/blog">
+            <button className="bp-back-button">BACK TO BLOG</button>
           </Link>
         </div>
       </div>
     );
   }
 
-  // Get other blog posts for recommendations
   const relatedPosts = blogs.filter((b) => b.id !== post.id).slice(0, 3);
 
   return (
-    <div style={styles.container}>
+    <div className="bp-container">
+
       {/* Back Button */}
-      <button onClick={() => navigate("/blog")} style={styles.backBtn}>
+      <button onClick={() => navigate("/blog")} className="bp-back-btn">
         <ArrowLeft size={20} /> BACK TO BLOG
       </button>
 
       {/* Article */}
-      <article style={styles.article}>
-        {/* Header Section */}
-        <header style={styles.header}>
-          <div style={styles.headerTop}>
-            <div style={styles.categoryBadge}>{post.category}</div>
-            <div style={styles.metaInfo}>
-              <div style={styles.metaItem}>
-                <Calendar size={18} color="#f4a220" />
+      <article className="bp-article">
+
+        {/* ── Hero / Header ── */}
+        <header className="bp-header">
+          {/* Row 1: Category + Date */}
+          <div className="bp-header-top">
+            <div className="bp-category-badge">{post.category}</div>
+            <div className="bp-meta-info">
+              <div className="bp-meta-item">
+                <Calendar size={16} color="#f4a220" />
                 <span>
                   {new Date(post.date).toLocaleDateString("en-IN", {
                     year: "numeric",
@@ -53,44 +55,46 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <h1 style={styles.title}>{post.title}</h1>
+          {/* Row 2: Title */}
+          <h1 className="bp-title">{post.title}</h1>
 
-          <div style={styles.authorSection}>
-            <div style={styles.authorInfo}>
-              <User size={20} color="#f4a220" />
-              <div>
-                <div style={styles.authorName}>{post.author}</div>
-                <div style={styles.authorRole}>{post.role}</div>
+          {/* Row 3: Author */}
+          <div className="bp-author-section">
+            <div className="bp-author-info">
+              <div className="bp-author-avatar">
+                <User size={18} color="#f4a220" />
+              </div>
+              <div className="bp-author-text">
+                <div className="bp-author-name">{post.author}</div>
+                <div className="bp-author-role">{post.role}</div>
               </div>
             </div>
           </div>
         </header>
 
         {/* Featured Image */}
-        <div style={styles.featuredImageSection}>
-          <div style={styles.blogImage}>{post.image}</div>
+        <div className="bp-image-section">
+          <div className="bp-blog-image">{post.image}</div>
         </div>
 
         {/* Content */}
-        <div style={styles.content}>
+        <div className="bp-content">
           {(Array.isArray(post.content) ? post.content : [post.content]).map(
             (paragraph, index) => (
-              <p key={index} style={styles.paragraph}>
-                {paragraph.trim()}
-              </p>
+              <p key={index} className="bp-paragraph">{paragraph.trim()}</p>
             )
           )}
         </div>
 
-        {/* Footer with Tags */}
-        <footer style={styles.footer}>
-          <div style={styles.tagsContainer}>
-            <Tag size={18} color="#f4a220" />
-            <div style={styles.tagsList}>
-              <span style={styles.tag}>{post.category}</span>
-              <span style={styles.tag}>Agriculture</span>
-              <span style={styles.tag}>Technology</span>
-              <span style={styles.tag}>Farming</span>
+        {/* Tags Footer */}
+        <footer className="bp-footer">
+          <div className="bp-tags-container">
+            <Tag size={18} color="#f4a220" className="bp-tag-icon" />
+            <div className="bp-tags-list">
+              <span className="bp-tag">{post.category}</span>
+              <span className="bp-tag">Agriculture</span>
+              <span className="bp-tag">Technology</span>
+              <span className="bp-tag">Farming</span>
             </div>
           </div>
         </footer>
@@ -98,29 +102,25 @@ const BlogPost = () => {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section style={styles.relatedSection}>
-          <div style={styles.relatedHeader}>
-            <div style={styles.relatedLabelContainer}>
-              <div style={styles.relatedLabel}>MORE ARTICLES</div>
-              <div style={styles.relatedLabelLine}></div>
+        <section className="bp-related-section">
+          <div className="bp-related-header">
+            <div className="bp-related-label-row">
+              <div className="bp-related-label">MORE ARTICLES</div>
+              <div className="bp-related-label-line" />
             </div>
-            <h2 style={styles.relatedTitle}>Related Articles</h2>
+            <h2 className="bp-related-title">Related Articles</h2>
           </div>
 
-          <div style={styles.relatedGrid}>
-            {relatedPosts.map((relatedPost) => (
-              <Link
-                key={relatedPost.id}
-                to={`/blog/${relatedPost.id}`}
-                style={styles.relatedCard}
-              >
-                <div style={styles.relatedImageContainer}>
-                  <div style={styles.relatedImage}>{relatedPost.image}</div>
+          <div className="bp-related-grid">
+            {relatedPosts.map((rp) => (
+              <Link key={rp.id} to={`/blog/${rp.id}`} className="bp-related-card">
+                <div className="bp-related-img-wrap">
+                  <div className="bp-related-img">{rp.image}</div>
                 </div>
-                <div style={styles.relatedContent}>
-                  <h3 style={styles.relatedPostTitle}>{relatedPost.title}</h3>
-                  <p style={styles.relatedExcerpt}>{relatedPost.excerpt}</p>
-                  <span style={styles.readMore}>READ MORE →</span>
+                <div className="bp-related-content">
+                  <h3 className="bp-related-post-title">{rp.title}</h3>
+                  <p className="bp-related-excerpt">{rp.excerpt}</p>
+                  <span className="bp-read-more">READ MORE →</span>
                 </div>
               </Link>
             ))}
@@ -128,296 +128,312 @@ const BlogPost = () => {
         </section>
       )}
 
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        a { text-decoration: none; }
 
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
+        /* ── Base ────────────────────────────────────────── */
+        .bp-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+          font-family: 'Work Sans', sans-serif;
+          background: #fafaf8;
+        }
 
-          a {
-            text-decoration: none;
-          }
+        /* Back button */
+        .bp-back-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: transparent;
+          border: none;
+          color: #1a2f0d;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          cursor: pointer;
+          margin-bottom: 2rem;
+          padding: 0.5rem 0;
+          transition: gap 0.3s;
+        }
+        .bp-back-btn:hover { gap: 0.85rem; }
 
-          .related-card:hover {
-            transform: translateY(-5px);
-          }
+        /* Article shell */
+        .bp-article {
+          background: white;
+          border: 3px solid #1a2f0d;
+          overflow: hidden;
+          margin-bottom: 4rem;
+        }
 
-          .back-btn:hover {
-            gap: 0.75rem !important;
+        /* ── Hero Header ── */
+        .bp-header {
+          padding: clamp(1.5rem, 4vw, 3rem);
+          border-bottom: 3px solid #f4a220;
+        }
+        .bp-header-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          margin-bottom: 1.75rem;
+        }
+        .bp-category-badge {
+          background: #1a2f0d;
+          color: #f4a220;
+          padding: 0.5rem 1.5rem;
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+        .bp-meta-info {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+        .bp-meta-item {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          color: #666;
+          font-size: 0.875rem;
+        }
+        .bp-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.5rem, 4.5vw, 3rem);
+          color: #1a2f0d;
+          margin-bottom: 1.75rem;
+          line-height: 1.2;
+          font-weight: 700;
+          word-break: break-word;
+        }
+        .bp-author-section {
+          padding-top: 1.25rem;
+          border-top: 2px solid #f0f0f0;
+        }
+        .bp-author-info {
+          display: flex;
+          align-items: center;
+          gap: 0.875rem;
+        }
+        .bp-author-avatar {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: #f0f7ea;
+          border: 2px solid #f4a220;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .bp-author-text { display: flex; flex-direction: column; gap: 0.2rem; }
+        .bp-author-name { font-weight: 700; color: #1a2f0d; font-size: 0.95rem; }
+        .bp-author-role { font-size: 0.8rem; color: #999; }
+
+        /* Featured image */
+        .bp-image-section {
+          background: #f8f9fa;
+          border-bottom: 3px solid #f4a220;
+        }
+        .bp-blog-image {
+          font-size: clamp(3.5rem, 9vw, 7rem);
+          text-align: center;
+          padding: clamp(2rem, 5vw, 4rem) 2rem;
+          min-height: clamp(180px, 25vw, 300px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Content */
+        .bp-content { padding: clamp(1.5rem, 4vw, 3rem); }
+        .bp-paragraph {
+          font-size: 1.05rem;
+          line-height: 1.9;
+          color: #333;
+          margin-bottom: 1.5rem;
+          font-family: 'Work Sans', sans-serif;
+        }
+
+        /* Tags footer */
+        .bp-footer {
+          padding: 1.75rem clamp(1.5rem, 4vw, 3rem);
+          border-top: 3px solid #f0f0f0;
+          background: #fafaf8;
+        }
+        .bp-tags-container {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.875rem;
+        }
+        .bp-tag-icon { flex-shrink: 0; margin-top: 2px; }
+        .bp-tags-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.625rem;
+        }
+        .bp-tag {
+          display: inline-block;
+          background: #1a2f0d;
+          color: white;
+          padding: 0.35rem 0.875rem;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+        }
+
+        /* ── Related Section ── */
+        .bp-related-section {
+          margin-top: 4rem;
+          padding-top: 3rem;
+          border-top: 3px solid #e0e0e0;
+        }
+        .bp-related-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+        .bp-related-label-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .bp-related-label {
+          font-size: 0.7rem;
+          letter-spacing: 3px;
+          font-weight: 700;
+          color: #f4a220;
+        }
+        .bp-related-label-line { width: 60px; height: 2px; background: #f4a220; }
+        .bp-related-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.6rem, 4vw, 2.5rem);
+          font-weight: 700;
+          color: #1a2f0d;
+        }
+        .bp-related-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+        }
+        .bp-related-card {
+          background: white;
+          border: 3px solid #1a2f0d;
+          overflow: hidden;
+          color: inherit;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.3s;
+        }
+        .bp-related-card:hover { transform: translateY(-5px); }
+        .bp-related-img-wrap {
+          background: #f8f9fa;
+          border-bottom: 3px solid #f4a220;
+        }
+        .bp-related-img {
+          font-size: 3.5rem;
+          text-align: center;
+          padding: 2rem;
+          min-height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .bp-related-content { padding: 1.5rem; }
+        .bp-related-post-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.2rem;
+          color: #1a2f0d;
+          margin-bottom: 0.75rem;
+          font-weight: 700;
+          line-height: 1.3;
+        }
+        .bp-related-excerpt {
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 1rem;
+          line-height: 1.6;
+        }
+        .bp-read-more {
+          color: #1a2f0d;
+          font-weight: 700;
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+          border-bottom: 2px solid #f4a220;
+          padding-bottom: 0.25rem;
+          display: inline-block;
+        }
+
+        /* Not Found */
+        .bp-not-found {
+          min-height: 60vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fafaf8;
+          padding: 3rem clamp(1rem, 4vw, 3rem);
+        }
+        .bp-not-found-content { text-align: center; max-width: 600px; }
+        .bp-not-found-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.75rem, 5vw, 3rem);
+          color: #1a2f0d;
+          margin-bottom: 1rem;
+          font-weight: 700;
+        }
+        .bp-not-found-text { font-size: 1.1rem; color: #666; margin-bottom: 2rem; }
+        .bp-back-button {
+          padding: 1rem 2.5rem;
+          background: #f4a220;
+          color: white;
+          border: none;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+        .bp-back-button:hover { background: #d4891a; transform: translateY(-2px); }
+
+        /* ── Tablet (≤ 1024px) ──────────────────────────── */
+        @media (max-width: 1024px) {
+          .bp-related-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ── Mobile (≤ 768px) ───────────────────────────── */
+        @media (max-width: 768px) {
+          .bp-header-top {
+            flex-direction: column;
+            align-items: flex-start;
           }
-        `}
-      </style>
+          .bp-related-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+          .bp-related-section { margin-top: 2.5rem; padding-top: 2rem; }
+          .bp-related-header { margin-bottom: 2rem; }
+        }
+
+        /* ── Small Mobile (≤ 480px) ─────────────────────── */
+        @media (max-width: 480px) {
+          .bp-tags-container { flex-direction: row; align-items: flex-start; }
+          .bp-author-name { font-size: 0.9rem; }
+          .bp-paragraph { font-size: 0.975rem; }
+        }
+
+        /* ── Extra small (≤ 380px) ──────────────────────── */
+        @media (max-width: 380px) {
+          .bp-category-badge { padding: 0.4rem 1rem; font-size: 0.65rem; }
+          .bp-author-avatar { width: 36px; height: 36px; }
+          .bp-tag { font-size: 0.67rem; padding: 0.3rem 0.7rem; }
+        }
+      `}</style>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: '1000px',
-    margin: '0 auto',
-    padding: '3rem 2rem',
-    fontFamily: "'Work Sans', sans-serif",
-    background: '#fafaf8'
-  },
-  backBtn: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    background: 'transparent',
-    border: 'none',
-    color: '#1a2f0d',
-    fontSize: '0.8rem',
-    fontWeight: '700',
-    letterSpacing: '1px',
-    cursor: 'pointer',
-    marginBottom: '2rem',
-    padding: '0.5rem 0',
-    transition: 'gap 0.3s',
-    className: 'back-btn'
-  },
-  article: {
-    background: 'white',
-    border: '3px solid #1a2f0d',
-    overflow: 'hidden',
-    marginBottom: '4rem'
-  },
-  header: {
-    padding: '3rem',
-    borderBottom: '3px solid #f4a220'
-  },
-  headerTop: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '2rem',
-    flexWrap: 'wrap',
-    gap: '1rem'
-  },
-  categoryBadge: {
-    background: '#1a2f0d',
-    color: '#f4a220',
-    padding: '0.5rem 1.5rem',
-    fontSize: '0.7rem',
-    fontWeight: '700',
-    letterSpacing: '2px',
-    textTransform: 'uppercase'
-  },
-  metaInfo: {
-    display: 'flex',
-    gap: '1rem'
-  },
-  metaItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    color: '#666',
-    fontSize: '0.9rem'
-  },
-  title: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2rem, 5vw, 3rem)',
-    color: '#1a2f0d',
-    marginBottom: '2rem',
-    lineHeight: '1.2',
-    fontWeight: '700'
-  },
-  authorSection: {
-    paddingTop: '1.5rem',
-    borderTop: '2px solid #f0f0f0'
-  },
-  authorInfo: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem'
-  },
-  authorName: {
-    fontWeight: '700',
-    color: '#1a2f0d',
-    fontSize: '1rem'
-  },
-  authorRole: {
-    fontSize: '0.85rem',
-    color: '#999',
-    marginTop: '0.25rem'
-  },
-  featuredImageSection: {
-    background: '#f8f9fa',
-    borderBottom: '3px solid #f4a220'
-  },
-  blogImage: {
-    fontSize: 'clamp(5rem, 10vw, 7rem)',
-    textAlign: 'center',
-    padding: '4rem 2rem',
-    minHeight: '300px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  content: {
-    padding: '3rem'
-  },
-  paragraph: {
-    fontSize: '1.1rem',
-    lineHeight: '1.9',
-    color: '#333',
-    marginBottom: '1.5rem',
-    fontFamily: "'Work Sans', sans-serif"
-  },
-  footer: {
-    padding: '2rem 3rem',
-    borderTop: '3px solid #f0f0f0',
-    background: '#fafaf8'
-  },
-  tagsContainer: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '1rem'
-  },
-  tagsList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.75rem'
-  },
-  tag: {
-    display: 'inline-block',
-    background: '#1a2f0d',
-    color: 'white',
-    padding: '0.4rem 1rem',
-    fontSize: '0.75rem',
-    fontWeight: '600',
-    letterSpacing: '1px'
-  },
-  // Related Section
-  relatedSection: {
-    marginTop: '4rem',
-    paddingTop: '3rem',
-    borderTop: '3px solid #e0e0e0'
-  },
-  relatedHeader: {
-    maxWidth: '1000px',
-    margin: '0 auto 3rem',
-    textAlign: 'center'
-  },
-  relatedLabelContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '1.5rem',
-    marginBottom: '1rem'
-  },
-  relatedLabel: {
-    fontSize: '0.7rem',
-    letterSpacing: '3px',
-    fontWeight: '700',
-    color: '#f4a220'
-  },
-  relatedLabelLine: {
-    width: '60px',
-    height: '2px',
-    background: '#f4a220'
-  },
-  relatedTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-    fontWeight: '700',
-    color: '#1a2f0d'
-  },
-  relatedGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '2rem'
-  },
-  relatedCard: {
-    background: 'white',
-    border: '3px solid #1a2f0d',
-    overflow: 'hidden',
-    textDecoration: 'none',
-    color: 'inherit',
-    transition: 'transform 0.3s',
-    display: 'flex',
-    flexDirection: 'column',
-    className: 'related-card'
-  },
-  relatedImageContainer: {
-    background: '#f8f9fa',
-    borderBottom: '3px solid #f4a220'
-  },
-  relatedImage: {
-    fontSize: '3.5rem',
-    textAlign: 'center',
-    padding: '2rem',
-    minHeight: '150px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  relatedContent: {
-    padding: '1.5rem'
-  },
-  relatedPostTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '1.2rem',
-    color: '#1a2f0d',
-    marginBottom: '0.75rem',
-    fontWeight: '700',
-    lineHeight: '1.3'
-  },
-  relatedExcerpt: {
-    fontSize: '0.9rem',
-    color: '#666',
-    marginBottom: '1rem',
-    lineHeight: '1.6'
-  },
-  readMore: {
-    color: '#1a2f0d',
-    fontWeight: '700',
-    fontSize: '0.8rem',
-    letterSpacing: '1px',
-    borderBottom: '2px solid #f4a220',
-    paddingBottom: '0.25rem',
-    display: 'inline-block'
-  },
-  // Not Found
-  notFound: {
-    minHeight: '60vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#fafaf8',
-    padding: '3rem'
-  },
-  notFoundContent: {
-    textAlign: 'center',
-    maxWidth: '600px'
-  },
-  notFoundTitle: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: 'clamp(2rem, 5vw, 3rem)',
-    color: '#1a2f0d',
-    marginBottom: '1rem',
-    fontWeight: '700'
-  },
-  notFoundText: {
-    fontSize: '1.1rem',
-    color: '#666',
-    marginBottom: '2rem'
-  },
-  backButton: {
-    padding: '1rem 2.5rem',
-    background: '#f4a220',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '0.8rem',
-    fontWeight: '700',
-    letterSpacing: '2px',
-    cursor: 'pointer',
-    transition: 'all 0.3s'
-  }
 };
 
 export default BlogPost;

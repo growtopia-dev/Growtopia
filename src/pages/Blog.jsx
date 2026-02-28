@@ -1,4 +1,4 @@
- // src/pages/Blog.jsx
+// src/pages/Blog.jsx - MOBILE RESPONSIVE
 import React from "react";
 import { Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
@@ -8,12 +8,12 @@ const Blog = () => {
   return (
     <div style={styles.container}>
       {/* Editorial Hero Section */}
-      <section style={styles.editorialHeader}>
-        <div style={styles.heroLayout}>
+      <section style={styles.editorialHeader} className="editorial-header">
+        <div style={styles.heroLayout} className="hero-layout">
           {/* Left side - Label and Title */}
           <div style={styles.heroLeft}>
             <div style={styles.labelBox}>GROWTOPIA BLOG</div>
-            <h1 style={styles.mainHeadline}>
+            <h1 style={styles.mainHeadline} className="main-headline">
               INSIGHTS &<br/>
               <span style={styles.headlineItalic}>INNOVATIONS</span><br/>
               IN <span style={styles.headlineAccent}>AGRITECH</span>
@@ -21,7 +21,7 @@ const Blog = () => {
           </div>
           
           {/* Right side - Description */}
-          <div style={styles.heroRight}>
+          <div style={styles.heroRight} className="hero-right">
             <div style={styles.descContainer}>
               <p style={styles.headerDesc}>
                 Explore our latest articles on agriculture technology, sustainable farming practices, 
@@ -33,7 +33,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid Section */}
-      <section style={styles.blogSection}>
+      <section style={styles.blogSection} className="blog-section">
         <div style={styles.sectionHeader}>
           <div style={styles.sectionLabelContainer}>
             <div style={styles.sectionLabel}>LATEST ARTICLES</div>
@@ -42,9 +42,9 @@ const Blog = () => {
           <h2 style={styles.sectionTitle}>Recent Posts</h2>
         </div>
 
-        <div style={styles.blogsGrid}>
+        <div style={styles.blogsGrid} className="blogs-grid">
           {blogs.map((post, index) => (
-            <article key={post.id} style={styles.blogCard}>
+            <article key={post.id} style={styles.blogCard} className="blog-card">
               <div style={styles.blogImageContainer}>
                 <div style={styles.blogImage}>{post.image}</div>
                 <div style={styles.categoryBadge}>{post.category}</div>
@@ -52,7 +52,7 @@ const Blog = () => {
 
               <div style={styles.blogContent}>
                 <h2 style={styles.blogTitle}>
-                  <Link to={`/blog/${post.id}`} style={styles.titleLink}>
+                  <Link to={`/blog/${post.id}`} style={styles.titleLink} className="title-link">
                     {post.title}
                   </Link>
                 </h2>
@@ -76,7 +76,7 @@ const Blog = () => {
                   </div>
                 </div>
 
-                <Link to={`/blog/${post.id}`} style={styles.readMoreLink}>
+                <Link to={`/blog/${post.id}`} style={styles.readMoreLink} className="read-more">
                   READ ARTICLE <ArrowRight size={18} />
                 </Link>
               </div>
@@ -110,6 +110,64 @@ const Blog = () => {
 
           .read-more:hover {
             gap: 1rem !important;
+          }
+
+          /* TABLET STYLES (768px - 1024px) */
+          @media (max-width: 1024px) {
+            .hero-layout {
+              gap: 4rem !important;
+            }
+
+            .blogs-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 2rem !important;
+            }
+          }
+
+          /* MOBILE STYLES (up to 768px) */
+          @media (max-width: 768px) {
+            /* Hero Section */
+            .editorial-header {
+              padding: 3rem 1.5rem 2.5rem !important;
+            }
+
+            .hero-layout {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+
+            .main-headline {
+              font-size: 3rem !important;
+              text-align: center;
+            }
+
+            .hero-right {
+              padding-left: 0 !important;
+              border-left: none !important;
+              border-top: 3px solid #f4a220;
+              padding-top: 2rem !important;
+            }
+
+            /* Blog Section */
+            .blog-section {
+              padding: 4rem 1.5rem !important;
+            }
+
+            .blogs-grid {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+          }
+
+          /* SMALL MOBILE (up to 480px) */
+          @media (max-width: 480px) {
+            .main-headline {
+              font-size: 2.5rem !important;
+            }
+
+            .blog-card {
+              border-width: 2px !important;
+            }
           }
         `}
       </style>
@@ -234,8 +292,7 @@ const styles = {
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
-    transition: 'all 0.3s',
-    className: 'blog-card'
+    transition: 'all 0.3s'
   },
   blogImageContainer: {
     position: 'relative',
@@ -280,8 +337,7 @@ const styles = {
   titleLink: {
     color: '#1a2f0d',
     textDecoration: 'none',
-    transition: 'color 0.3s',
-    className: 'title-link'
+    transition: 'color 0.3s'
   },
   blogExcerpt: {
     color: '#666',
@@ -318,8 +374,7 @@ const styles = {
     transition: 'gap 0.3s',
     alignSelf: 'flex-start',
     padding: '0.75rem 0',
-    borderBottom: '2px solid #f4a220',
-    className: 'read-more'
+    borderBottom: '2px solid #f4a220'
   }
 };
 

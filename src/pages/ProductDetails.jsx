@@ -1,38 +1,30 @@
-// src/pages/ProductDetails.jsx
-import React,{ useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { getProductById } from "../data/products";
-import { ArrowLeft, Check } from "lucide-react";
+// src/pages/Products.jsx - PROPERLY MOBILE RESPONSIVE
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { products, categories } from "../data/products";
 import toast, { Toaster, useToasterStore } from "react-hot-toast";
 
-const ProductDetails = ({ onAddToCart }) => {
+const Products = ({ onAddToCart }) => {
   const { toasts } = useToasterStore();
-
   const TOAST_LIMIT = 3;
 
   useEffect(() => {
     toasts
-      .filter((t) => t.visible) //only count visible ones
-      .filter((_, i) => i >= TOAST_LIMIT) // find those beyond the limit
+      .filter((t) => t.visible)
+      .filter((_, i) => i >= TOAST_LIMIT)
       .forEach((t) => toast.dismiss(t.id));
   }, [toasts]);
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const product = getProductById(id);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  if (!product) {
-    return (
-      <div style={styles.notFound}>
-        <h2>Product Not Found</h2>
-        <Link to='/products'>
-          <button style={styles.backButton}>Back to Products</button>
-        </Link>
-      </div>
-    );
-  }
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((p) => p.category === selectedCategory);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e, product) => {
+    e.preventDefault();
+    e.stopPropagation();
     onAddToCart(product);
     toast.success(`${product.name} added to cart!`, {
       duration: 3000,
@@ -47,253 +39,540 @@ const ProductDetails = ({ onAddToCart }) => {
   return (
     <div style={styles.container}>
       <Toaster reverseOrder={true} />
-      <button onClick={() => navigate("/products")} style={styles.backBtn}>
-        <ArrowLeft size={20} /> Back to Products
-      </button>
-
-      <div style={styles.productContainer}>
-        <div style={styles.imageSection}>
-          <div style={styles.productImage}>
-            <img
-              src={product.image}
-              alt={product.name}
-              style={styles.productImage}
-            />
+      
+      {/* Editorial Hero Section */}
+      <section style={styles.editorialHeader} className="products-hero">
+        <div style={styles.heroLayout} className="hero-layout">
+          <div style={styles.heroLeft}>
+            <div style={styles.labelBox}>OUR SOLUTIONS</div>
+            <h1 style={styles.mainHeadline} className="hero-headline">
+              INNOVATIVE<br className="desktop-br"/>
+              <span style={styles.headlineItalic}>AGRICULTURAL</span><br className="desktop-br"/>
+              <span style={styles.headlineAccent}>TECHNOLOGY</span>
+            </h1>
           </div>
-          <span style={styles.categoryBadge}>{product.category}</span>
-        </div>
-
-        <div style={styles.infoSection}>
-          <h1 style={styles.productName}>{product.name}</h1>
-          <p style={styles.productDescription}>{product.description}</p>
-
-          <div style={styles.priceSection}>
-            <span style={styles.price}>₹{product.price.toLocaleString()}</span>
-            <span style={styles.tax}>+ GST</span>
-          </div>
-
-          <button onClick={handleAddToCart} style={styles.addToCartBtn}>
-            Add to Cart
-          </button>
-
-          <div style={styles.deliveryInfo}>
-            <p>✓ Free delivery on orders above ₹10,000</p>
-            <p>✓ Cash on Delivery available</p>
-            <p>✓ Easy returns within 15 days</p>
+          
+          <div style={styles.heroRight} className="hero-right">
+            <div style={styles.quoteContainer}>
+              <p style={styles.headerQuote}>
+                Discover cutting-edge solutions designed to revolutionize farming,
+                increase yields, and promote sustainable agriculture across India.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Features Section */}
-      <div style={styles.featuresSection}>
-        <h2 style={styles.featuresTitle}>Product Features</h2>
-        <div style={styles.featuresList}>
-          {product.features.map((feature, index) => (
-            <div key={index} style={styles.featureItem}>
-              <Check size={20} color='#6b9e3e' />
-              <span>{feature}</span>
+      {/* Category Filter Section */}
+      <section style={styles.filterSection} className="filter-section">
+        <div style={styles.filterContainer}>
+          <div style={styles.filterHeader}>
+            <div style={styles.sectionLabel}>— EXPLORE BY CATEGORY</div>
+          </div>
+          <div style={styles.categoryGrid} className="category-grid">
+            {categories.map((category, index) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                style={{
+                  ...styles.categoryCard,
+                  ...(selectedCategory === category ? styles.categoryCardActive : {}),
+                  animationDelay: `${index * 0.1}s`
+                }}
+                className="category-card"
+              >
+                <div style={styles.categoryNumber}>
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <div style={styles.categoryName}>{category}</div>
+                <div style={styles.categoryCorner}></div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Grid Section */}
+      <section style={styles.productsSection} className="products-section">
+        <div style={styles.productsSectionHeader} className="products-header">
+          <div style={styles.productsLabelContainer}>
+            <div style={styles.productsLabel}>
+              {selectedCategory === "All" 
+                ? "ALL PRODUCTS" 
+                : selectedCategory.toUpperCase()}
+            </div>
+            <div style={styles.productsLabelLine}></div>
+          </div>
+          <div style={styles.productsCount}>
+            {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
+          </div>
+        </div>
+
+        <div style={styles.productsGrid} className="products-grid">
+          {filteredProducts.map((product, index) => (
+            <div key={product.id} style={styles.productCard} className="product-card">
+              <Link to={`/product/${product.id}`} style={styles.productLink}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  style={styles.productImage}
+                />
+                <span style={styles.categoryBadge}>{product.category}</span>
+                <h3 style={styles.productName}>{product.name}</h3>
+                <p style={styles.productDescription}>{product.description}</p>
+                <p style={styles.productPrice}>
+                  ₹{product.price.toLocaleString()}
+                </p>
+              </Link>
+              <div style={styles.buttonGroup} className="button-group">
+                <Link to={`/product/${product.id}`} style={styles.detailsButton}>
+                  View Details
+                </Link>
+                <button
+                  onClick={(e) => handleAddToCart(e, product)}
+                  style={styles.cartButton}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Specifications */}
-      <div style={styles.specsSection}>
-        <h2 style={styles.specsTitle}>Specifications</h2>
-        <table style={styles.specsTable}>
-          <tbody>
-            <tr style={styles.specsRow}>
-              <td style={styles.specsLabel}>Product ID</td>
-              <td style={styles.specsValue}>
-                GROW-{product.id.toString().padStart(4, "0")}
-              </td>
-            </tr>
-            <tr style={styles.specsRow}>
-              <td style={styles.specsLabel}>Category</td>
-              <td style={styles.specsValue}>{product.category}</td>
-            </tr>
-            <tr style={styles.specsRow}>
-              <td style={styles.specsLabel}>Warranty</td>
-              <td style={styles.specsValue}>
-                1-2 Years (as mentioned in features)
-              </td>
-            </tr>
-            <tr style={styles.specsRow}>
-              <td style={styles.specsLabel}>Manufacturer</td>
-              <td style={styles.specsValue}>GROWTOPIA</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        {filteredProducts.length === 0 && (
+          <div style={styles.noProducts}>
+            <div style={styles.noProductsIcon}>∅</div>
+            <p style={styles.noProductsText}>No products found in this category.</p>
+            <button 
+              onClick={() => setSelectedCategory("All")}
+              style={styles.resetButton}
+            >
+              View All Products
+            </button>
+          </div>
+        )}
+      </section>
+
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+
+          @keyframes slideUp {
+            from {
+              opacity: 0;
+              transform: translateY(40px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .category-card {
+            animation: slideUp 0.6s ease-out both;
+          }
+
+          /* MOBILE HERO FIX */
+          @media (max-width: 768px) {
+            .products-hero {
+              padding: 2rem 1rem !important;
+              min-height: auto !important;
+            }
+
+            .hero-layout {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+            }
+
+            .hero-headline {
+              font-size: 2rem !important;
+              line-height: 1.1 !important;
+              word-break: break-word !important;
+            }
+
+            .desktop-br {
+              display: none !important;
+            }
+
+            .hero-right {
+              padding-left: 0 !important;
+              border-left: none !important;
+              border-top: 2px solid #f4a220 !important;
+              padding-top: 1.5rem !important;
+            }
+
+            /* Category Grid */
+            .category-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 1rem !important;
+            }
+
+            /* Products Grid */
+            .products-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+            }
+
+            .product-card {
+              max-width: 100% !important;
+            }
+
+            .button-group {
+              grid-template-columns: 1fr !important;
+              gap: 0.75rem !important;
+            }
+
+            /* Products Header */
+            .products-header {
+              flex-wrap: wrap !important;
+              gap: 1rem !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .products-hero {
+              padding: 1.5rem 0.75rem !important;
+            }
+
+            .hero-headline {
+              font-size: 1.75rem !important;
+            }
+
+            .category-grid {
+              grid-template-columns: 1fr !important;
+            }
+
+            .filter-section {
+              padding: 3rem 1rem !important;
+            }
+
+            .products-section {
+              padding: 3rem 1rem !important;
+            }
+          }
+
+          @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-layout {
+              gap: 3rem !important;
+            }
+
+            .category-grid {
+              grid-template-columns: repeat(3, 1fr) !important;
+            }
+
+            .products-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 const styles = {
   container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "2rem",
-    width: "100%",
+    maxWidth: '100%',
+    margin: '0 auto',
+    width: '100%',
+    fontFamily: "'Work Sans', sans-serif",
+    background: '#fafaf8',
+    overflowX: 'hidden'
   },
-  backBtn: {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    background: "transparent",
-    border: "none",
-    color: "#6b9e3e",
-    fontSize: "1rem",
-    cursor: "pointer",
-    marginBottom: "2rem",
-    padding: "0.5rem",
-    fontWeight: "600",
+
+  // Editorial Hero Section
+  editorialHeader: {
+    padding: '4rem 3rem 3rem',
+    background: '#1a2f0d',
+    color: 'white',
+    position: 'relative',
+    overflow: 'hidden'
   },
-  productContainer: {
+  heroLayout: {
+    maxWidth: '1400px',
+    margin: '0 auto',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1.1fr',
+    gap: '6rem',
+    alignItems: 'center'
+  },
+  heroLeft: {
+    position: 'relative'
+  },
+  labelBox: {
+    display: 'inline-block',
+    padding: '0.5rem 1.5rem',
+    border: '2px solid #f4a220',
+    fontSize: '0.7rem',
+    letterSpacing: '4px',
+    fontWeight: '700',
+    marginBottom: '2.5rem',
+    color: '#f4a220',
+    background: 'rgba(244, 162, 32, 0.05)'
+  },
+  mainHeadline: {
+    fontFamily: "'Playfair Display', serif",
+    fontSize: '4.5rem',
+    fontWeight: '900',
+    lineHeight: '0.95',
+    letterSpacing: '-2px',
+    color: 'white',
+    textTransform: 'uppercase'
+  },
+  headlineItalic: {
+    fontStyle: 'italic',
+    fontWeight: '400',
+    color: '#8fbc5e'
+  },
+  headlineAccent: {
+    color: '#f4a220'
+  },
+  heroRight: {
+    position: 'relative',
+    paddingLeft: '3rem',
+    borderLeft: '3px solid #f4a220'
+  },
+  quoteContainer: {
+    position: 'relative'
+  },
+  headerQuote: {
+    fontSize: '1.15rem',
+    lineHeight: '1.8',
+    color: 'rgba(255,255,255,0.95)',
+    fontStyle: 'italic',
+    fontWeight: '300'
+  },
+
+  // Filter Section
+  filterSection: {
+    padding: '6rem 3rem',
+    background: 'white'
+  },
+  filterContainer: {
+    maxWidth: '1400px',
+    margin: '0 auto'
+  },
+  filterHeader: {
+    marginBottom: '3rem'
+  },
+  sectionLabel: {
+    fontSize: '0.75rem',
+    letterSpacing: '3px',
+    fontWeight: '700',
+    color: '#f4a220'
+  },
+  categoryGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '1.5rem'
+  },
+  categoryCard: {
+    background: 'white',
+    border: '3px solid #1a2f0d',
+    padding: '2rem 1.5rem',
+    position: 'relative',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    overflow: 'hidden',
+    minHeight: '120px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  categoryCardActive: {
+    background: '#1a2f0d',
+    color: 'white'
+  },
+  categoryNumber: {
+    fontSize: '2.5rem',
+    fontFamily: "'Playfair Display', serif",
+    fontWeight: '900',
+    opacity: '0.15',
+    position: 'absolute',
+    top: '0.5rem',
+    right: '0.5rem',
+    lineHeight: '1'
+  },
+  categoryName: {
+    fontSize: '1rem',
+    fontWeight: '700',
+    letterSpacing: '1px',
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    zIndex: 1
+  },
+  categoryCorner: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: '40px',
+    height: '40px',
+    background: '#f4a220',
+    clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
+    transition: 'all 0.3s ease'
+  },
+
+  // Products Section
+  productsSection: {
+    padding: '6rem 3rem',
+    background: '#fafaf8'
+  },
+  productsSectionHeader: {
+    maxWidth: '1400px',
+    margin: '0 auto 4rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  productsLabelContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1.5rem'
+  },
+  productsLabel: {
+    fontSize: '0.75rem',
+    letterSpacing: '3px',
+    fontWeight: '700',
+    color: '#f4a220'
+  },
+  productsLabelLine: {
+    width: '80px',
+    height: '2px',
+    background: '#f4a220'
+  },
+  productsCount: {
+    fontSize: '1rem',
+    color: '#666',
+    fontWeight: '600'
+  },
+
+  // Products Grid
+  productsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))",
-    gap: "3rem",
-    marginBottom: "3rem",
+    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+    gap: "2rem",
+    maxWidth: '1400px',
+    margin: '0 auto'
   },
-  imageSection: {
-    textAlign: "center",
+  productCard: {
+    background: 'white',
+    borderRadius: '15px',
+    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+    overflow: 'hidden',
+    transition: 'transform 0.3s, box-shadow 0.3s',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  productLink: {
+    textDecoration: 'none',
+    color: 'inherit',
+    padding: '1.5rem',
+    flex: 1,
+    display: 'block'
   },
   productImage: {
-    // background: '#f8f9fa',
-    // padding: '2rem',
-    // display: 'flex',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    minHeight: "400px",
-    width: "100%",
-    height: "200px",
-    objectFit: "cover",
-    marginTop: "0.5rem",
-    marginBottom: "1rem",
-    borderRadius: "10px",
+    width: '100%',
+    height: '200px',
+    objectFit: 'cover',
+    marginBottom: '1rem',
+    borderRadius: '10px'
   },
   categoryBadge: {
-    display: "inline-block",
-    background: "#6b9e3e",
-    color: "white",
-    padding: "0.5rem 1.5rem",
-    borderRadius: "20px",
-    fontWeight: "600",
-    fontSize: "1rem",
-  },
-  infoSection: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1.5rem",
+    display: 'inline-block',
+    background: '#e8f5e9',
+    color: '#2d5016',
+    padding: '0.3rem 1rem',
+    borderRadius: '15px',
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    marginBottom: '1rem'
   },
   productName: {
-    fontSize: "2.5rem",
-    color: "#2d5016",
-    marginBottom: "0",
+    fontSize: '1.3rem',
+    color: '#2d5016',
+    marginBottom: '0.5rem'
   },
   productDescription: {
-    fontSize: "1.1rem",
-    color: "#666",
-    lineHeight: "1.8",
+    color: '#666',
+    fontSize: '0.95rem',
+    lineHeight: '1.5',
+    marginBottom: '1rem'
   },
-  priceSection: {
-    display: "flex",
-    alignItems: "baseline",
-    gap: "1rem",
+  productPrice: {
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    color: '#f4a220',
+    marginBottom: '1rem'
   },
-  price: {
-    fontSize: "3rem",
-    fontWeight: "bold",
-    color: "#f4a220",
+  buttonGroup: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '0.5rem',
+    padding: '0 1.5rem 1.5rem'
   },
-  tax: {
-    fontSize: "1rem",
-    color: "#999",
+  detailsButton: {
+    padding: '0.75rem',
+    background: '#6b9e3e',
+    color: 'white',
+    border: 'none',
+    borderRadius: '8px',
+    fontSize: '0.95rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    textAlign: 'center',
+    textDecoration: 'none',
+    transition: 'background 0.3s'
   },
-  addToCartBtn: {
-    background: "#6b9e3e",
-    color: "white",
-    padding: "1.2rem 2rem",
-    border: "none",
-    borderRadius: "10px",
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-    cursor: "pointer",
-    transition: "background 0.3s",
-    width: "100%",
+  cartButton: {
+    padding: '0.75rem',
+    background: '#f4a220',
+    color: 'white',
+    border: 'none',
+    borderRadius: '8px',
+    fontSize: '0.95rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'background 0.3s'
   },
-  deliveryInfo: {
-    background: "#f8f9fa",
-    padding: "1.5rem",
-    borderRadius: "10px",
-    lineHeight: "2",
+
+  // No Products
+  noProducts: {
+    textAlign: 'center',
+    padding: '5rem 2rem',
+    maxWidth: '600px',
+    margin: '0 auto'
   },
-  featuresSection: {
-    background: "white",
-    padding: "2rem",
-    borderRadius: "15px",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-    marginBottom: "2rem",
+  noProductsIcon: {
+    fontSize: '5rem',
+    color: '#f4a220',
+    marginBottom: '1.5rem',
+    fontFamily: "'Playfair Display', serif"
   },
-  featuresTitle: {
-    fontSize: "1.8rem",
-    color: "#2d5016",
-    marginBottom: "1.5rem",
+  noProductsText: {
+    fontSize: '1.3rem',
+    color: '#666',
+    marginBottom: '2rem',
+    fontStyle: 'italic'
   },
-  featuresList: {
-    display: "grid",
-    gap: "1rem",
-  },
-  featureItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1rem",
-    fontSize: "1.1rem",
-    color: "#333",
-  },
-  specsSection: {
-    background: "white",
-    padding: "2rem",
-    borderRadius: "15px",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-    overflowX: "hidden",
-  },
-  specsTitle: {
-    fontSize: "1.8rem",
-    color: "#2d5016",
-    marginBottom: "1.5rem",
-  },
-  specsTable: {
-    width: "100%",
-    borderCollapse: "collapse",
-  },
-  specsRow: {
-    borderBottom: "1px solid #e0e0e0",
-  },
-  specsLabel: {
-    padding: "1rem",
-    fontWeight: "600",
-    color: "#666",
-    width: "40%",
-  },
-  specsValue: {
-    padding: "1rem",
-    color: "#333",
-  },
-  notFound: {
-    textAlign: "center",
-    padding: "5rem 2rem",
-  },
-  backButton: {
-    marginTop: "2rem",
-    padding: "1rem 2rem",
-    background: "#6b9e3e",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "1rem",
-    cursor: "pointer",
-  },
+  resetButton: {
+    padding: '1rem 2.5rem',
+    background: '#1a2f0d',
+    color: 'white',
+    border: 'none',
+    fontSize: '0.9rem',
+    fontWeight: '700',
+    cursor: 'pointer',
+    letterSpacing: '1px',
+    textTransform: 'uppercase',
+    transition: 'all 0.3s'
+  }
 };
 
-export default ProductDetails;
+export default Products;

@@ -29,63 +29,53 @@ const Products = ({ onAddToCart }) => {
     toast.success(`${product.name} added to cart!`, {
       duration: 3000,
       position: "top-center",
-      style: {
-        background: "#fff",
-        color: "#000000",
-      },
+      style: { background: "#fff", color: "#000000" },
     });
   };
 
   return (
-    <div style={styles.container}>
+    <div className="gt-container">
       <Toaster reverseOrder={true} />
-      
+
       {/* Editorial Hero Section */}
-      <section style={styles.editorialHeader}>
-        <div style={styles.heroLayout}>
-          <div style={styles.heroLeft}>
-            <div style={styles.labelBox}>OUR SOLUTIONS</div>
-            <h1 style={styles.mainHeadline}>
-              INNOVATIVE<br/>
-              <span style={styles.headlineItalic}>AGRICULTURAL</span><br/>
-              <span style={styles.headlineAccent}>TECHNOLOGY</span>
+      <section className="gt-editorial-header">
+        <div className="gt-hero-layout">
+          <div className="gt-hero-left">
+            <div className="gt-label-box">OUR SOLUTIONS</div>
+            <h1 className="gt-main-headline">
+              INNOVATIVE<br />
+              <span className="gt-headline-italic">AGRICULTURAL</span><br />
+              <span className="gt-headline-accent">TECHNOLOGY</span>
             </h1>
           </div>
-          
-          <div style={styles.heroRight}>
-            <div style={styles.quoteContainer}>
-              <p style={styles.headerQuote}>
-                Discover cutting-edge solutions designed to revolutionize farming,
-                increase yields, and promote sustainable agriculture across India.
-              </p>
-            </div>
+          <div className="gt-hero-right">
+            <p className="gt-header-quote">
+              Discover cutting-edge solutions designed to revolutionize farming,
+              increase yields, and promote sustainable agriculture across India.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Category Filter Section */}
-      <section style={styles.filterSection}>
-        <div style={styles.filterContainer}>
-          <div style={styles.filterHeader}>
-            <div style={styles.sectionLabel}>— EXPLORE BY CATEGORY</div>
+      <section className="gt-filter-section">
+        <div className="gt-filter-container">
+          <div className="gt-filter-header">
+            <div className="gt-section-label">— EXPLORE BY CATEGORY</div>
           </div>
-          <div style={styles.categoryGrid}>
+          <div className="gt-category-grid">
             {categories.map((category, index) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                style={{
-                  ...styles.categoryCard,
-                  ...(selectedCategory === category ? styles.categoryCardActive : {}),
-                  animationDelay: `${index * 0.1}s`
-                }}
-                className="category-card"
+                className={`gt-category-card${selectedCategory === category ? " gt-category-card--active" : ""}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div style={styles.categoryNumber}>
-                  {String(index + 1).padStart(2, '0')}
+                <div className="gt-category-number">
+                  {String(index + 1).padStart(2, "0")}
                 </div>
-                <div style={styles.categoryName}>{category}</div>
-                <div style={styles.categoryCorner}></div>
+                <div className="gt-category-name">{category}</div>
+                <div className="gt-category-corner" />
               </button>
             ))}
           </div>
@@ -93,59 +83,60 @@ const Products = ({ onAddToCart }) => {
       </section>
 
       {/* Products Grid Section */}
-      <section style={styles.productsSection}>
-        <div style={styles.productsSectionHeader}>
-          <div style={styles.productsLabelContainer}>
-            <div style={styles.productsLabel}>
-              {selectedCategory === "All" 
-                ? "ALL PRODUCTS" 
+      <section className="gt-products-section">
+        <div className="gt-products-section-header">
+          <div className="gt-products-label-container">
+            <div className="gt-products-label">
+              {selectedCategory === "All"
+                ? "ALL PRODUCTS"
                 : selectedCategory.toUpperCase()}
             </div>
-            <div style={styles.productsLabelLine}></div>
+            <div className="gt-products-label-line" />
           </div>
-          <div style={styles.productsCount}>
-            {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
+          <div className="gt-products-count">
+            {filteredProducts.length}{" "}
+            {filteredProducts.length === 1 ? "Product" : "Products"}
           </div>
         </div>
 
-        <div style={styles.productsGrid}>
-          {filteredProducts.map((product, index) => (
-            <div key={product.id} style={styles.productCard}>
-            <Link to={`/product/${product.id}`} style={styles.productLink}>
-              <img
-                src={product.image}
-                alt={product.name}
-                style={styles.productImage}
-              />
-              <span style={styles.categoryBadge}>{product.category}</span>
-              <h3 style={styles.productName}>{product.name}</h3>
-              <p style={styles.productDescription}>{product.description}</p>
-              <p style={styles.productPrice}>
-                ₹{product.price.toLocaleString()}
-              </p>
-            </Link>
-            <div style={styles.buttonGroup}>
-              <Link to={`/product/${product.id}`} style={styles.detailsButton}>
-                View Details
+        <div className="gt-products-grid">
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="gt-product-card">
+              <Link to={`/product/${product.id}`} className="gt-product-link">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="gt-product-image"
+                />
+                <span className="gt-category-badge">{product.category}</span>
+                <h3 className="gt-product-name">{product.name}</h3>
+                <p className="gt-product-description">{product.description}</p>
+                <p className="gt-product-price">
+                  ₹{product.price.toLocaleString()}
+                </p>
               </Link>
-              <button
-                onClick={(e) => handleAddToCart(e, product)}
-                style={styles.cartButton}
-              >
-                Add to Cart
-              </button>
+              <div className="gt-button-group">
+                <Link to={`/product/${product.id}`} className="gt-details-button">
+                  View Details
+                </Link>
+                <button
+                  onClick={(e) => handleAddToCart(e, product)}
+                  className="gt-cart-button"
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
-          </div>
           ))}
         </div>
 
         {filteredProducts.length === 0 && (
-          <div style={styles.noProducts}>
-            <div style={styles.noProductsIcon}>∅</div>
-            <p style={styles.noProductsText}>No products found in this category.</p>
-            <button 
+          <div className="gt-no-products">
+            <div className="gt-no-products-icon">∅</div>
+            <p className="gt-no-products-text">No products found in this category.</p>
+            <button
               onClick={() => setSelectedCategory("All")}
-              style={styles.resetButton}
+              className="gt-reset-button"
             >
               View All Products
             </button>
@@ -154,369 +145,347 @@ const Products = ({ onAddToCart }) => {
       </section>
 
       {/* Decorative Footer Element */}
-      <section style={styles.footerDecor}>
-        <div style={styles.footerPattern}></div>
-        <div style={styles.footerText}>GROWTOPIA — Premium Agricultural Solutions</div>
+      <section className="gt-footer-decor">
+        <div className="gt-footer-pattern" />
+        <div className="gt-footer-text">GROWTOPIA — Premium Agricultural Solutions</div>
       </section>
 
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
 
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-          @keyframes slideUp {
-            from {
-              opacity: 0;
-              transform: translateY(40px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
+        /* ── Base / Desktop ─────────────────────────────── */
 
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
+        .gt-container {
+          max-width: 100%;
+          width: 100%;
+          font-family: 'Work Sans', sans-serif;
+          background: #fafaf8;
+          overflow-x: hidden;
+        }
 
-          .product-card-wrapper, .category-card {
-            animation: slideUp 0.6s ease-out both;
-          }
+        /* Hero */
+        .gt-editorial-header {
+          padding: 4rem 3rem 3rem;
+          background: #1a2f0d;
+          color: white;
+          position: relative;
+          overflow: hidden;
+        }
+        .gt-hero-layout {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 6rem;
+          align-items: center;
+        }
+        .gt-hero-left { position: relative; }
+        .gt-label-box {
+          display: inline-block;
+          padding: 0.5rem 1.5rem;
+          border: 2px solid #f4a220;
+          font-size: 0.7rem;
+          letter-spacing: 4px;
+          font-weight: 700;
+          margin-bottom: 2.5rem;
+          color: #f4a220;
+          background: rgba(244, 162, 32, 0.05);
+        }
+        .gt-main-headline {
+          font-family: 'Playfair Display', serif;
+          font-size: 4.5rem;
+          font-weight: 900;
+          line-height: 0.95;
+          letter-spacing: -2px;
+          color: white;
+          text-transform: uppercase;
+        }
+        .gt-headline-italic { font-style: italic; font-weight: 400; color: #8fbc5e; }
+        .gt-headline-accent { color: #f4a220; }
+        .gt-hero-right {
+          position: relative;
+          padding-left: 3rem;
+          border-left: 3px solid #f4a220;
+        }
+        .gt-header-quote {
+          font-size: 1.15rem;
+          line-height: 1.8;
+          color: rgba(255,255,255,0.95);
+          font-style: italic;
+          font-weight: 300;
+        }
 
-          .product-card-wrapper:hover {
-            transform: translateY(-5px);
+        /* Filter */
+        .gt-filter-section { padding: 6rem 3rem; background: white; }
+        .gt-filter-container { max-width: 1400px; margin: 0 auto; }
+        .gt-filter-header { margin-bottom: 3rem; }
+        .gt-section-label { font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; color: #f4a220; }
+        .gt-category-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+        }
+        .gt-category-card {
+          background: white;
+          border: 3px solid #1a2f0d;
+          padding: 2rem 1.5rem;
+          position: relative;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          overflow: hidden;
+          min-height: 120px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          animation: slideUp 0.6s ease-out both;
+        }
+        .gt-category-card:hover { background: #f0f7e8; }
+        .gt-category-card--active { background: #1a2f0d; color: white; }
+        .gt-category-card--active:hover { background: #1a2f0d; }
+        .gt-category-number {
+          font-size: 2.5rem;
+          font-family: 'Playfair Display', serif;
+          font-weight: 900;
+          opacity: 0.15;
+          position: absolute;
+          top: 0.5rem;
+          right: 0.5rem;
+          line-height: 1;
+        }
+        .gt-category-name {
+          font-size: 1rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          text-align: center;
+          z-index: 1;
+        }
+        .gt-category-corner {
+          position: absolute;
+          bottom: 0; right: 0;
+          width: 40px; height: 40px;
+          background: #f4a220;
+          clip-path: polygon(100% 0, 100% 100%, 0 100%);
+          transition: all 0.3s ease;
+        }
+
+        /* Products */
+        .gt-products-section { padding: 6rem 3rem; background: #fafaf8; }
+        .gt-products-section-header {
+          max-width: 1400px;
+          margin: 0 auto 4rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .gt-products-label-container { display: flex; align-items: center; gap: 1.5rem; }
+        .gt-products-label { font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; color: #f4a220; }
+        .gt-products-label-line { width: 80px; height: 2px; background: #f4a220; }
+        .gt-products-count { font-size: 1rem; color: #666; font-weight: 600; }
+
+        .gt-products-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 2rem;
+        }
+        .gt-product-card {
+          background: white;
+          border-radius: 15px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          overflow: hidden;
+          transition: transform 0.3s, box-shadow 0.3s;
+          display: flex;
+          flex-direction: column;
+        }
+        .gt-product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .gt-product-link {
+          text-decoration: none;
+          color: inherit;
+          padding: 1.5rem;
+          flex: 1;
+          display: block;
+        }
+        .gt-product-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          margin-bottom: 1rem;
+          border-radius: 10px;
+        }
+        .gt-category-badge {
+          display: inline-block;
+          background: #e8f5e9;
+          color: #2d5016;
+          padding: 0.3rem 1rem;
+          border-radius: 15px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+        }
+        .gt-product-name { font-size: 1.3rem; color: #2d5016; margin-bottom: 0.5rem; }
+        .gt-product-description { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }
+        .gt-product-price { font-size: 1.8rem; font-weight: bold; color: #f4a220; margin-bottom: 1rem; }
+
+        .gt-button-group {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+          padding: 0 1.5rem 1.5rem;
+        }
+        .gt-details-button {
+          padding: 0.75rem;
+          background: #6b9e3e;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 0.95rem;
+          font-weight: 600;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: none;
+          transition: background 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .gt-details-button:hover { background: #4e7a2c; }
+        .gt-cart-button {
+          padding: 0.75rem;
+          background: #f4a220;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 0.95rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+        .gt-cart-button:hover { background: #d4891a; }
+
+        /* No products */
+        .gt-no-products { text-align: center; padding: 5rem 2rem; max-width: 600px; margin: 0 auto; }
+        .gt-no-products-icon { font-size: 5rem; color: #f4a220; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; }
+        .gt-no-products-text { font-size: 1.3rem; color: #666; margin-bottom: 2rem; font-style: italic; }
+        .gt-reset-button {
+          padding: 1rem 2.5rem;
+          background: #1a2f0d;
+          color: white;
+          border: none;
+          font-size: 0.9rem;
+          font-weight: 700;
+          cursor: pointer;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          transition: all 0.3s;
+        }
+        .gt-reset-button:hover { background: #2e5a1a; }
+
+        /* Footer */
+        .gt-footer-decor {
+          padding: 4rem 3rem;
+          background: #1a2f0d;
+          position: relative;
+          overflow: hidden;
+        }
+        .gt-footer-pattern {
+          position: absolute;
+          inset: 0;
+          opacity: 0.03;
+          background: repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 20px);
+        }
+        .gt-footer-text {
+          text-align: center;
+          font-size: 1.5rem;
+          font-family: 'Playfair Display', serif;
+          color: #f4a220;
+          position: relative;
+          letter-spacing: 2px;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Tablet (≤ 900px) ───────────────────────────── */
+        @media (max-width: 900px) {
+          .gt-hero-layout {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
           }
-        `}
-      </style>
+          .gt-hero-right {
+            padding-left: 1.5rem;
+            border-left-width: 2px;
+          }
+          .gt-main-headline { font-size: 3.2rem; }
+          .gt-category-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+          }
+          .gt-products-section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+          }
+          .gt-products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          }
+        }
+
+        /* ── Mobile (≤ 600px) ───────────────────────────── */
+        @media (max-width: 600px) {
+          .gt-editorial-header { padding: 2.5rem 1.25rem 2rem; }
+          .gt-hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+          .gt-hero-right { padding-left: 1rem; border-left-width: 2px; }
+          .gt-main-headline { font-size: 2.4rem; letter-spacing: -1px; }
+          .gt-label-box { font-size: 0.6rem; letter-spacing: 2px; margin-bottom: 1.5rem; }
+          .gt-header-quote { font-size: 0.95rem; line-height: 1.7; }
+
+          .gt-filter-section { padding: 3rem 1.25rem; }
+          .gt-filter-header { margin-bottom: 1.75rem; }
+          .gt-category-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+          .gt-category-card { min-height: 90px; padding: 1.25rem 1rem; }
+          .gt-category-number { font-size: 1.8rem; }
+          .gt-category-name { font-size: 0.8rem; }
+
+          .gt-products-section { padding: 3rem 1.25rem; }
+          .gt-products-section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+          }
+          .gt-products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+          .gt-product-image { height: 180px; }
+          .gt-product-name { font-size: 1.1rem; }
+          .gt-product-price { font-size: 1.5rem; }
+
+          .gt-footer-decor { padding: 2.5rem 1.25rem; }
+          .gt-footer-text { font-size: 1rem; letter-spacing: 1px; }
+
+          .gt-no-products { padding: 3rem 1rem; }
+          .gt-no-products-icon { font-size: 3.5rem; }
+          .gt-no-products-text { font-size: 1.1rem; }
+        }
+
+        /* ── Extra-small (≤ 380px) ──────────────────────── */
+        @media (max-width: 380px) {
+          .gt-main-headline { font-size: 1.9rem; }
+          .gt-category-grid { grid-template-columns: 1fr 1fr; }
+          .gt-button-group { grid-template-columns: 1fr; }
+          .gt-details-button, .gt-cart-button { font-size: 0.85rem; }
+        }
+      `}</style>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: '100%',
-    margin: '0 auto',
-    width: '100%',
-    fontFamily: "'Work Sans', sans-serif",
-    background: '#fafaf8'
-  },
-
-  // Editorial Hero Section
-  editorialHeader: {
-    padding: '4rem 3rem 3rem',
-    background: '#1a2f0d',
-    color: 'white',
-    position: 'relative',
-    overflow: 'hidden'
-  },
-  heroLayout: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1.1fr',
-    gap: '6rem',
-    alignItems: 'center'
-  },
-  heroLeft: {
-    position: 'relative'
-  },
-  labelBox: {
-    display: 'inline-block',
-    padding: '0.5rem 1.5rem',
-    border: '2px solid #f4a220',
-    fontSize: '0.7rem',
-    letterSpacing: '4px',
-    fontWeight: '700',
-    marginBottom: '2.5rem',
-    color: '#f4a220',
-    background: 'rgba(244, 162, 32, 0.05)'
-  },
-  mainHeadline: {
-    fontFamily: "'Playfair Display', serif",
-    fontSize: '4.5rem',
-    fontWeight: '900',
-    lineHeight: '0.95',
-    letterSpacing: '-2px',
-    color: 'white',
-    textTransform: 'uppercase'
-  },
-  headlineItalic: {
-    fontStyle: 'italic',
-    fontWeight: '400',
-    color: '#8fbc5e'
-  },
-  headlineAccent: {
-    color: '#f4a220'
-  },
-  heroRight: {
-    position: 'relative',
-    paddingLeft: '3rem',
-    borderLeft: '3px solid #f4a220'
-  },
-  quoteContainer: {
-    position: 'relative'
-  },
-  headerQuote: {
-    fontSize: '1.15rem',
-    lineHeight: '1.8',
-    color: 'rgba(255,255,255,0.95)',
-    fontStyle: 'italic',
-    fontWeight: '300'
-  },
-
-  // Filter Section
-  filterSection: {
-    padding: '6rem 3rem',
-    background: 'white'
-  },
-  filterContainer: {
-    maxWidth: '1400px',
-    margin: '0 auto'
-  },
-  filterHeader: {
-    marginBottom: '3rem'
-  },
-  sectionLabel: {
-    fontSize: '0.75rem',
-    letterSpacing: '3px',
-    fontWeight: '700',
-    color: '#f4a220'
-  },
-  categoryGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: '1.5rem'
-  },
-  categoryCard: {
-    background: 'white',
-    border: '3px solid #1a2f0d',
-    padding: '2rem 1.5rem',
-    position: 'relative',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    overflow: 'hidden',
-    minHeight: '120px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  categoryCardActive: {
-    background: '#1a2f0d',
-    color: 'white'
-  },
-  categoryNumber: {
-    fontSize: '2.5rem',
-    fontFamily: "'Playfair Display', serif",
-    fontWeight: '900',
-    opacity: '0.15',
-    position: 'absolute',
-    top: '0.5rem',
-    right: '0.5rem',
-    lineHeight: '1'
-  },
-  categoryName: {
-    fontSize: '1rem',
-    fontWeight: '700',
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    zIndex: 1
-  },
-  categoryCorner: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    width: '40px',
-    height: '40px',
-    background: '#f4a220',
-    clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
-    transition: 'all 0.3s ease'
-  },
-
-  // Products Section
-  productsSection: {
-    padding: '6rem 3rem',
-    background: '#fafaf8'
-  },
-  productsSectionHeader: {
-    maxWidth: '1400px',
-    margin: '0 auto 4rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  productsLabelContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1.5rem'
-  },
-  productsLabel: {
-    fontSize: '0.75rem',
-    letterSpacing: '3px',
-    fontWeight: '700',
-    color: '#f4a220'
-  },
-  productsLabelLine: {
-    width: '80px',
-    height: '2px',
-    background: '#f4a220'
-  },
-  productsCount: {
-    fontSize: '1rem',
-    color: '#666',
-    fontWeight: '600'
-  },
-
-  // Products Grid
-  productsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-    gap: "2rem",
-  },
-  productCard: {
-    background: 'white',
-    borderRadius: '15px',
-    boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
-    overflow: 'hidden',
-    transition: 'transform 0.3s, box-shadow 0.3s',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  productLink: {
-    textDecoration: 'none',
-    color: 'inherit',
-    padding: '1.5rem',
-    flex: 1,
-    display: 'block'
-  },
-  productImage: {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover',
-    marginBottom: '1rem',
-    borderRadius: '10px'
-  },
-  categoryBadge: {
-    display: 'inline-block',
-    background: '#e8f5e9',
-    color: '#2d5016',
-    padding: '0.3rem 1rem',
-    borderRadius: '15px',
-    fontSize: '0.85rem',
-    fontWeight: '600',
-    marginBottom: '1rem'
-  },
-  productName: {
-    fontSize: '1.3rem',
-    color: '#2d5016',
-    marginBottom: '0.5rem'
-  },
-  productDescription: {
-    color: '#666',
-    fontSize: '0.95rem',
-    lineHeight: '1.5',
-    marginBottom: '1rem'
-  },
-  productPrice: {
-    fontSize: '1.8rem',
-    fontWeight: 'bold',
-    color: '#f4a220',
-    marginBottom: '1rem'
-  },
-  buttonGroup: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '0.5rem',
-    padding: '0 1.5rem 1.5rem'
-  },
-  detailsButton: {
-    padding: '0.75rem',
-    background: '#6b9e3e',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    textAlign: 'center',
-    textDecoration: 'none',
-    transition: 'background 0.3s'
-  },
-  cartButton: {
-    padding: '0.75rem',
-    background: '#f4a220',
-    color: 'white',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'background 0.3s'
-  },
-
-  // No Products
-  noProducts: {
-    textAlign: 'center',
-    padding: '5rem 2rem',
-    maxWidth: '600px',
-    margin: '0 auto'
-  },
-  noProductsIcon: {
-    fontSize: '5rem',
-    color: '#f4a220',
-    marginBottom: '1.5rem',
-    fontFamily: "'Playfair Display', serif"
-  },
-  noProductsText: {
-    fontSize: '1.3rem',
-    color: '#666',
-    marginBottom: '2rem',
-    fontStyle: 'italic'
-  },
-  resetButton: {
-    padding: '1rem 2.5rem',
-    background: '#1a2f0d',
-    color: 'white',
-    border: 'none',
-    fontSize: '0.9rem',
-    fontWeight: '700',
-    cursor: 'pointer',
-    letterSpacing: '1px',
-    textTransform: 'uppercase',
-    transition: 'all 0.3s'
-  },
-
-  // Footer Decor
-  footerDecor: {
-    padding: '4rem 3rem',
-    background: '#1a2f0d',
-    position: 'relative',
-    overflow: 'hidden'
-  },
-  footerPattern: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    opacity: '0.03',
-    background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 20px)'
-  },
-  footerText: {
-    textAlign: 'center',
-    fontSize: '1.5rem',
-    fontFamily: "'Playfair Display', serif",
-    color: '#f4a220',
-    position: 'relative',
-    letterSpacing: '2px'
-  }
 };
 
 export default Products;
