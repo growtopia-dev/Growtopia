@@ -309,7 +309,8 @@ const Products = ({ onAddToCart }) => {
           color: inherit;
           padding: 1.5rem;
           flex: 1;
-          display: block;
+          display: flex;
+          flex-direction:column;
         }
         .gt-product-image {
           width: 100%;
@@ -319,7 +320,9 @@ const Products = ({ onAddToCart }) => {
           border-radius: 10px;
         }
         .gt-category-badge {
-          display: inline-block;
+          display: inline-flex;
+          align-self:flex-start;
+          width: fit-content;
           background: #e8f5e9;
           color: #2d5016;
           padding: 0.3rem 1rem;
@@ -328,9 +331,25 @@ const Products = ({ onAddToCart }) => {
           font-weight: 600;
           margin-bottom: 1rem;
         }
-        .gt-product-name { font-size: 1.3rem; color: #2d5016; margin-bottom: 0.5rem; }
-        .gt-product-description { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }
-        .gt-product-price { font-size: 1.8rem; font-weight: bold; color: #f4a220; margin-bottom: 1rem; }
+        .gt-product-name { 
+          font-size: 1.3rem; 
+          color: #2d5016; 
+          margin-bottom: 0.5rem; 
+        }
+
+        .gt-product-description {
+          color: #666; 
+          font-size: 0.95rem; 
+          line-height: 1.5; 
+          margin-bottom: 1rem; 
+        }
+
+        .gt-product-price {
+          font-size: 1.8rem; 
+          font-weight: bold; 
+          color: #f4a220; 
+          margin-top:auto;
+        }
 
         .gt-button-group {
           display: grid;
