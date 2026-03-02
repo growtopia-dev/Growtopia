@@ -269,6 +269,7 @@ const styles = {
     padding: "1rem 0",
     borderTop: "1px solid #f0f0f0",
     borderBottom: "1px solid #f0f0f0",
+    gap: "1rem",
   },
   quantityControl: {
     display: "flex",
@@ -277,6 +278,8 @@ const styles = {
     borderRadius: "6px",
     padding: "2px",
     border: "1px solid #e0e0e0",
+    width: "120px",
+    justifyContent: "center",
   },
   qtyBtn: {
     background: "transparent",
@@ -300,6 +303,8 @@ const styles = {
   },
   itemTotal: {
     textAlign: "right",
+    minWidth: "110px",
+    flexShrink: 0,
   },
   totalLabel: {
     fontSize: "0.8rem",
