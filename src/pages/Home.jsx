@@ -401,7 +401,7 @@ const Home = () => {
         }
         .gh-product-card {
           background: white;
-          border: 3px solid #1a2f0d;
+          border: 0.1rem solid #000000a1;
           border-radius: 8px;
           overflow: hidden;
           transition: transform 0.3s;
