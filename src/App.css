@@ -141,6 +141,17 @@ table {
   display: block;
 }
 
+    /* Remove default spinner in input field */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* for firefox */
+  input[type=number]{
+    -moz-appearance: textfield;
+  }
+
 @media (min-width: 768px) {
   table {
     display: table;

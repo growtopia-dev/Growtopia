@@ -99,7 +99,26 @@ const Cart = ({ cart, updateQuantity, removeFromCart, clearCart }) => {
                   >
                     <Minus size={16} />
                   </button>
-                  <span style={styles.quantity}>{item.quantity}</span>
+                  {/* <span style={styles.quantity}>{item.quantity}</span> */}
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e)=>{
+                      const val = parseInt(e.target.value);
+                      //Ensure it's a number and at least 1
+                      if (!isNaN(val) && val >=1){
+                        updateQuantity(item.id,val);
+                      } else if (e.target.value === ""){
+                        //Allow empty string while typing, but handle onBlur ()
+                        updateQuantity(item.id,0);
+                      }
+                    }}
+                    onBlur={(e)=>{
+                      //Reset to 1 if user leaves it empty
+                      if(item.quantity < 1) updateQuantity(item.id,1);
+                    }}
+                    style={styles.quantityInput}
+                  />
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
                     style={styles.qtyBtn}
@@ -281,6 +300,16 @@ const styles = {
     width: "120px",
     justifyContent: "center",
   },
+  quantityInput: {
+    fontSize: "1rem",
+    fontWeight: "600",
+    width: "45px",
+    textAlign: "center",
+    color: "#2d5016",
+    border: "none",
+    background: "transparent",
+    outline: "none",
+  },
   qtyBtn: {
     background: "transparent",
     color: "#333",
@@ -303,7 +332,7 @@ const styles = {
   },
   itemTotal: {
     textAlign: "right",
-    minWidth: "110px",
+    minWidth: "130px",
     flexShrink: 0,
   },
   totalLabel: {
