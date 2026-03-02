@@ -173,7 +173,8 @@ const Home = () => {
       </section>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+        // @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         a { text-decoration: none; }
@@ -308,7 +309,8 @@ const Home = () => {
         }
         .gh-stat-card { text-align: center; padding: 1.5rem; border-left: 3px solid #f4a220; }
         .gh-stat-number {
-          font-family: 'Playfair Display', serif;
+          // font-family: 'Playfair Display', serif;
+          font-family: 'Crimson Text', serif;
           font-size: clamp(2.5rem, 5vw, 3.5rem);
           font-weight: 900;
           color: white;
@@ -400,6 +402,7 @@ const Home = () => {
         .gh-product-card {
           background: white;
           border: 3px solid #1a2f0d;
+          border-radius: 8px;
           overflow: hidden;
           transition: transform 0.3s;
           display: flex;
@@ -425,7 +428,8 @@ const Home = () => {
           gap: 1rem;
         }
         .gh-product-price {
-          font-family: 'Playfair Display', serif;
+          // font-family: 'Playfair Display', serif;
+          font-family: 'Crimson Text', serif;
           font-size: 1.6rem;
           font-weight: 700;
           color: #f4a220;
@@ -434,6 +438,7 @@ const Home = () => {
           background: #6b9e3e;
           color: white;
           border: none;
+          border-radius: 4px;
           padding: 0.75rem 1.4rem;
           font-size: 0.75rem;
           font-weight: 700;
@@ -449,6 +454,7 @@ const Home = () => {
           background: #1a2f0d;
           color: white;
           border: none;
+          border-radius: 4px;
           padding: 1rem 2.5rem;
           font-size: 0.8rem;
           font-weight: 700;
