@@ -79,11 +79,43 @@ const BlogPost = () => {
 
         {/* Content */}
         <div className="bp-content">
-          {(Array.isArray(post.content) ? post.content : [post.content]).map(
-            (paragraph, index) => (
-              <p key={index} className="bp-paragraph">{paragraph.trim()}</p>
-            )
-          )}
+          {post.content.map((block,index) => {
+            //handle heading type
+            if(block.type === 'heading'){
+              return (
+                <h2 key={index} className="bp-heading">
+                  {block.text}
+                </h2>
+              );
+            }
+
+            //handle subheading type
+            if(block.type === 'subheading'){
+              return (
+                <h3 key={index} className="bp-subheading">
+                  {block.text}
+                </h3>
+              );
+            }
+
+            //handle list type
+            if (block.type === 'list'){
+              return (
+                <ul key={index} className="bp-list">
+                  {block.items.map((item,i) => (
+                    <li key={i} className="bp-item">{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+
+            //handle paragraph type (default)
+            return (
+              <p key={index} className="bp-paragraph">
+                {block.text}
+              </p>
+            );
+          })}
         </div>
 
         {/* Tags Footer */}
@@ -139,7 +171,7 @@ const BlogPost = () => {
           margin: 0 auto;
           padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
           font-family: 'Work Sans', sans-serif;
-          background: #fafaf8;
+          // background: #fafaf8;
         }
 
         /* Back button */
@@ -169,10 +201,12 @@ const BlogPost = () => {
         }
 
         /* ── Hero Header ── */
+
         .bp-header {
           padding: clamp(1.5rem, 4vw, 3rem);
           border-bottom: 3px solid #f4a220;
         }
+
         .bp-header-top {
           display: flex;
           justify-content: space-between;
@@ -181,6 +215,7 @@ const BlogPost = () => {
           gap: 0.75rem;
           margin-bottom: 1.75rem;
         }
+
         .bp-category-badge {
           background: #1a2f0d;
           color: #f4a220;
@@ -191,11 +226,13 @@ const BlogPost = () => {
           text-transform: uppercase;
           white-space: nowrap;
         }
+
         .bp-meta-info {
           display: flex;
           flex-wrap: wrap;
           gap: 0.75rem;
         }
+
         .bp-meta-item {
           display: flex;
           align-items: center;
@@ -203,6 +240,7 @@ const BlogPost = () => {
           color: #666;
           font-size: 0.875rem;
         }
+
         .bp-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(1.5rem, 4.5vw, 3rem);
@@ -212,15 +250,18 @@ const BlogPost = () => {
           font-weight: 700;
           word-break: break-word;
         }
+
         .bp-author-section {
           padding-top: 1.25rem;
           border-top: 2px solid #f0f0f0;
         }
+
         .bp-author-info {
           display: flex;
           align-items: center;
           gap: 0.875rem;
         }
+
         .bp-author-avatar {
           width: 42px;
           height: 42px;
@@ -232,15 +273,30 @@ const BlogPost = () => {
           justify-content: center;
           flex-shrink: 0;
         }
-        .bp-author-text { display: flex; flex-direction: column; gap: 0.2rem; }
-        .bp-author-name { font-weight: 700; color: #1a2f0d; font-size: 0.95rem; }
-        .bp-author-role { font-size: 0.8rem; color: #999; }
+
+        .bp-author-text { 
+          display: flex; 
+          flex-direction: column; 
+          gap: 0.2rem; 
+        }
+
+        .bp-author-name { 
+          font-weight: 700; 
+          color: #1a2f0d; 
+          font-size: 0.95rem;
+        }
+
+        .bp-author-role { 
+          font-size: 0.8rem; 
+          color: #999; 
+        }
 
         /* Featured image */
         .bp-image-section {
           background: #f8f9fa;
           border-bottom: 3px solid #f4a220;
         }
+
         .bp-blog-image {
           font-size: clamp(3.5rem, 9vw, 7rem);
           text-align: center;
@@ -252,13 +308,60 @@ const BlogPost = () => {
         }
 
         /* Content */
-        .bp-content { padding: clamp(1.5rem, 4vw, 3rem); }
-        .bp-paragraph {
-          font-size: 1.05rem;
-          line-height: 1.9;
-          color: #333;
-          margin-bottom: 1.5rem;
+        .bp-content { 
+          padding: clamp(1.5rem, 5vw, 4rem);
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .bp-heading {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+          color: #1a2f0d;
+          margin: 3rem 0 1.25rem 0;
+          line-height: 1.2;
+          font-weight: 900;
+          position: relative;
+        }
+
+        .bp-subheading {
           font-family: 'Work Sans', sans-serif;
+          font-size: clamp(1.1rem, 2vw, 1.4rem);
+          color: #f4a220;
+          margin: 2rem 0 1rem 0;
+          font-weight: 700;
+          text-transformation: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .bp-paragraph {
+          font-size: 1.125rem;
+          color: #374151;
+          line-height: 1.75;
+          margin-bottom: 1.75rem;
+          font-family: 'Work Sans', sans-serif;
+          font-weight: 400;
+        }
+
+        .bp-list {
+          margin: 1.5rem 0 2rem 1.5rem;
+        }
+
+        .bp-item {
+          margin-bottom: 0.875rem;
+          font-size: 1.05rem;
+          color: #4b5563;
+          line-height: 1.6;
+        }
+
+        .bp-paragraph:first-of-type::first-letter{
+          float:left;
+          font-family: 'Playfair Display', serif;
+          font-size: 3.5rem;
+          line-height: 1;
+          font-weight: 900;
+          padding-right: 10px;
+          color: #1a2f0d;
         }
 
         /* Tags footer */
