@@ -324,6 +324,7 @@ const About = () => {
           margin: 0 auto;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: auto auto 1fr auto; /*label, title, spacer, paragraph*/
           gap: 2rem;
         }
         .ga-mv-card {
@@ -350,6 +351,9 @@ const About = () => {
         .ga-mv-label { font-size: 0.7rem; letter-spacing: 3px; font-weight: 700; margin-bottom: 1.5rem; opacity: 0.8; }
         .ga-mv-title {
           font-family: 'Playfair Display', serif;
+          min-height: 5.5rem;
+          display: flex;
+          align-items: flex-start;
           font-size: 1.8rem;
           font-weight: 700;
           line-height: 1.3;
