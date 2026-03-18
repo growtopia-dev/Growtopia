@@ -60,16 +60,16 @@ const Footer = () => {
           <div>
             <h4 style={styles.subHeading}>Follow Us</h4>
             <div style={styles.social}>
-              <a href='#!' style={styles.socialLink}>
+              <a href='https://www.facebook.com/profile.php?id=61575122817138&mibextid=rS40aB7S9Ucbxw6v' style={styles.socialLink} target="_blank" rel="noopener noreferrer">
                 Facebook
               </a>
-              <a href='#!' style={styles.socialLink}>
+              {/* <a href='#!' style={styles.socialLink} target="_blank" rel="noopener noreferrer">
                 Twitter
-              </a>
-              <a href='#!' style={styles.socialLink}>
+              </a> */}
+              <a href='https://www.linkedin.com/company/growtopia-agricare/' style={styles.socialLink} target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
-              <a href='#!' style={styles.socialLink}>
+              <a href='https://www.instagram.com/growtopia_agricare' style={styles.socialLink} target="_blank" rel="noopener noreferrer">
                 Instagram
               </a>
             </div>
