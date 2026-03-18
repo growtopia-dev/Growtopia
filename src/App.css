@@ -150,6 +150,7 @@ table {
   /* for firefox */
   input[type=number]{
     -moz-appearance: textfield;
+    appearance: textfield;
   }
 
 @media (min-width: 768px) {
