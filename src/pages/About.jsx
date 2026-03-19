@@ -1,7 +1,7 @@
 // src/pages/About.jsx
 import React, { useState } from 'react';
 import { cofounders, teamMembers } from '../data/team';
-import { Mail } from 'lucide-react';
+import { Linkedin,Github, Mail } from 'lucide-react';
 
 const TeamCard = ({ member }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -19,7 +19,16 @@ const TeamCard = ({ member }) => {
       >
         <div className="ga-card-front">
           <div className="ga-member-avatar">
-            <span className="ga-avatar-icon">👤</span>
+           {member.image ? (
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                className="ga-member-img" 
+                loading="lazy"
+              />
+              ) : (
+                <span className="ga-avatar-icon">👤</span>
+              )}
           </div>
           <h3 className="ga-member-name">{member.name}</h3>
           <p className="ga-member-role">{member.role}</p>
@@ -29,9 +38,11 @@ const TeamCard = ({ member }) => {
           <h3 className="ga-member-name-back">{member.name}</h3>
           <p className="ga-member-role-back">{member.role}</p>
           <p className="ga-member-bio">{member.bio}</p>
-          <a href={`mailto:${member.email}`} className="ga-email-link">
-            <Mail size={16} /> {member.email}
-          </a>
+          <div className='ga-social-link'>
+          <a href={member.linkedin} className='social-icon' ><Linkedin size={24}/></a>
+          <a href={member.email} className='social-icon'><Mail size={26} /></a>
+          <a href={member.github} className='social-icon'><Github size={24}/></a>
+          </div>
         </div>
       </div>
     </div>
@@ -461,6 +472,14 @@ const About = () => {
           align-items: center;
           justify-content: center;
           border: 3px solid #f4a220;
+          overflow:hidden;
+        }
+        .ga-member-img{
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          object-position:center;
+          display:block;
         }
         .ga-avatar-icon { font-size: 4rem; }
         .ga-member-name {
@@ -503,22 +522,21 @@ const About = () => {
           margin-bottom: 1.5rem;
           text-align: center;
         }
-        .ga-email-link {
-          display: inline-flex;
+        .ga-social-link {
+          display:flex;
           align-items: center;
-          gap: 0.5rem;
+          justify-content: space-between;
+          gap: 1rem;
           color: #f4a220;
           text-decoration: none;
-          font-size: 0.82rem;
-          font-weight: 600;
           background: rgba(255,255,255,0.1);
           padding: 0.6rem 1.2rem;
           border: 1px solid #f4a220;
           transition: all 0.3s;
-          word-break: break-all;
-          text-align: center;
         }
-        .ga-email-link:hover { background: rgba(255,255,255,0.2); }
+        .social-icon:hover {
+          color: rgba(255,255,255,0.2);
+        }
 
         /* Animations */
         @keyframes ga-slideUp {
