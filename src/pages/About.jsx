@@ -20,7 +20,16 @@ const TeamCard = ({ member }) => {
         {/* ── Front ── */}
         <div className="ga-card-front">
           <div className="ga-member-avatar">
-            <span className="ga-avatar-icon">👤</span>
+           {member.image ? (
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                className="ga-member-img" 
+                loading="lazy"
+              />
+              ) : (
+                <span className="ga-avatar-icon">👤</span>
+              )}
           </div>
           <h3 className="ga-member-name">{member.name}</h3>
           <p className="ga-member-role">{member.role}</p>
@@ -511,6 +520,14 @@ const About = () => {
           align-items: center;
           justify-content: center;
           border: 3px solid #f4a220;
+          overflow:hidden;
+        }
+        .ga-member-img{
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          object-position:center;
+          display:block;
         }
         .ga-avatar-icon { font-size: 4rem; }
         .ga-member-name {
