@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.c11616dd.css",
-    "main.js": "/static/js/main.a2ca6ef0.js",
-    "static/media/OrganicFertilizerPack.png": "/static/media/OrganicFertilizerPack.ced7857bc035d35ea58d.png",
-    "static/media/CropAnalyticsDashboard.png": "/static/media/CropAnalyticsDashboard.8b56b3d9ea743f0a753f.png",
-    "static/media/SmartGreenhouseController.png": "/static/media/SmartGreenhouseController.3b9f6f034f54e57b9d02.png",
-    "static/media/WeatherStationPro.png": "/static/media/WeatherStationPro.83c4dfdcca5fa9c0a878.png",
-    "static/media/DripIrrigationSystem.png": "/static/media/DripIrrigationSystem.6ce35f669a2fd2b61e21.png",
-    "static/media/PestControlSolution.png": "/static/media/PestControlSolution.b47cb9245d99a5eb316e.png",
-    "static/media/SoilHealthMonitor.png": "/static/media/SoilHealthMonitor.3ab35418af9d35e2219e.png",
-    "static/media/SmartIrrigationSystem.png": "/static/media/SmartIrrigationSystem.7187d7fc61e6ceabaa45.png",
+    "main.css": "/static/css/main.d1e0ed7c.css",
+    "main.js": "/static/js/main.1c53adad.js",
+    "static/media/OrganicFertilizerPack.webp": "/static/media/OrganicFertilizerPack.8d1254f19a8bba6bd522.webp",
+    "static/media/CropAnalyticsDashboard.webp": "/static/media/CropAnalyticsDashboard.624cad83899627ad0100.webp",
+    "static/media/WeatherStationPro.webp": "/static/media/WeatherStationPro.ec85cdab77b2b6473359.webp",
+    "static/media/SmartGreenhouseController.webp": "/static/media/SmartGreenhouseController.5cdf6b058c459f74be1b.webp",
+    "static/media/SoilHealthMonitor.webp": "/static/media/SoilHealthMonitor.97c663790517457d1cbd.webp",
+    "static/media/DripIrrigationSystem.webp": "/static/media/DripIrrigationSystem.a6e79f64a293a5e9c992.webp",
+    "static/media/SmartIrrigationSystem.webp": "/static/media/SmartIrrigationSystem.5d088e8f51a0d43140ed.webp",
+    "static/media/PestControlSolution.webp": "/static/media/PestControlSolution.f3bebc7bc53dad5564de.webp",
     "index.html": "/index.html",
-    "main.c11616dd.css.map": "/static/css/main.c11616dd.css.map",
-    "main.a2ca6ef0.js.map": "/static/js/main.a2ca6ef0.js.map"
+    "main.d1e0ed7c.css.map": "/static/css/main.d1e0ed7c.css.map",
+    "main.1c53adad.js.map": "/static/js/main.1c53adad.js.map"
   },
   "entrypoints": [
-    "static/css/main.c11616dd.css",
-    "static/js/main.a2ca6ef0.js"
+    "static/css/main.d1e0ed7c.css",
+    "static/js/main.1c53adad.js"
   ]
 }

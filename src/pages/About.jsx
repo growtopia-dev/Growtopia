@@ -1,7 +1,7 @@
 // src/pages/About.jsx
 import React, { useState } from 'react';
 import { cofounders, teamMembers } from '../data/team';
-import { Mail } from 'lucide-react';
+import { Mail, Linkedin, Github } from 'lucide-react';
 
 const TeamCard = ({ member }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -17,6 +17,7 @@ const TeamCard = ({ member }) => {
         className="ga-card-inner"
         style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
       >
+        {/* ── Front ── */}
         <div className="ga-card-front">
           <div className="ga-member-avatar">
             <span className="ga-avatar-icon">👤</span>
@@ -25,13 +26,31 @@ const TeamCard = ({ member }) => {
           <p className="ga-member-role">{member.role}</p>
         </div>
 
+        {/* ── Back ── */}
         <div className="ga-card-back">
-          <h3 className="ga-member-name-back">{member.name}</h3>
-          <p className="ga-member-role-back">{member.role}</p>
+          <div className="ga-back-header">
+            <h3 className="ga-member-name-back">{member.name}</h3>
+            <p className="ga-member-role-back">{member.role}</p>
+          </div>
           <p className="ga-member-bio">{member.bio}</p>
-          <a href={`mailto:${member.email}`} className="ga-email-link">
-            <Mail size={16} /> {member.email}
-          </a>
+          <div className="ga-contact-links" onClick={(e) => e.stopPropagation()}>
+            <a href={`mailto:${member.email}`} className="ga-contact-link ga-contact-link--email" title={member.email}>
+              <Mail size={15} />
+              <span>Email</span>
+            </a>
+            {member.linkedin && (
+              <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="ga-contact-link ga-contact-link--linkedin" title="LinkedIn">
+                <Linkedin size={15} />
+                <span>LinkedIn</span>
+              </a>
+            )}
+            {member.github && (
+              <a href={member.github.trim()} target="_blank" rel="noopener noreferrer" className="ga-contact-link ga-contact-link--github" title="GitHub">
+                <Github size={15} />
+                <span>GitHub</span>
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -131,7 +150,7 @@ const About = () => {
             </p>
             <div className="ga-mv-corner" />
           </div>
-          <div className="ga-mv-card ga-mv-card--amber">
+          <div className="ga-mv-card ga-mv-card--teal">
             <div className="ga-mv-number">03</div>
             <div className="ga-mv-label">VALUES</div>
             <h3 className="ga-mv-title">Principles That Guide Us</h3>
@@ -303,7 +322,7 @@ const About = () => {
         }
         .ga-story-text { font-size: 1rem; line-height: 1.8; color: #333; }
         .ga-pull-quote {
-          background: #f4a220;
+          background: #1a5f72;
           padding: 2.5rem;
           margin-top: 3rem;
           position: relative;
@@ -324,7 +343,6 @@ const About = () => {
           margin: 0 auto;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: auto auto 1fr auto; /*label, title, spacer, paragraph*/
           gap: 2rem;
         }
         .ga-mv-card {
@@ -336,9 +354,9 @@ const About = () => {
           flex-direction: column;
           overflow: hidden;
         }
-        .ga-mv-card--dark   { background: #1a2f0d; }
-        .ga-mv-card--green  { background: #6b9e3e; }
-        .ga-mv-card--amber  { background: #f4a220; }
+        .ga-mv-card--dark  { background: #1a2f0d; }
+        .ga-mv-card--green { background: #6b9e3e; }
+        .ga-mv-card--teal  { background: #1a5f72; }
         .ga-mv-number {
           font-size: 8rem;
           font-family: 'Playfair Display', serif;
@@ -372,40 +390,30 @@ const About = () => {
         .ga-founders-section { padding: 8rem 3rem; background: white; }
         .ga-founders-header { max-width: 1400px; margin: 0 auto 5rem; text-align: center; }
         .ga-founders-label-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          margin-bottom: 1.5rem;
+          display: flex; align-items: center; justify-content: center;
+          gap: 1.5rem; margin-bottom: 1.5rem;
         }
         .ga-founders-label { font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; color: #f4a220; }
         .ga-founders-label-line { width: 60px; height: 2px; background: #f4a220; }
         .ga-founders-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(2rem, 5vw, 4rem);
-          font-weight: 700;
-          line-height: 1.1;
-          color: #1a2f0d;
+          font-weight: 700; line-height: 1.1; color: #1a2f0d;
         }
 
         /* Core Team */
         .ga-core-team-section { padding: 8rem 3rem; background: #fafaf8; }
         .ga-core-team-header { max-width: 1400px; margin: 0 auto 5rem; text-align: center; }
         .ga-core-team-label-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          margin-bottom: 1.5rem;
+          display: flex; align-items: center; justify-content: center;
+          gap: 1.5rem; margin-bottom: 1.5rem;
         }
         .ga-core-team-label { font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; color: #f4a220; }
         .ga-core-team-label-line { width: 60px; height: 2px; background: #f4a220; }
         .ga-core-team-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(2rem, 5vw, 4rem);
-          font-weight: 700;
-          color: #1a2f0d;
-          margin-bottom: 1rem;
+          font-weight: 700; color: #1a2f0d; margin-bottom: 1rem;
         }
         .ga-core-team-subtitle { font-size: 1.1rem; color: #666; font-style: italic; }
 
@@ -419,10 +427,10 @@ const About = () => {
         }
         .ga-card-wrapper { animation: ga-slideUp 0.6s ease-out both; }
 
-        /* Flip Card */
+        /* ── Flip Card ── */
         .ga-card-container {
           perspective: 1000px;
-          height: 400px;
+          height: 420px;
           cursor: pointer;
         }
         .ga-card-inner {
@@ -443,13 +451,55 @@ const About = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
+        }
+        .ga-card-front {
+          background: white;
           justify-content: center;
         }
-        .ga-card-front { background: white; }
         .ga-card-back {
           background: linear-gradient(135deg, #6b9e3e 0%, #2d5016 100%);
           transform: rotateY(180deg);
           color: white;
+          justify-content: space-between;
+          padding: 1.75rem 2rem;
+        }
+
+        /* Back face */
+        .ga-back-header {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .ga-member-name-back {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.4rem;
+          color: white;
+          margin-bottom: 0.3rem;
+          font-weight: 700;
+          text-align: center;
+        }
+        .ga-member-role-back {
+          font-size: 0.78rem;
+          color: #f4a220;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-align: center;
+        }
+        .ga-member-bio {
+          font-size: 0.88rem;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.92);
+          text-align: center;
+          padding: 0 0.25rem;
+        }
+        .ga-contact-links {
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+          align-items: center;
+          width: 100%;
         }
         .ga-member-avatar {
           width: 120px;
@@ -479,46 +529,42 @@ const About = () => {
           font-size: 0.85rem;
           text-align: center;
         }
-        .ga-member-name-back {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.6rem;
-          color: white;
-          margin-bottom: 0.5rem;
-          font-weight: 700;
-          text-align: center;
-        }
-        .ga-member-role-back {
-          font-size: 0.85rem;
-          color: #f4a220;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          text-align: center;
-        }
-        .ga-member-bio {
-          font-size: 0.9rem;
-          line-height: 1.6;
-          color: white;
-          margin-bottom: 1.5rem;
-          text-align: center;
-        }
-        .ga-email-link {
+
+        /* Contact links */
+        .ga-contact-link {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 0.5rem;
-          color: #f4a220;
-          text-decoration: none;
-          font-size: 0.82rem;
+          font-size: 0.75rem;
           font-weight: 600;
-          background: rgba(255,255,255,0.1);
-          padding: 0.6rem 1.2rem;
-          border: 1px solid #f4a220;
-          transition: all 0.3s;
-          word-break: break-all;
-          text-align: center;
+          padding: 0.45rem 0;
+          border-radius: 4px;
+          text-decoration: none;
+          transition: all 0.25s;
+          border: 1.5px solid transparent;
+          width: 80%;
         }
-        .ga-email-link:hover { background: rgba(255,255,255,0.2); }
+        .ga-contact-link--email {
+          background: rgba(255,255,255,0.1);
+          color: #f4a220;
+          border-color: #f4a220;
+        }
+        .ga-contact-link--email:hover { background: rgba(244,162,32,0.25); }
+
+        .ga-contact-link--linkedin {
+          background: rgba(255,255,255,0.1);
+          color: #7dd3f5;
+          border-color: #7dd3f5;
+        }
+        .ga-contact-link--linkedin:hover { background: rgba(125,211,245,0.2); }
+
+        .ga-contact-link--github {
+          background: rgba(255,255,255,0.1);
+          color: white;
+          border-color: rgba(255,255,255,0.5);
+        }
+        .ga-contact-link--github:hover { background: rgba(255,255,255,0.22); }
 
         /* Animations */
         @keyframes ga-slideUp {
@@ -529,10 +575,7 @@ const About = () => {
         /* ── Tablet (≤ 1024px) ──────────────────────────── */
         @media (max-width: 1024px) {
           .ga-hero-layout { gap: 3.5rem; }
-          .ga-story-container {
-            grid-template-columns: 320px 1fr;
-            gap: 3rem;
-          }
+          .ga-story-container { grid-template-columns: 320px 1fr; gap: 3rem; }
           .ga-story-image-placeholder { height: 480px; }
           .ga-mv-grid { grid-template-columns: 1fr; gap: 1.5rem; }
           .ga-mv-card { min-height: auto; padding: 2.5rem; }
@@ -542,60 +585,35 @@ const About = () => {
 
         /* ── Mobile (≤ 768px) ───────────────────────────── */
         @media (max-width: 768px) {
-          /* Hero */
-          .ga-hero-layout {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          .ga-main-headline {
-            font-size: clamp(1.8rem, 8vw, 3rem);
-            text-align: center;
-            letter-spacing: -0.5px;
-          }
+          .ga-hero-layout { grid-template-columns: 1fr; gap: 2rem; }
+          .ga-main-headline { font-size: clamp(1.8rem, 8vw, 3rem); text-align: center; letter-spacing: -0.5px; }
           .ga-hero-left { text-align: center; }
           .ga-label-box { margin-bottom: 1.5rem; }
-          .ga-hero-right {
-            padding-left: 0;
-            border-left: none;
-            border-top: 3px solid #f4a220;
-            padding-top: 2rem;
-          }
+          .ga-hero-right { padding-left: 0; border-left: none; border-top: 3px solid #f4a220; padding-top: 2rem; }
           .ga-header-quote { text-align: center; }
 
-          /* Story */
           .ga-story-section { padding: 4rem 1.5rem; }
-          .ga-story-container {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-          .ga-story-image-placeholder {
-            height: 300px;
-            box-shadow: 12px 12px 0 #f4a220;
-          }
+          .ga-story-container { grid-template-columns: 1fr; gap: 2.5rem; }
+          .ga-story-image-placeholder { height: 300px; box-shadow: 12px 12px 0 #f4a220; }
           .ga-image-overlay { font-size: 2rem; }
-          .ga-story-heading {
-            font-size: clamp(1.75rem, 6vw, 2.5rem);
-            text-align: center;
-          }
+          .ga-story-heading { font-size: clamp(1.75rem, 6vw, 2.5rem); text-align: center; }
           .ga-story-heading br { display: none; }
           .ga-story-columns { grid-template-columns: 1fr; gap: 1.5rem; }
           .ga-pull-quote { transform: translateX(0); }
           .ga-pull-quote-text { font-size: 1.1rem; }
 
-          /* Mission Vision */
           .ga-mission-vision-section { padding: 4rem 1.5rem; }
           .ga-mv-grid { grid-template-columns: 1fr; }
           .ga-mv-card { min-height: auto; padding: 2rem; }
           .ga-mv-number { font-size: 5rem; }
-          .ga-mv-title { font-size: 1.5rem; }
+          .ga-mv-title { font-size: 1.5rem; min-height: auto; }
 
-          /* Founders & Team */
           .ga-founders-section { padding: 4rem 1.5rem; }
           .ga-founders-header { margin-bottom: 3rem; }
           .ga-core-team-section { padding: 4rem 1.5rem; }
           .ga-core-team-header { margin-bottom: 3rem; }
           .ga-team-grid { grid-template-columns: 1fr; }
-          .ga-card-container { height: 360px; }
+          .ga-card-container { height: 400px; }
           .ga-member-avatar { width: 100px; height: 100px; }
           .ga-avatar-icon { font-size: 3rem; }
           .ga-member-name, .ga-member-name-back { font-size: 1.3rem; }
@@ -604,20 +622,17 @@ const About = () => {
         /* ── Small Mobile (≤ 480px) ─────────────────────── */
         @media (max-width: 480px) {
           .ga-main-headline { font-size: clamp(1.6rem, 8vw, 2.4rem); }
-          .ga-story-image-placeholder {
-            height: 220px;
-            box-shadow: 8px 8px 0 #f4a220;
-          }
+          .ga-story-image-placeholder { height: 220px; box-shadow: 8px 8px 0 #f4a220; }
           .ga-image-overlay { font-size: 1.5rem; }
           .ga-pull-quote { padding: 1.75rem; }
           .ga-pull-quote-text { font-size: 1rem; }
           .ga-mv-card { padding: 1.75rem; }
-          .ga-card-container { height: 320px; }
+          .ga-card-container { height: 430px; }
           .ga-card-front, .ga-card-back { padding: 1.5rem; }
           .ga-member-avatar { width: 80px; height: 80px; margin-bottom: 1rem; }
           .ga-avatar-icon { font-size: 2.5rem; }
           .ga-member-bio { font-size: 0.82rem; }
-          .ga-email-link { font-size: 0.75rem; padding: 0.5rem 0.9rem; }
+          .ga-contact-link { font-size: 0.7rem; padding: 0.4rem 0.7rem; }
           .ga-core-team-subtitle { font-size: 0.95rem; }
         }
 
@@ -625,8 +640,9 @@ const About = () => {
         @media (max-width: 380px) {
           .ga-main-headline { font-size: 7.5vw; letter-spacing: 0; }
           .ga-team-grid { grid-template-columns: 1fr; }
-          .ga-card-container { height: 300px; }
+          .ga-card-container { height: 450px; }
           .ga-mv-number { font-size: 4rem; }
+          .ga-contact-links { gap: 0.4rem; }
         }
       `}</style>
     </div>

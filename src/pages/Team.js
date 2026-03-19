@@ -5,25 +5,19 @@ export const cofounders = [
     name: "Dipak Raval",
     role: "Prototype Development Lead",
     bio: "Leads hardware and product prototyping, turning agritech concepts into real-world solutions that farmers can rely on.",
-    email: 'rdvraval19@gmail.com',
-    linkedin: 'https://www.linkedin.com/in/rdvraval19',
-    github: 'https://github.com/rdvraval19'
+    email: "dipak@growtopia.com",
   },
   {
     name: "Rahul Khara",
     role: "Research & Development Lead",
     bio: "Drives innovation through research in sustainable agriculture, IoT integration, and cutting-edge farming technologies.",
-    email: 'Khararahul99@gmail.com',
-    linkedin:'https://www.linkedin.com/in/rahul-khara-147b4a2b7',
-    github:'https://github.com/Rahul23-byte'
+    email: "rahul.khara@growtopia.com",
   },
   {
     name: "Jenil Sanchaniya",
     role: "Operations Lead",
     bio: "Oversees day-to-day operations, ensuring seamless delivery of GROWTOPIA solutions to farmers across India.",
-    email: 'freky.stark@gmail.com',
-    linkedin:'https://www.linkedin.com/in/frekystark',
-    github:'https://github.com/frekystark'
+    email: "jenil@growtopia.com",
   },
 ];
 
@@ -32,32 +26,24 @@ export const teamMembers = [
     name: "Simran Patra",
     role: "Graphic & Social Media Lead",
     bio: "Crafts GROWTOPIA's visual identity and social media presence, communicating our mission through compelling design.",
-    email: 'simranpatra2021@gmail.com',
-    linkedin:'https://www.linkedin.com/in/simran-patra',
-    github:'https://github.com/Simran251393'
+    email: "simran@growtopia.com",
   },
   {
     name: "Ranjan Kumar Sharma",
     role: "Content Writer",
     bio: "Tells the GROWTOPIA story through engaging content that educates farmers and inspires sustainable practices.",
-    email: 'rs.ranjan79sharma@gmail.com',
-    linkedin:'https://www.linkedin.com/in/ranjan-kumar-sharma-910baa334',
-    github:'https://github.com/RanjanSharma09',
+    email: "ranjan@growtopia.com",
   },
   {
     name: "Rahul Parmar",
     role: "Web Developer",
     bio: "Builds and maintains GROWTOPIA's digital platforms, creating seamless experiences for farmers and partners.",
-    email: "rahulpa2417r@gmail.com",
-    linkedin: 'https://www.linkedin.com/in/rahul-parmar-735ab632a/',
-    github: ' https://github.com/rahulp-fx',
+    email: "rahul.parmar@growtopia.com",
   },
   {
     name: "Prachi Parmar",
     role: "Web Developer",
     bio: "Develops intuitive interfaces and features that make agricultural technology accessible to every user.",
-    email: "prachiparmar737@gmail.com",
-    linkedin:'https://www.linkedin.com/in/prachiparmar737',
-    github:'https://github.com/prachi737',
+    email: "prachi@growtopia.com",
   },
 ];
