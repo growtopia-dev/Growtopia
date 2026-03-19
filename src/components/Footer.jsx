@@ -78,6 +78,7 @@ const Footer = () => {
 
         <div style={styles.bottom}>
           <p>© 2025 GROWTOPIA. All rights reserved.</p>
+          <p style={styles.credit}>Made with 💚 by GROWTOPIA Team</p>
         </div>
       </div>
     </footer>
@@ -97,9 +98,9 @@ const styles = {
   },
   logoImg: {
     width: "36px",
-    height:"36px",
+    height: "36px",
     borderRadius: "50%",
-    objectFit: 'cover',
+    objectFit: "cover",
   },
   grid: {
     display: "grid",
@@ -112,9 +113,9 @@ const styles = {
     marginBottom: "1rem",
     color: "#f4a220",
     fontWeight: "650",
-    display:"flex",
-    alignItems:"center",
-    gap:"10px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
   },
   subHeading: {
     fontSize: "1.2rem",
@@ -155,6 +156,7 @@ const styles = {
     flexWrap: "wrap",
     gap: "1rem",
   },
+  credit: {},
 };
 
 export default Footer;
