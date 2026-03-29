@@ -70,24 +70,19 @@ const About = () => {
   return (
     <div className="ga-container">
 
-      {/* Hero Section */}
+      {/* ── Hero Section — matches Products page layout ── */}
       <section className="ga-editorial-header">
-        <div className="ga-hero-layout">
-          <div className="ga-hero-left">
-            <div className="ga-label-box">ABOUT GROWTOPIA</div>
-            <h1 className="ga-main-headline">
-              WHERE<br />
-              <span className="ga-headline-italic">INNOVATION</span><br />
-              MEETS<br />
-              <span className="ga-headline-accent">AGRICULTURE</span>
-            </h1>
-          </div>
-          <div className="ga-hero-right">
-            <p className="ga-header-quote">
-              We don't just farm the land, we cultivate the future of sustainable agriculture
-              through technology, passion, and unwavering commitment to our farmers.
-            </p>
-          </div>
+        <div className="ga-hero-overlay" />
+        <div className="ga-hero-content">
+          <div className="ga-label-box">ABOUT GROWTOPIA</div>
+          <h1 className="ga-main-headline">
+            WHERE <span className="ga-headline-italic">INNOVATION</span><br />
+            MEETS <span className="ga-headline-accent">GREEN LIVING</span>
+          </h1>
+          <p className="ga-header-quote">
+            We cultivate the future of urban gardening through technology, passion,
+            and unwavering commitment to every balcony, terrace, home, and nursery we serve.
+          </p>
         </div>
       </section>
 
@@ -127,7 +122,7 @@ const About = () => {
 
             <div className="ga-pull-quote">
               <div className="ga-pull-quote-text">
-                Today, GROWTOPIA serves farmers across India, providing innovative solutions
+                Today, GROWTOPIA serves urban gardeners across India, providing innovative solutions
                 that increase yields, reduce costs, and promote environmentally friendly practices.
               </div>
             </div>
@@ -141,9 +136,9 @@ const About = () => {
           <div className="ga-mv-card ga-mv-card--dark">
             <div className="ga-mv-number">01</div>
             <div className="ga-mv-label">MISSION</div>
-            <h3 className="ga-mv-title">Empowering Farmers Through Innovation</h3>
+            <h3 className="ga-mv-title">Empowering Gardeners Through Innovation</h3>
             <p className="ga-mv-text">
-              To empower farmers with innovative, affordable, and sustainable agricultural
+              To empower urban gardeners with innovative, affordable, and sustainable
               technology that increases productivity while preserving the environment for
               future generations.
             </p>
@@ -152,10 +147,10 @@ const About = () => {
           <div className="ga-mv-card ga-mv-card--green">
             <div className="ga-mv-number">02</div>
             <div className="ga-mv-label">VISION</div>
-            <h3 className="ga-mv-title">Leading India's Agritech Revolution</h3>
+            <h3 className="ga-mv-title">Leading India's Urban Garden Revolution</h3>
             <p className="ga-mv-text">
-              To become India's leading agritech company, transforming farming through
-              technology and making sustainable agriculture accessible to every farmer.
+              To become India's leading urban gardening company, transforming green spaces
+              through technology and making sustainable gardening accessible to every home.
             </p>
             <div className="ga-mv-corner" />
           </div>
@@ -164,7 +159,7 @@ const About = () => {
             <div className="ga-mv-label">VALUES</div>
             <h3 className="ga-mv-title">Principles That Guide Us</h3>
             <p className="ga-mv-text">
-              Innovation, Sustainability, Farmer-First Approach, Quality Excellence, and
+              Innovation, Sustainability, Customer-First Approach, Quality Excellence, and
               Environmental Responsibility guide everything we do.
             </p>
             <div className="ga-mv-corner" />
@@ -199,7 +194,7 @@ const About = () => {
           </div>
           <h2 className="ga-core-team-title">Our Core Team</h2>
           <p className="ga-core-team-subtitle">
-            Dedicated individuals working tirelessly to bring innovation to agriculture
+            Dedicated individuals working tirelessly to bring innovation to urban gardening
           </p>
         </div>
         <div className="ga-team-grid">
@@ -216,8 +211,6 @@ const About = () => {
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* ── Base / Desktop ─────────────────────────────── */
-
         .ga-container {
           max-width: 100%;
           width: 100%;
@@ -226,56 +219,67 @@ const About = () => {
           overflow-x: hidden;
         }
 
-        /* Hero */
+        /* ── Hero — mirrors Products page exactly ── */
         .ga-editorial-header {
-          padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
-          background: #1a2f0d;
-          color: white;
+          background-color: #1a2f0d;
+          background-image: linear-gradient(to bottom, rgba(26,47,13,0.45), rgba(26,47,13,0.65)), url('/AboutNav.webp');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 60vh;
           position: relative;
-          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3rem;
         }
-        .ga-hero-layout {
-          max-width: 1400px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 6rem;
+        .ga-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: transparent;
+        }
+        .ga-hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          max-width: 800px;
+          width: 100%;
+          padding: 0 1rem;
+          display: flex;
+          flex-direction: column;
           align-items: center;
         }
-        .ga-hero-left { position: relative; }
         .ga-label-box {
           display: inline-block;
           padding: 0.5rem 1.5rem;
-          border: 2px solid #f4a220;
+          border: 2px solid #8fbc5e;
           font-size: 0.7rem;
           letter-spacing: 4px;
           font-weight: 700;
-          margin-bottom: 2.5rem;
-          color: #f4a220;
-          background: rgba(244, 162, 32, 0.05);
+          margin-bottom: 2rem;
+          color: #8fbc5e;
+          background: rgba(143, 188, 94, 0.05);
         }
         .ga-main-headline {
           font-family: 'Playfair Display', serif;
           font-size: clamp(2rem, 5.5vw, 4.5rem);
           font-weight: 900;
-          line-height: 1.05;
+          line-height: 1.1;
           letter-spacing: clamp(-0.5px, -0.04em, -2px);
           color: white;
           text-transform: uppercase;
+          margin-bottom: 1.5rem;
+          word-break: break-word;
         }
         .ga-headline-italic { font-style: italic; font-weight: 400; color: #8fbc5e; }
-        .ga-headline-accent { color: #f4a220; }
-        .ga-hero-right {
-          position: relative;
-          padding-left: 3rem;
-          border-left: 3px solid #f4a220;
-        }
+        .ga-headline-accent { color: white; }
         .ga-header-quote {
-          font-size: clamp(0.85rem, 2vw, 1.15rem);
+          font-size: clamp(0.875rem, 2vw, 1.1rem);
           line-height: 1.8;
-          color: rgba(255,255,255,0.95);
+          color: rgba(255,255,255,0.92);
           font-style: italic;
           font-weight: 300;
+          max-width: 560px;
         }
 
         /* Story */
@@ -473,6 +477,44 @@ const About = () => {
           padding: 1.75rem 2rem;
         }
 
+        /* Front face */
+        .ga-member-avatar {
+          width: 120px;
+          height: 120px;
+          background: linear-gradient(135deg, #6b9e3e, #2d5016);
+          border-radius: 50%;
+          margin: 0 auto 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 3px solid #f4a220;
+          overflow: hidden;
+        }
+        .ga-member-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+        }
+        .ga-avatar-icon { font-size: 4rem; }
+        .ga-member-name {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.6rem;
+          color: #1a2f0d;
+          margin-bottom: 0.5rem;
+          font-weight: 700;
+          text-align: center;
+        }
+        .ga-member-role {
+          color: #6b9e3e;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 0.85rem;
+          text-align: center;
+        }
+
         /* Back face */
         .ga-back-header {
           display: flex;
@@ -510,44 +552,6 @@ const About = () => {
           align-items: center;
           width: 100%;
         }
-        .ga-member-avatar {
-          width: 120px;
-          height: 120px;
-          background: linear-gradient(135deg, #6b9e3e, #2d5016);
-          border-radius: 50%;
-          margin: 0 auto 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 3px solid #f4a220;
-          overflow:hidden;
-        }
-        .ga-member-img{
-          width:100%;
-          height:100%;
-          object-fit:cover;
-          object-position:center;
-          display:block;
-        }
-        .ga-avatar-icon { font-size: 4rem; }
-        .ga-member-name {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.6rem;
-          color: #1a2f0d;
-          margin-bottom: 0.5rem;
-          font-weight: 700;
-          text-align: center;
-        }
-        .ga-member-role {
-          color: #6b9e3e;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          font-size: 0.85rem;
-          text-align: center;
-        }
-
-        /* Contact links */
         .ga-contact-link {
           display: inline-flex;
           align-items: center;
@@ -562,25 +566,11 @@ const About = () => {
           border: 1.5px solid transparent;
           width: 80%;
         }
-        .ga-contact-link--email {
-          background: rgba(255,255,255,0.1);
-          color: #f4a220;
-          border-color: #f4a220;
-        }
+        .ga-contact-link--email { background: rgba(255,255,255,0.1); color: #f4a220; border-color: #f4a220; }
         .ga-contact-link--email:hover { background: rgba(244,162,32,0.25); }
-
-        .ga-contact-link--linkedin {
-          background: rgba(255,255,255,0.1);
-          color: #7dd3f5;
-          border-color: #7dd3f5;
-        }
+        .ga-contact-link--linkedin { background: rgba(255,255,255,0.1); color: #7dd3f5; border-color: #7dd3f5; }
         .ga-contact-link--linkedin:hover { background: rgba(125,211,245,0.2); }
-
-        .ga-contact-link--github {
-          background: rgba(255,255,255,0.1);
-          color: white;
-          border-color: rgba(255,255,255,0.5);
-        }
+        .ga-contact-link--github { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.5); }
         .ga-contact-link--github:hover { background: rgba(255,255,255,0.22); }
 
         /* Animations */
@@ -591,7 +581,6 @@ const About = () => {
 
         /* ── Tablet (≤ 1024px) ──────────────────────────── */
         @media (max-width: 1024px) {
-          .ga-hero-layout { gap: 3.5rem; }
           .ga-story-container { grid-template-columns: 320px 1fr; gap: 3rem; }
           .ga-story-image-placeholder { height: 480px; }
           .ga-mv-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -602,12 +591,9 @@ const About = () => {
 
         /* ── Mobile (≤ 768px) ───────────────────────────── */
         @media (max-width: 768px) {
-          .ga-hero-layout { grid-template-columns: 1fr; gap: 2rem; }
-          .ga-main-headline { font-size: clamp(1.8rem, 8vw, 3rem); text-align: center; letter-spacing: -0.5px; }
-          .ga-hero-left { text-align: center; }
-          .ga-label-box { margin-bottom: 1.5rem; }
-          .ga-hero-right { padding-left: 0; border-left: none; border-top: 3px solid #f4a220; padding-top: 2rem; }
-          .ga-header-quote { text-align: center; }
+          .ga-editorial-header { padding: 3rem 1.5rem; min-height: 48vh; }
+          .ga-main-headline { font-size: clamp(1.8rem, 8vw, 3rem); letter-spacing: -0.5px; }
+          .ga-header-quote { font-size: clamp(0.8rem, 3vw, 1rem); }
 
           .ga-story-section { padding: 4rem 1.5rem; }
           .ga-story-container { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -638,7 +624,9 @@ const About = () => {
 
         /* ── Small Mobile (≤ 480px) ─────────────────────── */
         @media (max-width: 480px) {
+          .ga-editorial-header { padding: 2rem 1.25rem; min-height: 42vh; }
           .ga-main-headline { font-size: clamp(1.6rem, 8vw, 2.4rem); }
+          .ga-header-quote { font-size: 0.82rem; }
           .ga-story-image-placeholder { height: 220px; box-shadow: 8px 8px 0 #f4a220; }
           .ga-image-overlay { font-size: 1.5rem; }
           .ga-pull-quote { padding: 1.75rem; }
@@ -655,7 +643,7 @@ const About = () => {
 
         /* ── Extra-small (≤ 380px) ──────────────────────── */
         @media (max-width: 380px) {
-          .ga-main-headline { font-size: 7.5vw; letter-spacing: 0; }
+          .ga-main-headline { font-size: 5.5vw; letter-spacing: 0; }
           .ga-team-grid { grid-template-columns: 1fr; }
           .ga-card-container { height: 450px; }
           .ga-mv-number { font-size: 4rem; }

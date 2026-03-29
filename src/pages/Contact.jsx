@@ -24,24 +24,19 @@ const Contact = () => {
   return (
     <div className="ct-container">
 
-      {/* ── Editorial Hero ── */}
+      {/* ── Hero — centered, mirrors Products / About ── */}
       <section className="ct-editorial-header">
-        <div className="ct-hero-layout">
-          <div className="ct-hero-left">
-            <div className="ct-label-box">CONTACT GROWTOPIA</div>
-            <h1 className="ct-main-headline">
-              LET'S<br />
-              <span className="ct-headline-italic">START A</span><br />
-              <span className="ct-headline-accent">CONVERSATION</span>
-            </h1>
-          </div>
-
-          <div className="ct-hero-right">
-            <p className="ct-header-desc">
-              We'd love to hear from you. Whether you have questions about our products,
-              need support, or want to explore partnership opportunities, our team is ready to help.
-            </p>
-          </div>
+        <div className="ct-hero-overlay" />
+        <div className="ct-hero-content">
+          <div className="ct-label-box">CONTACT GROWTOPIA</div>
+          <h1 className="ct-main-headline">
+            LET'S <span className="ct-headline-italic">START A</span><br />
+            <span className="ct-headline-accent">CONVERSATION</span>
+          </h1>
+          <p className="ct-header-quote">
+            We'd love to hear from you. Whether you have questions about our products,
+            need support, or want to explore partnership opportunities — our team is ready to help.
+          </p>
         </div>
       </section>
 
@@ -191,7 +186,7 @@ const Contact = () => {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         a { text-decoration: none; }
 
-        /* ── Base ────────────────────────────────────────── */
+        /* ── Base ── */
         .ct-container {
           max-width: 100%;
           width: 100%;
@@ -200,57 +195,70 @@ const Contact = () => {
           overflow-x: hidden;
         }
 
-        /* Hero */
+        /* ── Hero — centered, no orange, mirrors Products ── */
         .ct-editorial-header {
-          padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
-          background: #1a2f0d;
-          color: white;
+          background-color: #1a2f0d;
+          background-image: linear-gradient(to bottom, rgba(26,47,13,0.45), rgba(26,47,13,0.65)), url('/contactNav.webp');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          min-height: 60vh;
           position: relative;
-          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3rem;
         }
-        .ct-hero-layout {
-          max-width: 1400px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 6rem;
+        .ct-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: transparent;
+        }
+        .ct-hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          max-width: 800px;
+          width: 100%;
+          padding: 0 1rem;
+          display: flex;
+          flex-direction: column;
           align-items: center;
         }
-        .ct-hero-left { position: relative; }
         .ct-label-box {
           display: inline-block;
           padding: 0.5rem 1.5rem;
-          border: 2px solid #f4a220;
+          border: 2px solid #8fbc5e;
           font-size: 0.7rem;
           letter-spacing: 4px;
           font-weight: 700;
-          margin-bottom: 2.5rem;
-          color: #f4a220;
-          background: rgba(244,162,32,0.05);
+          margin-bottom: 2rem;
+          color: #8fbc5e;
+          background: rgba(143, 188, 94, 0.05);
         }
         .ct-main-headline {
           font-family: 'Playfair Display', serif;
-          font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+          font-size: clamp(2rem, 5.5vw, 4.5rem);
           font-weight: 900;
-          line-height: 1.0;
+          line-height: 1.1;
           letter-spacing: clamp(-0.5px, -0.04em, -2px);
           color: white;
           text-transform: uppercase;
+          margin-bottom: 1.5rem;
+          word-break: break-word;
         }
         .ct-headline-italic { font-style: italic; font-weight: 400; color: #8fbc5e; }
-        .ct-headline-accent { color: #f4a220; }
-        .ct-hero-right {
-          padding-left: 3rem;
-          border-left: 3px solid #f4a220;
-        }
-        .ct-header-desc {
-          font-size: clamp(0.9rem, 2vw, 1.15rem);
+        .ct-headline-accent { color: white; }
+        .ct-header-quote {
+          font-size: clamp(0.875rem, 2vw, 1.1rem);
           line-height: 1.8;
-          color: rgba(255,255,255,0.95);
+          color: rgba(255,255,255,0.92);
+          font-style: italic;
           font-weight: 300;
+          max-width: 560px;
         }
 
-        /* Info Cards */
+        /* ── Info Cards ── */
         .ct-info-section {
           padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 3rem);
           background: #fafaf8;
@@ -307,7 +315,7 @@ const Contact = () => {
           clip-path: polygon(100% 0, 100% 100%, 0 100%);
         }
 
-        /* Form Section */
+        /* ── Form Section ── */
         .ct-form-section {
           padding: clamp(4rem, 7vw, 8rem) clamp(1.25rem, 4vw, 3rem);
           background: white;
@@ -380,7 +388,7 @@ const Contact = () => {
           box-shadow: 0 5px 15px rgba(107,158,62,0.3);
         }
 
-        /* Side Content */
+        /* ── Side Content ── */
         .ct-side-content { display: flex; flex-direction: column; gap: 3rem; }
         .ct-why-box {
           background: linear-gradient(135deg, #2d5016, #6b9e3e);
@@ -427,41 +435,20 @@ const Contact = () => {
         .ct-day-label { font-size: 0.95rem; font-weight: 600; color: #333; }
         .ct-time-label { font-size: 0.9rem; color: #666; font-style: italic; }
 
-        /* ── Tablet (≤ 1024px) ──────────────────────────── */
+        /* ── Tablet (≤ 1024px) ── */
         @media (max-width: 1024px) {
-          .ct-hero-layout { gap: 3.5rem; }
           .ct-info-grid { grid-template-columns: 1fr; gap: 1.5rem; }
           .ct-info-card { min-height: auto; padding: 2.5rem; }
           .ct-form-layout { grid-template-columns: 1fr; gap: 3rem; }
           .ct-why-box { box-shadow: 15px 15px 0 #f4a220; }
         }
 
-        /* ── Mobile (≤ 768px) ───────────────────────────── */
+        /* ── Mobile (≤ 768px) ── */
         @media (max-width: 768px) {
-          /* Hero */
-          .ct-hero-layout {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          .ct-hero-left { text-align: center; }
-          .ct-label-box { margin-bottom: 1.5rem; }
-          .ct-main-headline {
-            font-size: clamp(2rem, 9vw, 3.2rem);
-            text-align: center;
-            letter-spacing: -0.5px;
-          }
-          .ct-hero-right {
-            padding-left: 0;
-            border-left: none;
-            border-top: 3px solid #f4a220;
-            padding-top: 2rem;
-          }
-          .ct-header-desc { text-align: center; }
-
-          /* Info cards */
+          .ct-editorial-header { padding: 3rem 1.5rem; min-height: 48vh; }
+          .ct-main-headline { font-size: clamp(1.8rem, 8vw, 3rem); letter-spacing: -0.5px; }
+          .ct-header-quote { font-size: clamp(0.8rem, 3vw, 1rem); }
           .ct-info-grid { grid-template-columns: 1fr; }
-
-          /* Form layout */
           .ct-form-layout { grid-template-columns: 1fr; gap: 3rem; }
           .ct-form-row { grid-template-columns: 1fr; gap: 1.5rem; }
           .ct-side-content { order: -1; }
@@ -469,9 +456,11 @@ const Contact = () => {
           .ct-submit-btn { width: 100%; justify-content: center; }
         }
 
-        /* ── Small Mobile (≤ 480px) ─────────────────────── */
+        /* ── Small Mobile (≤ 480px) ── */
         @media (max-width: 480px) {
+          .ct-editorial-header { padding: 2rem 1.25rem; min-height: 42vh; }
           .ct-main-headline { font-size: clamp(1.75rem, 9vw, 2.5rem); }
+          .ct-header-quote { font-size: 0.82rem; }
           .ct-info-card { padding: 2rem; }
           .ct-why-box { padding: 2rem; box-shadow: 8px 8px 0 #f4a220; }
           .ct-why-title { font-size: 1.6rem; margin-bottom: 1.75rem; }
@@ -480,7 +469,7 @@ const Contact = () => {
           .ct-hour-item { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
         }
 
-        /* ── Extra small (≤ 380px) ──────────────────────── */
+        /* ── Extra small (≤ 380px) ── */
         @media (max-width: 380px) {
           .ct-main-headline { font-size: 8vw; letter-spacing: 0; }
           .ct-info-card { padding: 1.5rem; }
