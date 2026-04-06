@@ -96,7 +96,7 @@ const About = () => {
           <div className="ga-story-content">
             <div className="ga-section-label">— OUR STORY</div>
             <h2 className="ga-story-heading">
-              Born from Vision,<br />
+              Born from Vision, <br />
               <span className="ga-story-heading-accent">Driven by Purpose</span>
             </h2>
 
@@ -389,6 +389,7 @@ const About = () => {
           font-weight: 700;
           line-height: 1.3;
           margin-bottom: 1.5rem;
+          color: white;
         }
         .ga-mv-text { font-size: 0.95rem; line-height: 1.7; opacity: 0.9; flex: 1; }
         .ga-mv-corner {
@@ -598,7 +599,7 @@ const About = () => {
           .ga-story-section { padding: 4rem 1.5rem; }
           .ga-story-container { grid-template-columns: 1fr; gap: 2.5rem; }
           .ga-story-image-placeholder { height: 300px; box-shadow: 12px 12px 0 #f4a220; }
-          .ga-image-overlay { font-size: 2rem; }
+          .ga-image-overlay { font-size: 2rem; transform: rotate(0deg);}
           .ga-story-heading { font-size: clamp(1.75rem, 6vw, 2.5rem); text-align: center; }
           .ga-story-heading br { display: none; }
           .ga-story-columns { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -628,7 +629,7 @@ const About = () => {
           .ga-main-headline { font-size: clamp(1.6rem, 8vw, 2.4rem); }
           .ga-header-quote { font-size: 0.82rem; }
           .ga-story-image-placeholder { height: 220px; box-shadow: 8px 8px 0 #f4a220; }
-          .ga-image-overlay { font-size: 1.5rem; }
+          .ga-image-overlay { font-size: 1.5rem; transform: rotate(0deg);}
           .ga-pull-quote { padding: 1.75rem; }
           .ga-pull-quote-text { font-size: 1rem; }
           .ga-mv-card { padding: 1.75rem; }
