@@ -1,12 +1,13 @@
 // src/pages/Products.jsx
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { products, categories } from "../data/products";
 import toast, { Toaster, useToasterStore } from "react-hot-toast";
 
 const Products = ({ onAddToCart }) => {
   const { toasts } = useToasterStore();
   const TOAST_LIMIT = 3;
+  const navigate = useNavigate();
 
   useEffect(() => {
     toasts
@@ -97,8 +98,15 @@ const Products = ({ onAddToCart }) => {
 
         <div className="gt-products-grid">
           {filteredProducts.map((product) => (
+
             <div key={product.id} className="gt-product-card">
-              <Link to={`/product/${product.id}`} className="gt-product-link">
+
+
+              <div 
+                className="gt-product-link" 
+                onClick={() => navigate(`/product/${product.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
@@ -110,11 +118,15 @@ const Products = ({ onAddToCart }) => {
                 <p className="gt-product-price">
                   ₹{product.price.toLocaleString()}
                 </p>
-              </Link>
+              </div>
+
+
               <div className="gt-button-group">
-                <Link to={`/product/${product.id}`} className="gt-details-button">
+                <button 
+                onClick={() => navigate(`/product/${product.id}`)} 
+                className="gt-details-button">
                   View Details
-                </Link>
+                </button>
                 <button
                   onClick={(e) => handleAddToCart(e, product)}
                   className="gt-cart-button"
