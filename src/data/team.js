@@ -5,6 +5,7 @@ import RahulImg  from '../assets/team/Rahul.png';
 import SimranImg from '../assets/team/Simran.png';
 import RanjanImg from '../assets/team/Ranjan.jpg';
 import PrachiImg from '../assets/team/prachi.jpg';
+import RahulWebDevImg from '../assets/team/Rahul_webdev.jpeg';
 
 export const cofounders = [
   {
@@ -58,7 +59,7 @@ export const teamMembers = [
   {
     name:     'Rahul Parmar',
     role:     'Web Developer',
-    image:    null,
+    image:    RahulWebDevImg,
     bio:      'Builds and maintains GROWTOPIA\'s digital platforms, creating seamless experiences for urban gardeners and partners.',
     email:    'rahulpa2417r@gmail.com',
     linkedin: 'https://www.linkedin.com/in/rahul-parmar-735ab632a/',

@@ -459,7 +459,7 @@ const About = () => {
           height: 100%;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
-          padding: 2rem;
+          padding: 1.5rem;
           border: 3px solid #1a2f0d;
           display: flex;
           flex-direction: column;
