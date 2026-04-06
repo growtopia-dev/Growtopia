@@ -280,7 +280,7 @@ const Products = ({ onAddToCart }) => {
         }
 
         /* Products */
-        .gt-products-section { padding: 6rem 3rem; background: #fafaf8; }
+        .gt-products-section { padding: 4rem 3rem; background: white; }
         .gt-products-section-header {
           max-width: 1400px;
           margin: 0 auto 4rem;
