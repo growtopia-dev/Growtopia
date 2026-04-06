@@ -493,7 +493,7 @@ const Products = ({ onAddToCart }) => {
           .gt-main-headline { font-size: clamp(1.6rem, 8vw, 2.4rem); }
           .gt-header-quote { font-size: 0.82rem; }
           .gt-category-grid { grid-template-columns: repeat(2, 1fr); }
-          .gt-button-group { grid-template-columns: 1fr; }
+          .gt-button-group { grid-template-columns: 1fr 1fr; }
           .gt-details-button, .gt-cart-button { font-size: 0.85rem; }
         }
 

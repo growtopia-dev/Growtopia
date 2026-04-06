@@ -178,6 +178,11 @@ const Products = ({ onAddToCart }) => {
             animation: slideUp 0.6s ease-out both;
           }
 
+          .button-group {
+              grid-template-columns: 1fr;
+              gap: 0.75rem;
+            }
+
           /* MOBILE HERO FIX */
           @media (max-width: 768px) {
             .products-hero {
@@ -224,8 +229,7 @@ const Products = ({ onAddToCart }) => {
             }
 
             .button-group {
-              grid-template-columns: 1fr !important;
-              gap: 0.75rem !important;
+              grid-template-columns: 1fr;
             }
 
             /* Products Header */
@@ -475,7 +479,8 @@ const styles = {
     color: 'inherit',
     padding: '1.5rem',
     flex: 1,
-    display: 'block'
+    display: 'flex',
+    flexDirection: 'column',
   },
   productImage: {
     width: '100%',
@@ -485,7 +490,10 @@ const styles = {
     borderRadius: '10px'
   },
   categoryBadge: {
-    display: 'inline-block',
+    display: 'inline-flex',
+    alignSelf: 'flex-start',
+    width:'fit-content',
+    whiteSpace: 'nowrap',
     background: '#e8f5e9',
     color: '#2d5016',
     padding: '0.3rem 1rem',
@@ -509,7 +517,8 @@ const styles = {
     fontSize: '1.8rem',
     fontWeight: 'bold',
     color: '#f4a220',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    marginTop: 'auto',
   },
   buttonGroup: {
     display: 'grid',
