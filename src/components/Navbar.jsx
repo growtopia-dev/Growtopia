@@ -18,6 +18,12 @@ const Navbar = ({ cartCount }) => {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
+  // Helper to determine if a path is active
+  const isActive = (path) => {
+    if (path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(path);
+  };
+
   return (
     <>
       <nav className="gn-nav">
@@ -36,11 +42,31 @@ const Navbar = ({ cartCount }) => {
           <div className="gn-right-section">
             {/* Desktop links */}
             <ul className="gn-nav-links-desktop">
-              <li><Link to="/" className="gn-link">Home</Link></li>
-              <li><Link to="/products" className="gn-link">Products</Link></li>
-              <li><Link to="/about" className="gn-link">About</Link></li>
-              <li><Link to="/blog" className="gn-link">Blog</Link></li>
-              <li><Link to="/contact" className="gn-link">Contact</Link></li>
+              <li>
+                <Link to="/" className={`gn-link ${isActive("/") ? "active" : ""}`}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/products" className={`gn-link ${isActive("/product") ? "active" : ""}`}>
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className={`gn-link ${isActive("/about") ? "active" : ""}`}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className={`gn-link ${isActive("/blog") ? "active" : ""}`}>
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className={`gn-link ${isActive("/contact") ? "active" : ""}`}>
+                  Contact
+                </Link>
+              </li>
             </ul>
 
             {/* Actions: cart + hamburger */}
@@ -72,18 +98,17 @@ const Navbar = ({ cartCount }) => {
             <button className="gn-close-btn" onClick={toggleMenu} aria-label="Close menu">
               <X size={24} />
             </button>
-            <Link to="/" className="gn-mobile-link" onClick={toggleMenu}>Home</Link>
-            <Link to="/products" className="gn-mobile-link" onClick={toggleMenu}>Products</Link>
-            <Link to="/about" className="gn-mobile-link" onClick={toggleMenu}>About</Link>
-            <Link to="/blog" className="gn-mobile-link" onClick={toggleMenu}>Blog</Link>
-            <Link to="/contact" className="gn-mobile-link" onClick={toggleMenu}>Contact</Link>
+            <Link to="/" className={`gn-mobile-link ${isActive("/") ? "active" : ""}`} onClick={toggleMenu}>Home</Link>
+            <Link to="/products" className={`gn-mobile-link ${isActive("/product") ? "active" : ""}`} onClick={toggleMenu}>Products</Link>
+            <Link to="/about" className={`gn-mobile-link ${isActive("/about") ? "active" : ""}`} onClick={toggleMenu}>About</Link>
+            <Link to="/blog" className={`gn-mobile-link ${isActive("/blog") ? "active" : ""}`} onClick={toggleMenu}>Blog</Link>
+            <Link to="/contact" className={`gn-mobile-link ${isActive("/contact") ? "active" : ""}`} onClick={toggleMenu}>Contact</Link>
           </div>
         </div>
       )}
 
       <style>{`
         /* ── Base ─────────────────────────────────────────── */
-
         .gn-nav {
           background: rgba(45, 80, 22, 0.92);
           backdrop-filter: blur(8px);
@@ -103,7 +128,6 @@ const Navbar = ({ cartCount }) => {
           align-items: center;
         }
 
-        /* Logo */
         .gn-logo {
           font-size: 1.35rem;
           font-weight: 700;
@@ -125,7 +149,6 @@ const Navbar = ({ cartCount }) => {
           flex-shrink: 0;
         }
 
-        /* Right section */
         .gn-right-section {
           display: flex;
           align-items: center;
@@ -141,15 +164,17 @@ const Navbar = ({ cartCount }) => {
           margin: 0;
           padding: 0;
         }
+
         .gn-link {
-          color: rgba(255,255,255,0.92);
+          color: rgba(255,255,255,0.8);
           text-decoration: none;
           font-weight: 500;
           font-size: 0.95rem;
-          transition: color 0.2s, opacity 0.2s;
+          transition: color 0.2s;
           position: relative;
           padding-bottom: 2px;
         }
+
         .gn-link::after {
           content: '';
           position: absolute;
@@ -160,17 +185,25 @@ const Navbar = ({ cartCount }) => {
           background: #f4a220;
           transition: width 0.25s ease;
         }
+
+        /* Hover and Active Logic - Order matters to avoid !important */
         .gn-link:hover { color: white; }
         .gn-link:hover::after { width: 100%; }
 
-        /* Actions */
+        /* Specific Active State */
+        .gn-nav-links-desktop .gn-link.active {
+          color: #f4a220;
+        }
+        .gn-nav-links-desktop .gn-link.active::after {
+          width: 100%;
+        }
+
         .gn-nav-actions {
           display: flex;
           align-items: center;
           gap: 0.25rem;
         }
 
-        /* Cart button */
         .gn-cart-btn {
           color: white;
           padding: 0.5rem 0.65rem;
@@ -183,6 +216,7 @@ const Navbar = ({ cartCount }) => {
           transition: background 0.2s;
         }
         .gn-cart-btn:hover { background: rgba(255,255,255,0.1); }
+        
         .gn-cart-count {
           position: absolute;
           top: 1px;
@@ -200,7 +234,6 @@ const Navbar = ({ cartCount }) => {
           line-height: 1;
         }
 
-        /* Hamburger button — hidden on desktop */
         .gn-menu-btn {
           display: none;
           background: transparent;
@@ -212,10 +245,8 @@ const Navbar = ({ cartCount }) => {
           transition: background 0.2s;
           line-height: 0;
         }
-        .gn-menu-btn:hover { background: rgba(255,255,255,0.1); }
 
         /* ── Mobile overlay & drawer ───────────────────────── */
-
         .gn-overlay {
           position: fixed;
           inset: 0;
@@ -250,9 +281,7 @@ const Navbar = ({ cartCount }) => {
           align-self: flex-end;
           margin-bottom: 1.25rem;
           line-height: 0;
-          transition: color 0.2s;
         }
-        .gn-close-btn:hover { color: white; }
 
         .gn-mobile-link {
           color: white;
@@ -261,45 +290,33 @@ const Navbar = ({ cartCount }) => {
           font-weight: 500;
           padding: 0.9rem 0.5rem;
           border-bottom: 1px solid rgba(255,255,255,0.1);
-          transition: color 0.2s, padding-left 0.2s;
+          transition: all 0.2s;
           display: block;
         }
-        .gn-mobile-link:last-child { border-bottom: none; }
-        .gn-mobile-link:hover { color: #f4a220; padding-left: 0.75rem; }
 
-        /* ── Animations ───────────────────────────────────── */
-
-        @keyframes gn-fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes gn-slideIn {
-          from { transform: translateX(100%); }
-          to   { transform: translateX(0); }
+        .gn-mobile-link.active {
+          color: #f4a220;
+          background: rgba(255, 255, 255, 0.05);
+          padding-left: 1rem;
+          border-left: 4px solid #f4a220;
         }
 
-        /* ── Tablet (≤ 900px) ─────────────────────────────── */
+        /* Animations */
+        @keyframes gn-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes gn-slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
         @media (max-width: 900px) {
           .gn-nav-links-desktop { gap: 1.25rem; }
           .gn-link { font-size: 0.88rem; }
           .gn-right-section { gap: 1rem; }
         }
 
-        /* ── Mobile (≤ 768px) ─────────────────────────────── */
         @media (max-width: 768px) {
-          /* Hide desktop links, show hamburger */
           .gn-nav-links-desktop { display: none; }
           .gn-menu-btn { display: flex; }
           .gn-right-section { gap: 0.25rem; }
           .gn-logo { font-size: 1.15rem; }
           .gn-logo-img { width: 30px; height: 30px; }
-        }
-
-        /* ── Small mobile (≤ 400px) ───────────────────────── */
-        @media (max-width: 400px) {
-          .gn-nav { padding: 0.75rem 1rem; }
-          .gn-logo { font-size: 1rem; }
-          .gn-logo-img { width: 26px; height: 26px; }
         }
       `}</style>
     </>
