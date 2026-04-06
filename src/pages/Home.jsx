@@ -158,7 +158,8 @@ const Home = () => {
       </section>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+        // @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Work+Sans:wght@300;400;600;700&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         a { text-decoration: none; }
@@ -407,7 +408,7 @@ const Home = () => {
           gap: 1rem;
         }
         .gh-product-price {
-          font-family: 'Crimson Text', serif;
+          font-family: 'Work Sans', sans-serif;
           font-size: 1.6rem;
           font-weight: 700;
           color: #f4a220;
@@ -520,7 +521,7 @@ const Home = () => {
 
           .gh-mission-section { padding: 3rem 1.25rem; }
           .gh-mission-image-box { height: 220px; box-shadow: 10px 10px 0 #f4a220; }
-          .gh-mission-image-overlay { font-size: 1.6rem; }
+          .gh-mission-image-overlay { font-size: 1.6rem; transform: rotate(0deg); }
 
           .gh-features-section { padding: 3rem 1.25rem; }
           .gh-feature-card { padding: 1.75rem; }

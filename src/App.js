@@ -13,6 +13,7 @@ import BlogPost from './pages/BlogPost';
 import Cart from './pages/Cart';
 import Contact from './pages/Contact';
 import './App.css';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -54,6 +55,7 @@ function App() {
         <div className="App">
           <Navbar cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} />
           <ErrorBoundary>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products onAddToCart={addToCart} />} />
